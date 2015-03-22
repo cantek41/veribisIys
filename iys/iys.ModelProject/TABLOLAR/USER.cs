@@ -10,6 +10,7 @@ namespace iys.ModelProject
     {
         [Key]
         public int USER_CODE { get; set; }
+        public string ID { get; set; }
         public string NICK_NAME { get; set; }
         public string USER_NAME { get; set; }
         public string SURNAME { get; set; }
