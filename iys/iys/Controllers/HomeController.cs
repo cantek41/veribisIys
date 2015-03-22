@@ -10,6 +10,8 @@ namespace iys.Controllers
     {
         public ActionResult Index()
         {
+
+            //iys.Models.DAL.iysContext ctx = new Models.DAL.iysContext();
             return View();
         }
 

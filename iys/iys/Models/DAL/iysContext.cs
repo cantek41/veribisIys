@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Web;
 
-namespace iys.Models
+namespace iys.Models.DAL
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class iysContext : DbContext
     {
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
+        public iysContext()
             : base("DefaultConnection")
         {
         }
@@ -22,6 +20,5 @@ namespace iys.Models
         public DbSet<DOCUMENT> DOCUMENTS { get; set; }
         public DbSet<LESSON> LESSONS { get; set; }
         public DbSet<QUESTION> QUESTIONS { get; set; }
-
     }
 }

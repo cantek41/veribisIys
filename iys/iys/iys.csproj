@@ -165,7 +165,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ANSWER.cs" />
+    <Compile Include="Models\ANSWER_RESULT.cs" />
+    <Compile Include="Models\CHAPTER.cs" />
+    <Compile Include="Models\COURSE.cs" />
+    <Compile Include="Models\DOCUMENT.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LESSON.cs" />
+    <Compile Include="Models\QUESTION.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -244,7 +251,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:25204/</IISUrl>
+          <IISUrl>http://localhost:25205/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
