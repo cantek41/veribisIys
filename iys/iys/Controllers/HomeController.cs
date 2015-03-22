@@ -12,13 +12,13 @@ namespace iys.Controllers
     {
         public ActionResult Index()
         {
-            using (var ctx = new iysContext())
-            {
-                USER us = new USER { ID = "dsf" };
-                ctx.USERDETAILS.Add(us);
-                ctx.SaveChanges();
+            //using (var ctx = new iysContext())
+            //{
+            //    USER us = new USER { ID = "dsf" };
+            //    ctx.USERDETAILS.Add(us);
+            //    ctx.SaveChanges();
                
-            }
+            //}
             return View();
         }
 

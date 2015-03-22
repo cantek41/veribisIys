@@ -27,11 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.COURSE_CODE, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.COURSE_CODE, new SelectList(
-              Model.CHAPTER_NAME,
-              "id",
-              "name",
-              Model.COURSE_CODE))
+                @Html.DropDownListFor(M => M.COURSE_CODE, new SelectList((System.Collections.IEnumerable)ViewData["courses"], "Key", "Value"))
                 @Html.ValidationMessageFor(model => model.COURSE_CODE)
             </div>
         </div>

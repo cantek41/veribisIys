@@ -38,6 +38,8 @@ namespace iys.Controllers
         // GET: /Chapter/Create
         public ActionResult Create()
         {
+            ViewData["courses"] = from d in db.COURSES
+                                  select new { Key = d.COURSE_CODE, Value = d.COURSE_NAME };
             return View();
         }
 
@@ -50,9 +52,9 @@ namespace iys.Controllers
         {
             chapter.CREATE_DATE = DateTime.Now;
             chapter.LAST_UPDATE = DateTime.Now;
-            //chapter.CREATE_USER = string(User.Identity.Name);
-            //chapter.LAST_UPDATE_USER=
-            //chapter.COURSE_CODE=
+            chapter.CREATE_USER = getCurrentUserName();
+            chapter.LAST_UPDATE_USER = getCurrentUserName();
+
 
             if (ModelState.IsValid)
             {
@@ -84,10 +86,16 @@ namespace iys.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="CHAPTER_CODE,CHAPTER_NAME,COURSE_CODE,RES_CODE,ORDER_BY,VISIBLE,ROW_NO,DURATION,CREATE_USER,CREATE_DATE,LAST_UPDATE,LAST_UPDATE_USER")] CHAPTER chapter)
+        public ActionResult Edit( CHAPTER chapter)
         {
+            chapter.CREATE_DATE = DateTime.Now;
+            chapter.LAST_UPDATE = DateTime.Now;
+            chapter.CREATE_USER = getCurrentUserName();
+            chapter.LAST_UPDATE_USER = getCurrentUserName();
+
             if (ModelState.IsValid)
             {
+                
                 db.Entry(chapter).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
