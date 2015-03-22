@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iys.ModelProject;
+
 
 namespace iys.Controllers
 {
@@ -10,8 +12,10 @@ namespace iys.Controllers
     {
         public ActionResult Index()
         {
-
-            //iys.Models.DAL.iysContext ctx = new Models.DAL.iysContext();
+            using (var ctx = new iysContext())
+            {
+               
+            }
             return View();
         }
 
