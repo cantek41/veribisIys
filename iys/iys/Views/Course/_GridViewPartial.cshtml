@@ -1,0 +1,45 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Course", Action = "GridViewPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Course", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Course", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Course", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "COURSE_CODE";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("COURSE_CODE");
+				settings.Columns.Add("COURSE_NAME");
+				settings.Columns.Add("TYPE");
+				settings.Columns.Add("GROUP_CODE");
+				settings.Columns.Add("CATEGORY");
+				settings.Columns.Add("RES_CODE");
+				settings.Columns.Add("ORDER_BY");
+				settings.Columns.Add("VISIBLE");
+				settings.Columns.Add("DES_01");
+				settings.Columns.Add("DES_02");
+				settings.Columns.Add("DES_03");
+				settings.Columns.Add("ROW_NO");
+				settings.Columns.Add("CREATE_USER");
+				settings.Columns.Add("CREATE_DATE");
+				settings.Columns.Add("LAST_UPDATE");
+				settings.Columns.Add("LAST_UPDATE_USER");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

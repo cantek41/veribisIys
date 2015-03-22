@@ -14,9 +14,6 @@ namespace iys.Controllers
         {
             using (var ctx = new iysContext())
             {
-                USER us = new USER { ID = "dsf" };
-                ctx.USERDETAILS.Add(us);
-                ctx.SaveChanges();
                
             }
             return View();
