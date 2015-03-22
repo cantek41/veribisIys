@@ -193,7 +193,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\CourseController.cs" />
+=======
+    <Compile Include="Controllers\ChapterController.cs" />
+>>>>>>> 8c357da086fa4bb0a7c5cb4e14e4f38a9be7fe91
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -252,8 +256,16 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\_GridViewPartial.cshtml" />
+=======
+    <Content Include="Views\Chapter\Create.cshtml" />
+    <Content Include="Views\Chapter\Delete.cshtml" />
+    <Content Include="Views\Chapter\Details.cshtml" />
+    <Content Include="Views\Chapter\Edit.cshtml" />
+    <Content Include="Views\Chapter\Index.cshtml" />
+>>>>>>> 8c357da086fa4bb0a7c5cb4e14e4f38a9be7fe91
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,7 +302,11 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+<<<<<<< HEAD
           <IISUrl>http://localhost:25212/</IISUrl>
+=======
+          <IISUrl>http://localhost:25209/</IISUrl>
+>>>>>>> 8c357da086fa4bb0a7c5cb4e14e4f38a9be7fe91
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

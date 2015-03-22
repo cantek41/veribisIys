@@ -9,11 +9,16 @@ namespace iys.Controllers
 {
     public class BaseController : Controller
     {
-        //
-        // GET: /Base/
-        public ActionResult Index()
+        public int getCurrentUserName()
         {
-            return View();
+            int username = -1;
+            using (iysContext db = new iysContext())
+            {
+                string userId = User.Identity.Name;
+                username =db.USERDETAILS.Where(x => x.NICK_NAME == userId).Select(x => x.USER_CODE).SingleOrDefault();
+                
+            }
+            return username;
         }
-	}
+    }
 }
