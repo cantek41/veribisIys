@@ -11,9 +11,7 @@ namespace iys.Controllers
     {
         //
         // GET: /Base/
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
+       
 	}
 }
