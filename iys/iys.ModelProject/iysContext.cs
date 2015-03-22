@@ -21,6 +21,6 @@ namespace iys.ModelProject
         public DbSet<DOCUMENT> DOCUMENTS { get; set; }
         public DbSet<LESSON> LESSONS { get; set; }
         public DbSet<QUESTION> QUESTIONS { get; set; }
-
+        public DbSet<USER> USERDETAILS { get; set; }
     }
 }
