@@ -29,25 +29,25 @@ namespace iys.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] iys.ModelProject.COURSE item)
         {
-            item.COURSE_CODE = 3;
-            item.CATEGORY = 0;
-            item.RES_CODE = 0;
-            item.TYPE = 0;
-            item.VISIBLE = true;
-            item.ORDER_BY = 0;
-            item.ROW_NO = 0;
-            item.DES_02 = "";
-            item.DES_03 = "";
-            item.CREATE_USER = 0;
-            item.CREATE_DATE = DateTime.Now;
-            item.LAST_UPDATE = DateTime.Now;
-            item.LAST_UPDATE_USER = 0;
+            
                    
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
-                   
+
+                    item.CATEGORY = 0;
+                    item.RES_CODE = 0;
+                    item.TYPE = 0;
+                    item.VISIBLE = true;
+                    item.ORDER_BY = 0;
+                    item.ROW_NO = 0;
+                    item.DES_02 = "";
+                    item.DES_03 = "";
+                    item.CREATE_USER = 0;
+                    item.CREATE_DATE = DateTime.Now;
+                    item.LAST_UPDATE = DateTime.Now;
+                    item.LAST_UPDATE_USER = 0;
                    db.COURSES.Add(item);
                     db.SaveChanges();
                 }
@@ -55,9 +55,9 @@ namespace iys.Controllers
                 {
                     ViewData["EditError"] = e.Message;
                 }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
+            //}
+            //else
+            //    ViewData["EditError"] = "Please, correct all errors.";
             return PartialView("_GridViewPartial", db.COURSES.ToList());
         }
         [HttpPost, ValidateInput(false)]
