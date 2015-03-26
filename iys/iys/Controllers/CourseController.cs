@@ -8,7 +8,7 @@ using iys.Models;
 
 namespace iys.Controllers
 {
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
         //
         // GET: /Course/
@@ -44,10 +44,10 @@ namespace iys.Controllers
                     item.ROW_NO = 0;
                     item.DES_02 = "";
                     item.DES_03 = "";
-                    item.CREATE_USER = 0;
+                    item.CREATE_USER = getCurrentUserName();
                     item.CREATE_DATE = DateTime.Now;
                     item.LAST_UPDATE = DateTime.Now;
-                    item.LAST_UPDATE_USER = 0;
+                    item.LAST_UPDATE_USER = getCurrentUserName();
                    db.COURSES.Add(item);
                     db.SaveChanges();
                 }
