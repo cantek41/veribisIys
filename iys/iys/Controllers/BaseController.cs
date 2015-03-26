@@ -15,10 +15,36 @@ namespace iys.Controllers
             using (iysContext db = new iysContext())
             {
                 string userId = User.Identity.Name;
-                username =db.USERDETAILS.Where(x => x.NICK_NAME == userId).Select(x => x.USER_CODE).SingleOrDefault();
-                
+                username = db.USERDETAILS.Where(x => x.NICK_NAME == userId).Select(x => x.USER_CODE).SingleOrDefault();
+
             }
             return username;
+        }
+        /// <summary>
+        /// tüm Dersleri getirir
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getCourse()
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.COURSES
+                        select new { Key = d.COURSE_CODE, Value = d.COURSE_NAME }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+
+        /// <summary>
+        /// seçilen dersin bölümlerini getirir
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getChapter(int course)
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.CHAPTERS
+                        where d.COURSE_CODE == course
+                        select new { Key = d.CHAPTER_CODE, Value = d.CHAPTER_NAME }).ToDictionary(t => t.Key, t => t.Value);
+            }
         }
     }
 }

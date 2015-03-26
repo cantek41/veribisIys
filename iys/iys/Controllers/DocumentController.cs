@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using iys.ModelProject;
+using DevExpress.Web.Mvc;
+
+namespace iys.Controllers
+{
+    public class DocumentController : BaseController
+    {
+        //
+        // GET: /Document/
+        public ActionResult Index()
+        {
+            ViewData["Course"] = getCourse();
+            ViewData["Chapter"] = getChapter(1);
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(DOCUMENT document)
+        {
+            //var fileName = Path.GetFileName(file.FileName);
+            //var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
+            //file.SaveAs(path);
+            using(iysContext db=new iysContext())
+            {
+                db.DOCUMENTS.Add(document);
+                db.SaveChanges();
+            }
+            return View();
+        }
+
+        iys.ModelProject.iysContext db = new iys.ModelProject.iysContext();
+
+        [ValidateInput(false)]
+        public ActionResult GridView1Partial()
+        {
+            var model = db.DOCUMENTS;
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialAddNew(iys.ModelProject.DOCUMENT item)
+        {
+            var model = db.DOCUMENTS;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.Add(item);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialUpdate(iys.ModelProject.DOCUMENT item)
+        {
+            var model = db.DOCUMENTS;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
+                    if (modelItem != null)
+                    {
+                        this.UpdateModel(modelItem);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialDelete(System.Int32 DOCUMENT_CODE)
+        {
+            var model = db.DOCUMENTS;
+            if (DOCUMENT_CODE >= 0)
+            {
+                try
+                {
+                    var item = model.FirstOrDefault(it => it.DOCUMENT_CODE == DOCUMENT_CODE);
+                    if (item != null)
+                        model.Remove(item);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+	}
+}
