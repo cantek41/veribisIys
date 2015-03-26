@@ -255,11 +255,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\_GridViewPartial.cshtml" />
-    <Content Include="Views\Chapter\Create.cshtml" />
-    <Content Include="Views\Chapter\Delete.cshtml" />
-    <Content Include="Views\Chapter\Details.cshtml" />
-    <Content Include="Views\Chapter\Edit.cshtml" />
     <Content Include="Views\Chapter\Index.cshtml" />
+    <Content Include="Views\Chapter\_GridView1Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,7 +293,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:25212/</IISUrl>
+          <IISUrl>http://localhost:25209/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

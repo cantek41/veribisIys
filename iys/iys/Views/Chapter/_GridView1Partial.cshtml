@@ -1,0 +1,42 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "Chapter", Action = "GridView1Partial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "CHAPTER_CODE";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				//settings.Columns.Add("CHAPTER_CODE");
+        
+				settings.Columns.Add("CHAPTER_NAME");
+                settings.Columns.Add("COURSE_CODE", MVCxGridViewColumnType.ComboBox);
+                //settings.Columns.Add("RES_CODE");
+                settings.Columns.Add("ORDER_BY");
+                //settings.Columns.Add("VISIBLE");
+                //settings.Columns.Add("ROW_NO");
+                //settings.Columns.Add("DURATION");
+                //settings.Columns.Add("CREATE_USER");
+                //settings.Columns.Add("CREATE_DATE");
+                //settings.Columns.Add("LAST_UPDATE");
+                //settings.Columns.Add("LAST_UPDATE_USER");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

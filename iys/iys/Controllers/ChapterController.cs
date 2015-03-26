@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using iys.ModelProject;
+using DevExpress.Web.Mvc;
 
 namespace iys.Controllers
 {
@@ -17,125 +18,96 @@ namespace iys.Controllers
         // GET: /Chapter/
         public ActionResult Index()
         {
-            return View(db.CHAPTERS.ToList());
-        }
-
-        // GET: /Chapter/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CHAPTER chapter = db.CHAPTERS.Find(id);
-            if (chapter == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chapter);
-        }
-
-        // GET: /Chapter/Create
-        public ActionResult Create()
-        {
-            ViewData["courses"] = from d in db.COURSES
-                                  select new { Key = d.COURSE_CODE, Value = d.COURSE_NAME };
             return View();
         }
 
-        // POST: /Chapter/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CHAPTER chapter)
+
+
+        [ValidateInput(false)]
+        public ActionResult GridView1Partial()
         {
-            chapter.CREATE_DATE = DateTime.Now;
-            chapter.LAST_UPDATE = DateTime.Now;
-            chapter.CREATE_USER = getCurrentUserName();
-            chapter.LAST_UPDATE_USER = getCurrentUserName();
+            var model = db.CHAPTERS;
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialAddNew(iys.ModelProject.CHAPTER item)
+        {
+            var model = db.CHAPTERS;
+            //if (ModelState.IsValid)
+            //{
+                try
+                {
+                    item.CHAPTER_CODE = 0;
+                    item.CHAPTER_NAME = "";
+                    item.COURSE_CODE = 0;
+                    item.RES_CODE = 0;
+                    item.ORDER_BY = 0;
+                    item.VISIBLE = true;
+                    item.ROW_NO = 0 ;
+                    item.DURATION = DateTime.Now;
+                    item.CREATE_USER = getCurrentUserName();
+                    item.CREATE_DATE = DateTime.Now;
+                    item.LAST_UPDATE = DateTime.Now;
+                    item.LAST_UPDATE_USER = getCurrentUserName();
+                  
 
 
+                    model.Add(item);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            //}
+            //else
+            //    ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_GridView1Partial", model.ToList());
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialUpdate(iys.ModelProject.CHAPTER item)
+        {
+            var model = db.CHAPTERS;
             if (ModelState.IsValid)
             {
-                db.CHAPTERS.Add(chapter);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var modelItem = model.FirstOrDefault(it => it.DURATION == item.DURATION);
+                    if (modelItem != null)
+                    {
+                        this.UpdateModel(modelItem);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
             }
-
-            return View(chapter);
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_GridView1Partial", model.ToList());
         }
-
-        // GET: /Chapter/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult GridView1PartialDelete(System.DateTime DURATION)
         {
-            if (id == null)
+            var model = db.CHAPTERS;
+            if (DURATION != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                try
+                {
+                    var item = model.FirstOrDefault(it => it.DURATION == DURATION);
+                    if (item != null)
+                        model.Remove(item);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
             }
-            CHAPTER chapter = db.CHAPTERS.Find(id);
-            if (chapter == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chapter);
-        }
-
-        // POST: /Chapter/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit( CHAPTER chapter)
-        {
-            chapter.CREATE_DATE = DateTime.Now;
-            chapter.LAST_UPDATE = DateTime.Now;
-            chapter.CREATE_USER = getCurrentUserName();
-            chapter.LAST_UPDATE_USER = getCurrentUserName();
-
-            if (ModelState.IsValid)
-            {
-                
-                db.Entry(chapter).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(chapter);
-        }
-
-        // GET: /Chapter/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CHAPTER chapter = db.CHAPTERS.Find(id);
-            if (chapter == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chapter);
-        }
-
-        // POST: /Chapter/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CHAPTER chapter = db.CHAPTERS.Find(id);
-            db.CHAPTERS.Remove(chapter);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return PartialView("_GridView1Partial", model.ToList());
         }
     }
 }
