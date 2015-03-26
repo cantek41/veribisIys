@@ -31,10 +31,22 @@ namespace iys.Controllers
         public ActionResult GridViewPartialAddNew(iys.ModelProject.LESSON item)
         {
             var model = db.LESSONS;
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
+                    //item.LESSON_CODE =
+                    //item.LESSON_NAME =
+                    //item.RES_CODE =
+                    item.ROW_NO = 0;
+                    //item.COURSE_CODE =
+                    //item.CHAPTER_CODE =
+                    //item.DURATION =
+                    item.CREATE_USER = getCurrentUserName();
+                    item.CREATE_DATE = DateTime.Now;
+                    item.LAST_UPDATE = DateTime.Now;
+                    item.LAST_UPDATE_USER = getCurrentUserName();
+                    
                     model.Add(item);
                     db.SaveChanges();
                 }
@@ -42,9 +54,9 @@ namespace iys.Controllers
                 {
                     ViewData["EditError"] = e.Message;
                 }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
+            //}
+            //else
+            //    ViewData["EditError"] = "Please, correct all errors.";
             return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
