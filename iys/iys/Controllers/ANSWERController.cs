@@ -62,6 +62,8 @@ namespace iys.Controllers
             {
                 try
                 {
+                    item.LAST_UPDATE = DateTime.Now;
+                    item.LAST_UPDATE_USER = getCurrentUserName();
                     var modelItem = model.FirstOrDefault(it => it.USER_CODE == item.USER_CODE);
                     if (modelItem != null)
                     {

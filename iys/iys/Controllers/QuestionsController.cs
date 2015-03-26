@@ -7,46 +7,48 @@ using DevExpress.Web.Mvc;
 
 namespace iys.Controllers
 {
-    public class LessonController : BaseController
+    public class QuestionsController : BaseController
     {
         //
-        // GET: /Lesson/
+        // GET: /Questions/
         public ActionResult Index()
         {
             return View();
         }
-
-
 
         iys.ModelProject.iysContext db = new iys.ModelProject.iysContext();
 
         [ValidateInput(false)]
         public ActionResult GridViewPartial()
         {
-            var model = db.LESSONS;
+            var model = db.QUESTIONS;
             return PartialView("_GridViewPartial", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialAddNew(iys.ModelProject.LESSON item)
+        public ActionResult GridViewPartialAddNew(iys.ModelProject.QUESTION item)
         {
-            var model = db.LESSONS;
+            var model = db.QUESTIONS;
             //if (ModelState.IsValid)
             //{
                 try
                 {
-                    //item.LESSON_CODE =
-                    //item.LESSON_NAME =
-                    //item.RES_CODE =
-                    item.ROW_NO = 0;
-                    //item.COURSE_CODE =
+                    //item.QUESTION_CODE = 
+                    //item.DESCRIPTION = 
+                    //item.RES_CODE = 
+                    //item.COURSE_CODE = 
                     //item.CHAPTER_CODE =
-                    //item.DURATION =
+                    //item.LESSON_CODE =
+                    //item.DOCUMENT_CODE =
+                    //item.ROW_NO = 
+                    //item.LEVEL =
+                    //item.QUESTION_TYPE =
                     item.CREATE_USER = getCurrentUserName();
                     item.CREATE_DATE = DateTime.Now;
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
-                    
+
+
                     model.Add(item);
                     db.SaveChanges();
                 }
@@ -60,16 +62,16 @@ namespace iys.Controllers
             return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialUpdate(iys.ModelProject.LESSON item)
+        public ActionResult GridViewPartialUpdate(iys.ModelProject.QUESTION item)
         {
-            var model = db.LESSONS;
+            var model = db.QUESTIONS;
             if (ModelState.IsValid)
             {
                 try
                 {
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
-                    var modelItem = model.FirstOrDefault(it => it.LESSON_CODE == item.LESSON_CODE);
+                    var modelItem = model.FirstOrDefault(it => it.QUESTION_CODE == item.QUESTION_CODE);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -86,14 +88,14 @@ namespace iys.Controllers
             return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialDelete(System.Int32 LESSON_CODE)
+        public ActionResult GridViewPartialDelete(System.Int32 QUESTION_CODE)
         {
-            var model = db.LESSONS;
-            if (LESSON_CODE >= 0)
+            var model = db.QUESTIONS;
+            if (QUESTION_CODE >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.LESSON_CODE == LESSON_CODE);
+                    var item = model.FirstOrDefault(it => it.QUESTION_CODE == QUESTION_CODE);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -105,5 +107,5 @@ namespace iys.Controllers
             }
             return PartialView("_GridViewPartial", model.ToList());
         }
-    }
+	}
 }
