@@ -1,0 +1,43 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Questions", Action = "GridViewPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Questions", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Questions", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Questions", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "QUESTION_CODE";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+                //settings.Columns.Add("QUESTION_CODE");
+				settings.Columns.Add("DESCRIPTION");
+				settings.Columns.Add("RES_CODE");
+				settings.Columns.Add("COURSE_CODE");
+				settings.Columns.Add("CHAPTER_CODE");
+				settings.Columns.Add("LESSON_CODE");
+				settings.Columns.Add("DOCUMENT_CODE");
+				settings.Columns.Add("ROW_NO");
+				settings.Columns.Add("LEVEL");
+				settings.Columns.Add("QUESTION_TYPE");
+                //settings.Columns.Add("CREATE_USER");
+                //settings.Columns.Add("CREATE_DATE");
+                //settings.Columns.Add("LAST_UPDATE");
+                //settings.Columns.Add("LAST_UPDATE_USER");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
