@@ -8,7 +8,7 @@ using iys.ModelProject;
 
 namespace iys.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -16,14 +16,6 @@ namespace iys.Controllers
             using (var ctx = new iysContext())
             {
 
-                //using (var ctx = new iysContext())
-                //{
-                //    USER us = new USER { ID = "dsf" };
-                //    ctx.USERDETAILS.Add(us);
-                //    ctx.SaveChanges();
-
-
-                //}
                 return View();
             }
         }

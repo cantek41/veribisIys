@@ -9,6 +9,10 @@ namespace iys.Controllers
 {
     public class BaseController : Controller
     {
+        /// <summary>
+        /// session daki user bilgilerini getirir
+        /// </summary>
+        /// <returns>user code</returns>
         public int getCurrentUserName()
         {
             int username = -1;

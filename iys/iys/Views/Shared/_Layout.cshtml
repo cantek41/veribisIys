@@ -24,17 +24,17 @@
     )
 
     @Html.DevExpress().GetStyleSheets(
-                new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.Chart, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.Report, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet, Theme = "Office2010Black" },
-                new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker, Theme = "Office2010Black" }
+                new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "Metropolis" },
+                                                        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.Chart, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.Report, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet, Theme = "Metropolis" },
+                        new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker, Theme = "Metropolis" }
     )
 
 </head>
@@ -47,13 +47,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Metiskop", "Index", "Home", null, new { @class = "navbar-brand header-yazi-ozellik" })
+                @Html.ActionLink("Metiskop", "Index", "Home", null, new { @class = "navbar-brand header-yazi-ozellik sol-border" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home",new { @class = "navbar-brand header-yazi-ozellik" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { @class = "navbar-brand header-yazi-ozellik" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "navbar-brand header-yazi-ozellik" })</li>
+                    
+                        <li><center>@Html.ActionLink("Home", "Index", "Home", new { @class = "navbar-brand header-yazi-ozellik header-padding " }) </center> </li>
+                        <li><center> @Html.ActionLink("About", "About", "Home", new { @class = "navbar-brand header-yazi-ozellik header-padding" }) </center></li>
+                        <li><center> @Html.ActionLink("Contact", "Contact", "Home", new { @class = "navbar-brand header-yazi-ozellik header-padding" })  </center></li>
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -63,7 +65,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p class="footer-yazi-ozellik">&copy; @DateTime.Now.Year - Metiskop</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
