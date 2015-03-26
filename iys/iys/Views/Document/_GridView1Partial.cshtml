@@ -47,7 +47,7 @@
             /*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(1);
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(0);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -62,7 +62,7 @@
                 ViewData["CHAPTER_CODE"] = chapterID;
 
                 var chapters = (chapterID == null)
-                    ? iys.Controllers.BaseController.getChapter(1)
+                    ? iys.Controllers.BaseController.getChapter(0)
                     : iys.Controllers.BaseController.getChapter((int)courseID);
 
                 Html.RenderPartial("PartialViewChapterCombo", chapters);
@@ -71,26 +71,6 @@
 
         });
 
-        //settings.Columns.Add(column =>
-        //{
-        //    column.FieldName = "CHAPTER_CODE";
-        //    column.Caption = "CHAPTER_CODE";
-        //    column.ColumnType = MVCxGridViewColumnType.ComboBox;
-        //    var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
-        //    comboBoxProperties.DataSource = iys.Controllers.BaseController.getChapter(2);
-        //    comboBoxProperties.TextField = "Value";
-        //    comboBoxProperties.ValueField = "Key";
-        //    comboBoxProperties.ValueType = typeof(int);
-          
-           
-        //});
-        
-        
-        
-
-      
-
-
        
         settings.Columns.Add("LESSON_CODE");
         settings.Columns.Add("DOCUMENT_TYPE");
@@ -98,29 +78,7 @@
         settings.Columns.Add("LINK_TYPE");
         settings.Columns.Add("DURATION");
 
-        //settings.CellEditorInitialize = (sender, e) =>
-        //{
-        //    iys.Controllers.BaseController.getChapter(1);
-        //    if (e.Column.FieldName == "COURSE_CODE")
-        //    {
-        //        iys.Controllers.BaseController.getChapter(1);
-        //        ASPxComboBox cmb = (ASPxComboBox)e.Editor;
-        //        //cmb.DataSource = iys.Controllers.BaseController.getCourse();
-        //        //cmb.DataBindItems();
-        //        if (cmb.SelectedItem != null)
-        //        {
-        //            ASPxComboBox cmbCh = (ASPxComboBox)sender;
-        //            ASPxComboBox ln = (ASPxComboBox)cmbCh.Parent.FindControl("CHAPTER_CODE");
-        //            //var comboBoxProperties = e.Column.fi as ComboBoxProperties;
-        //            ln.DataSource = iys.Controllers.BaseController.getChapter(Convert.ToInt16(cmb.SelectedItem.Value));
-        //            ln.DataBindItems();
-        //            //comboBoxProperties.TextField = "Value";
-        //            //comboBoxProperties.ValueField = "Key";
-        //            //comboBoxProperties.ValueType = typeof(int);
-        //        }
-
-        //    }
-        //};
+     
     });
     
     

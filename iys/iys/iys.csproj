@@ -313,7 +313,11 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+<<<<<<< HEAD
           <IISUrl>http://localhost:25218/</IISUrl>
+=======
+          <IISUrl>http://localhost:25212/</IISUrl>
+>>>>>>> a45c41c3cc76ff50a4044d079bf08b756a1e8a2c
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
