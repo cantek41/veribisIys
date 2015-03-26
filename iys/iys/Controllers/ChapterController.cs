@@ -38,11 +38,8 @@ namespace iys.Controllers
             //{
                 try
                 {
-                    item.CHAPTER_CODE = 0;
-                    item.CHAPTER_NAME = "";
-                    item.COURSE_CODE = 0;
+                    item.CHAPTER_CODE = 0;                  
                     item.RES_CODE = 0;
-                    item.ORDER_BY = 0;
                     item.VISIBLE = true;
                     item.ROW_NO = 0 ;
                     item.DURATION = DateTime.Now;
@@ -73,7 +70,7 @@ namespace iys.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.DURATION == item.DURATION);
+                    var modelItem = model.FirstOrDefault(it => it.CHAPTER_CODE == item.CHAPTER_CODE);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
