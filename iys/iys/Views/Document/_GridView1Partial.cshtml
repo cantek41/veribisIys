@@ -1,0 +1,94 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewDocument";
+        settings.CallbackRouteValues = new { Controller = "Document", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Document", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Document", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Document", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "DOCUMENT_CODE";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "COURSE_CODE";
+            column.Caption = "COURSE_CODE";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "COURSE_CODE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+
+        });
+        
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CHAPTER_CODE";
+            column.Caption = "CHAPTER_CODE";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getChapter(2);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+        });
+
+      
+
+
+        //settings.Columns.Add("CHAPTER_CODE");
+        settings.Columns.Add("LESSON_CODE");
+        settings.Columns.Add("DOCUMENT_TYPE");
+        settings.Columns.Add("PATH");
+        settings.Columns.Add("LINK_TYPE");
+        settings.Columns.Add("DURATION");
+
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            iys.Controllers.BaseController.getChapter(1);
+            if (e.Column.FieldName == "COURSE_CODE")
+            {
+                iys.Controllers.BaseController.getChapter(1);
+                ASPxComboBox cmb = (ASPxComboBox)e.Editor;
+                //cmb.DataSource = iys.Controllers.BaseController.getCourse();
+                //cmb.DataBindItems();
+                if (cmb.SelectedItem != null)
+                {
+                    ASPxComboBox cmbCh = (ASPxComboBox)sender;
+                    ASPxComboBox ln = (ASPxComboBox)cmbCh.Parent.FindControl("CHAPTER_CODE");
+                    //var comboBoxProperties = e.Column.fi as ComboBoxProperties;
+                    ln.DataSource = iys.Controllers.BaseController.getChapter(Convert.ToInt16(cmb.SelectedItem.Value));
+                    ln.DataBindItems();
+                    //comboBoxProperties.TextField = "Value";
+                    //comboBoxProperties.ValueField = "Key";
+                    //comboBoxProperties.ValueType = typeof(int);
+                }
+
+            }
+        };
+    });
+    
+    
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

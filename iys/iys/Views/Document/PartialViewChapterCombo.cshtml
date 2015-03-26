@@ -1,0 +1,17 @@
+﻿@model System.Collections.IEnumerable
+
+@{
+    Html.DevExpress().ComboBox(settings =>
+    {
+        settings.Name = "CHAPTER_CODE";
+        settings.CallbackRouteValues = new { Controller = "CustomHierarchy", Action = "ProductPartial" };
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.TextField = "Value";
+        settings.Properties.ValueField = "Key";
+        settings.Properties.EnableCallbackMode = true;
+        settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['Transit'] =iys.Controllers.BaseController.getChapter('transit').GetValue(); alert(e.customArgs['Transit']); }";
+    })
+    .BindList(BVAM.EF.Services.Hierarchy.CustomHierarchy.CustomHierarchyService.GetProductListByTransit((string)ViewData["transit"]))
+    .Bind(ViewData["CHAPTER_CODE"])
+    .Render();
+}
