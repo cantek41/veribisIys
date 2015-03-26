@@ -1,7 +1,7 @@
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
-        settings.Name = "LassenGridView";
+        settings.Name = "LessonGridView";
         settings.CallbackRouteValues = new { Controller = "Lesson", Action = "GridViewPartial" };
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Lesson", Action = "GridViewPartialAddNew" };

@@ -15,8 +15,8 @@ namespace iys.Controllers
         // GET: /Document/
         public ActionResult Index()
         {
-            ViewData["Course"] = getCourse();
-            ViewData["Chapter"] = getChapter(1);
+            ViewData["COURSE_CODE"] = getCourse();
+            ViewData["CHAPTER_CODE"] = getChapter(1);
             return View();
         }
 
@@ -112,6 +112,14 @@ namespace iys.Controllers
                 }
             }
             return PartialView("_GridView1Partial", model.ToList());
+        }
+
+        public ActionResult PartialViewChapterCombo(int COURSE_CODE)
+        {
+          //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int courseID = COURSE_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getChapter(courseID));
         }
 	}
 }
