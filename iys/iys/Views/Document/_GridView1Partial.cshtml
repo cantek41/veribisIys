@@ -17,7 +17,6 @@
         settings.CommandColumn.ShowEditButton = true;
 
         settings.KeyFieldName = "DOCUMENT_CODE";
-
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = true;
         settings.Settings.ShowFilterRow = true;
@@ -26,24 +25,30 @@
 
         settings.Columns.Add(column =>
         {
-            column.FieldName = "COURSE_CODE";
-            column.Caption = "COURSE_CODE";            
+            column.FieldName = "COURSE_NAME";
+            column.Caption = "COURSE";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
+
+
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
             comboBoxProperties.TextField = "Value";
             comboBoxProperties.ValueField = "Key";
-            comboBoxProperties.ValueType = typeof(int);            
+            comboBoxProperties.ValueType = typeof(int);
+
+            //comboBoxProperties.ReadOnlyStyle = new ReadOnlyStyle(false);
             comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
-            
 
         });
-       
-        settings.Columns.Add(column =>
-        {            
-            column.Caption = "CHAPTER";
+        settings.CellEditorInitialize = (sender, e) =>
+            {
+                e.Editor.ReadOnly = false;
+            };
 
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "CHAPTER";
             column.FieldName = "CHAPTER_NAME";
             column.Name = "CHAPTER_CODE";
             ///*Display Mode*/
@@ -55,40 +60,31 @@
             propertiesComboBox.ValueType = typeof(int);
             ///*Display Mode*/
 
-
-            
             /*Edit Mode*/
-            
             column.SetEditItemTemplateContent(c =>
             {
                 var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
-
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
                 ViewData["CHAPTER_CODE"] = chapterID;
-
                 var chapters = (chapterID == null)
                     ? iys.Controllers.BaseController.getChapter(0)
                     : iys.Controllers.BaseController.getChapter((int)courseID);
-
                 Html.RenderPartial("PartialViewChapterCombo", chapters);
             });
             /*Edit Mode*/
 
         });
 
-       
-        settings.Columns.Add("LESSON_CODE");
         settings.Columns.Add("LESSON_NAME");
-
         settings.Columns.Add("DOCUMENT_TYPE");
         settings.Columns.Add("PATH");
         settings.Columns.Add("LINK_TYPE");
         settings.Columns.Add("DURATION");
 
-     
+
     });
-    
-    
+
+
     if (ViewData["EditError"] != null)
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);

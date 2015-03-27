@@ -23,8 +23,8 @@
 
         settings.Columns.Add(column =>
         {
-            column.FieldName = "COURSE_NAME";
-            column.Caption = "COURSE_CODE";
+            column.FieldName = "COURSE_CODE";
+            column.Caption = "COURSE";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -40,7 +40,7 @@
         {
             column.Caption = "CHAPTER";
 
-            column.FieldName = "CHAPTER_NAME";
+            column.FieldName = "CHAPTER_CODE";
             column.Name = "CHAPTER_CODE";
           
             /*Display Mode*/
@@ -77,20 +77,7 @@
         settings.CellEditorInitialize = (sender, e) =>
         {
             e.Editor.ReadOnly = false;
-            //iys.Controllers.BaseController.getChapter(coursCode);
-            //if (e.Column.FieldName == "COURSE_CODE")
-            //{
-            //    iys.Controllers.BaseController.getChapter(coursCode);
-            //    ASPxComboBox cmb = (ASPxComboBox)e.Editor;
-
-            //    if (cmb.SelectedItem != null)
-            //    {
-            //        var courseID = Convert.ToInt32(cmb.SelectedItem.Value);
-            //        var chapters = iys.Controllers.BaseController.getChapter(courseID);
-            //        Html.RenderPartial("PartialViewChapterCombo", chapters);
-            //    }
-
-            //}
+          
         };
 
     });   
