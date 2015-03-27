@@ -2,7 +2,7 @@
 
 @Html.DevExpress().ComboBox(settings =>
 {
-    settings.CallbackRouteValues = new { Controller = "Document", Action = "PartialViewChapterCombo" };
+    settings.CallbackRouteValues = new { Controller = "Document", Action = "PartialViewLessonCombo" };
     settings.Name = "LESSON_CODE";
 
     settings.Properties.DataSource = ViewData["LESSON_CODE"];
@@ -13,6 +13,6 @@
     settings.Properties.EnableSynchronization = DefaultBoolean.False;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
 
-    settings.Properties.ClientSideEvents.BeginCallback = "ChapterCombo_BeginCallback";
+    settings.Properties.ClientSideEvents.BeginCallback = "LessonCombo_BeginCallback";
 }).BindList(Model).Bind(ViewData["LESSON_CODE"]).GetHtml()
 
