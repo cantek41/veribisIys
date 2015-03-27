@@ -89,14 +89,14 @@ namespace iys.Controllers
             return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridView1PartialDelete(System.DateTime DURATION)
+        public ActionResult GridView1PartialDelete(int CHAPTER_CODE)
         {
             var model = db.CHAPTERS;
-            if (DURATION != null)
+            if (CHAPTER_CODE != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.DURATION == DURATION);
+                    var item = model.FirstOrDefault(it => it.CHAPTER_CODE == CHAPTER_CODE);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
