@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron content-resim">
+@*<div class="jumbotron content-resim">
     <center>
         <img src="img/content.png">
     </center>
@@ -126,4 +126,185 @@
         </div>
         </div>
 
+    </div>*@
+
+<script type="text/javascript" src="/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#featured_slide').after('<div id="fsn"><ul id="fs_pagination">').cycle({
+            timeout: 5000,
+            fx: 'fade',
+            pager: '#fs_pagination',
+            pause: 1,
+            pauseOnPagerHover: 0
+        });
+    });
+</script>
+
+<div class="wrapper col2">
+    <div id="featured_slide">
+        <div class="featured_box">
+            @*<div class="floater">
+                
+            </div>*@
+           
+            <img src="http://mevlanaosgb.com.tr/mevlanaosgb/wp-content/uploads/2013/12/G%C3%BCvenli%C4%9Fi-Uzman%C4%B1-Hizmeti.jpg">
+        </div>
+        <div class="featured_box">
+            @*<div class="floater">
+                
+            </div>*@
+           
+            <img src="http://www.ortakisosgb.com/wp-content/uploads/05.jpg">
+            @*<img src="images/demo/930x375.gif" alt="" />*@
+            
+        </div>
+        <div class="featured_box">
+            @*<div class="floater">
+                
+            </div>*@
+           
+            <img src="http://mevlanaosgb.com.tr/mevlanaosgb/wp-content/uploads/2013/12/G%C3%BCvenli%C4%9Fi-Uzman%C4%B1-Hizmeti.jpg" />
+        </div>
+        <div class="featured_box">
+            @*<div class="floater">
+                
+            </div>*@
+            
+            <img src="http://www.ortakisosgb.com/wp-content/uploads/05.jpg "/>
+        </div>
+        <div class="featured_box">
+            <@*div class="floater">
+                
+            </div>*@
+            
+            <img src="http://mevlanaosgb.com.tr/mevlanaosgb/wp-content/uploads/2013/12/G%C3%BCvenli%C4%9Fi-Uzman%C4%B1-Hizmeti.jpg"  />
+        </div>
     </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+    <div class="container">
+        <div class="content">
+            <div id="topstory">
+                
+                <ul>
+                    <li>
+                        
+                        <img src="~/img/ISG_Video.jpg" />
+                        <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                        <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                        <p class="readmore"><a href="http://www.projelerim.biz/"> Eğitime Başla &raquo;</a></p>
+                    </li>
+                    <li>
+                        
+                        <img src="~/img/k_28153220_dsc_1026.jpg" />
+                        
+                        <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                        <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                        <p class="readmore"><a href="http://www.izmiteml.meb.k12.tr/">İzmit EML İncele &raquo;</a></p>
+                    </li>
+                    <li class="last">
+                        
+
+                        <img src="~/img/T%c3%bcrkiye_Cumhuriyeti_%c3%87al%c4%b1%c5%9fma_ve_Sosyal_G%c3%bcvenlik_Bakanl%c4%b1%c4%9f%c4%b1_logosu.jpg" />
+                        <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                        <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                        <p class="readmore"><a href="http://www.csgb.gov.tr/csgbPortal/csgb.portal">ÇSGB Hakkında &raquo;</a></p>
+                    </li>
+                </ul>
+                <br class="clear" />
+            </div>
+            <div id="latestnews">
+                <h2>Çalışmalarımız</h2>
+                <ul>
+                    <li>
+                        
+                        <div class="imgholder"><img src="~/img/2.jpg" alt="" /></div>
+                        <div class="latestnews">
+                            <h2>Yurt İçi Etkinliklerimiz </h2>
+                            <p>This is a W3C standards compliant free website template from <a href="http://www.projelerim.biz/Yurtici/index.html">OS Templates</a>. This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>, which allows you to use and modify the template for both personal and commercial use when you keep the provided credit links in the footer. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>.</p>
+                            <p class="readmore"><a href="http://www.projelerim.biz/Yurtici/index.html">Detaylı İncele &raquo;</a></p>
+                        </div>
+                        <br class="clear" />
+                    </li>
+                    <li class="last">
+                        <div class="imgholder"><img src="~/img/47.jpg" alt="" /></div>
+                        <div class="latestnews">
+                            <h2>Danimarka Etkinliğimiz</h2>
+                            <p>Attincidunt vel nam a maurisus lacinia consectetus magnisl sed ac morbi. Inmaurisus habitur pretium eu et ac vest penatibus id lacus parturpis. Maecenaset adipiscinia tellentum nullam velit et a convallis curabitae vitae laoreet niseros ligula sem sed susp en at.</p>
+                            <p class="readmore"><a href="http://www.projelerim.biz/danimarka/index.html">Detaylı İncele &raquo;</a></p>
+                        </div>
+                        <br class="clear" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="sponsors">
+                
+               
+                <div class="b_250" style="border-width:0px;"><a href="#"><img src="~/img/ab.png"  /></a></div>
+                <div class="b_125">
+                    <ul>
+
+                        
+                        <li><a href="#"><img src="~/img/MEBlogo.jpg"  alt="" /></a></li>
+                        <li><a href="#"><img src="~/img/ikg.jpg" /></a></li>
+                        <li><a href="#"><img src="http://www.coopersafety.com/showimage.axd?imgid=912&h=125&w=214" /></a></li>
+                         <li><a href="#"><img src="~/img/kocaeli-sanayi-odasi.jpg" /></a></li>
+                        <li><a href="#"><img src="~/img/11.jpg" /></a></li>
+                         <li class="last"><a href="#"><img src="http://www.engelsizkitap.com/images/banner_1.gif" /></a></li>
+                      
+                        
+                        
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <br class="clear" />
+    </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+    <div id="footer">
+        <div class="box1">
+            <h2> Metiskop</h2>
+            
+            <img class="imgl" style="border-width:0px;" src="~/img/logo-kafa.png"  />
+            <p>Projemizin genel hedefi İzmit Teknik ve Endüstri Meslek Lisesi meslek dersleri öğretmen niteliklerini ve iş güvenliği konusunda eğitim verebilme kalitelerini yükseltmek, bunu tüm öğrencilerimize yaygınlaştirmak, İs güvenliği konusunda tam donanımlı uzmanlar yetiştirmek ve is güvenliği kazalarını en aza indirmektir.</p>
+            
+        </div>
+        <div class="box contactdetails">
+            <h2> İletişim Bilgilerimiz</h2>
+            <ul>
+                <li>Company Name</li>
+                <li>Street Name &amp; Number</li>
+                <li>Town</li>
+                <li>Postcode/Zip</li>
+                <li>Tel: xxxxx xxxxxxxxxx</li>
+                <li>Fax: xxxxx xxxxxxxxxx</li>
+                <li>Email: info@domain.com</li>
+                <li class="last">LinkedIn: <a href="#">Company Profile</a></li>
+            </ul>
+        </div>
+        <div class="box flickrbox">
+            <h2>   İş Güvenliği Resimleri</h2>
+            <div class="wrap">
+                <div class="fix"></div>
+
+                
+                <div class="flickr_badge_image" id="flickr_badge_image1"><a href="#"><img src="http://www.hancivata.com/image/cache/data/is_guvenlik/yangintup-80x80.jpg" /></a></div>
+                <div class="flickr_badge_image" id="flickr_badge_image2"><a href="#"><img src="http://www.hirdavatcenter.com/image/cache/data/products/3m/3m-h700ngu-80x80.jpg" /></a></div>
+                <div class="flickr_badge_image" id="flickr_badge_image3"><a href="#"><img src="http://shop.wurth.com.tr/images/thumb/0899/089940217396-is-guvenligi.png" alt="" /></a></div>
+                <div class="flickr_badge_image" id="flickr_badge_image4"><a href="#"><img src="http://ucercevre.com.tr/image/cache/data/100X-20122211365_esnek_trafik_konisi-80x80.jpg" alt="" /></a></div>
+                <div class="flickr_badge_image" id="flickr_badge_image5"><a href="#"><img src="http://isguvenligitabelasi.com/image/cache/data/Kategori_Resimleri/is_elbisesi-80x80.jpg" alt="" /></a></div>
+                <div class="flickr_badge_image" id="flickr_badge_image6"><a href="#"><img src="http://www.alsonyangin.com/content/images/levha/is_guvenlik_yasak_s.jpg" alt="" /></a></div>
+                <div class="fix"></div>
+            </div>
+        </div>
+        <br class="clear" />
+    </div>
+</div>

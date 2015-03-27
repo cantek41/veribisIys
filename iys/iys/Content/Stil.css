@@ -1,116 +1,12 @@
-﻿body {
-    background-color:black;
-    color:#f8c301;
-    
-    
-}
-.div-yazi-rengi {
-    color:black;
-}
-div {
-    
-}
-.resim {
-   width:80%;
-   height:80%;
-   
-   
-   
+﻿.logo {
 
+    margin-top:0px;
 }
-.kategori-ozellik {
+.continue{
 
-    height:387px;
-    background-color:#0094ff;
-}
-.div1 {
-    background-color:#f8c301;
-    height:387px;
-    
-    width:90%;
-    position:relative;
-    
-}
-.div2 {
 
-    background-color:#6d2c98;
-    position:absolute;
-    width:100%;
-    height:40%;
-    bottom:0;
-    
-    
-    
-    
-}
-.content-resim {
-    width:100%;
-    height:100%;
-    margin-top:15px;
-    
-}
-.navbar-ozellik {
-    background-color:#f8c301;
-    color:black;
-}
-.rounded {
 
-    border: 2px solid;
-    border-radius: 25px;
-    border-color:#f8c301;
-}
-.header-yazi-ozellik {
+color:#FFFF00; background:url("../images/fs_txt_trans_bg.png"); padding:25px;
 
-    color:black !important;
-    font-size:20px;
-    border-right: solid;
-   
-    border-width: 2px;
-    border-color:black;
-}
 
-.renk-butonu {
-    
-   text-align:center;
-   vertical-align:middle;
-   font-size:32px;
-
-    color:#ffffff;
-    height:40%;
-   
-}
-a:hover {
-    
-   
-   vertical-align:middle;
-   font-size:32px;
-
-    color:white;
-    height:40%;
-    text-decoration:none;
-    
-}
-li:hover {
-
-color:#073d0d;
-}
-.footer-yazi-ozellik {
-font-size:20px;
-
-}
-.sol-border {
-     
-    border-left:solid;
-    border-width:2px;
-    border-color:black;
-    
-
-}
-.header-padding {
-
-    padding-left:30px;
-}
-.header-yazi-ozellik:hover {
-
-    color:#073d0d;
 }
