@@ -48,8 +48,9 @@ namespace iys.Controllers
             var model = db.DOCUMENTS;
             var model1 = from d in db.DOCUMENTS
                          join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
-                         select new {d.DOCUMENT_CODE,d.COURSE_CODE,b.CHAPTER_NAME,d.LESSON_CODE,d.DOCUMENT_TYPE,d.DURATION,d.LINK_TYPE,d.PATH,lesson.LESSON_NAME };
+                         select new {d.DOCUMENT_CODE,d.COURSE_CODE,b.CHAPTER_NAME,d.LESSON_CODE,d.DOCUMENT_TYPE,d.DURATION,d.LINK_TYPE,d.PATH,lesson.LESSON_NAME,cs.COURSE_NAME };
             return PartialView("_GridView1Partial", model1.ToList());
         }
 
