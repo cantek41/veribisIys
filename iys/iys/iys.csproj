@@ -272,6 +272,7 @@
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\ANSWER\index.cshtml" />
     <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
+    <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\index.cshtml" />
     <Content Include="Views\Questions\_GridViewPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -313,7 +314,11 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+<<<<<<< HEAD
           <IISUrl>http://localhost:25209/</IISUrl>
+=======
+          <IISUrl>http://localhost:25213/</IISUrl>
+>>>>>>> e0a12d34e3f3a159c4eb204ee5ca303b7be0ada5
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

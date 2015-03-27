@@ -89,10 +89,17 @@ namespace iys.Controllers
             return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
+<<<<<<< HEAD
         public ActionResult GridView1PartialDelete(int CHAPTER_CODE)
         {
             var model = db.CHAPTERS;
             if (CHAPTER_CODE != null)
+=======
+        public ActionResult GridView1PartialDelete(System.Int32 CHAPTER_CODE)
+        {
+            var model = db.CHAPTERS;
+            if (CHAPTER_CODE >= 0)
+>>>>>>> e0a12d34e3f3a159c4eb204ee5ca303b7be0ada5
             {
                 try
                 {

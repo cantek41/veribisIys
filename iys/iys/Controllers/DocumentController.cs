@@ -15,8 +15,8 @@ namespace iys.Controllers
         // GET: /Document/
         public ActionResult Index()
         {
-            ViewData["COURSE_CODE"] = getCourse();
-            ViewData["CHAPTER_CODE"] = getChapter(1);
+            //ViewData["COURSE_CODE"] = getCourse();
+            //ViewData["CHAPTER_CODE"] = getChapter(0);
             return View();
         }
 
@@ -46,7 +46,11 @@ namespace iys.Controllers
         public ActionResult GridView1Partial()
         {
             var model = db.DOCUMENTS;
-            return PartialView("_GridView1Partial", model.ToList());
+            var model1 = from d in db.DOCUMENTS
+                         join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+                         select new {d.DOCUMENT_CODE,d.COURSE_CODE,b.CHAPTER_NAME,d.LESSON_CODE,d.DOCUMENT_TYPE,d.DURATION,d.LINK_TYPE,d.PATH,lesson.LESSON_NAME };
+            return PartialView("_GridView1Partial", model1.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
