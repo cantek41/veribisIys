@@ -45,9 +45,10 @@ namespace iys.Controllers
         {
             using (iysContext db = new iysContext())
             {
-                return (from d in db.CHAPTERS
+                Dictionary<int, string> a=(from d in db.CHAPTERS
                         where d.COURSE_CODE == course
                         select new { Key = d.CHAPTER_CODE, Value = d.CHAPTER_NAME }).ToDictionary(t => t.Key, t => t.Value);
+                return a;
             }
         }
     }

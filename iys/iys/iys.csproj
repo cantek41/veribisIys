@@ -272,15 +272,12 @@
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\ANSWER\index.cshtml" />
     <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
-
     <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
-
     <Content Include="Views\Questions\index.cshtml" />
     <Content Include="Views\Questions\_GridViewPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\AnswerResult\Index.cshtml" />
     <Content Include="Views\AnswerResult\_GridView1Partial.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,14 +314,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-
-          <IISUrl>http://localhost:25216/</IISUrl>
-
-
-          <IISUrl>http://localhost:25218/</IISUrl>
-
-          <IISUrl>http://localhost:25212/</IISUrl>
-
+          <IISUrl>http://localhost:25213/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

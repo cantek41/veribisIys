@@ -43,10 +43,10 @@
             /*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             var propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            //propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter();
-            //propertiesComboBox.TextField = "Value";
-            //propertiesComboBox.ValueField = "Key";
-            //propertiesComboBox.ValueType = typeof(int);
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(5);
+            propertiesComboBox.TextField = "Value";
+            propertiesComboBox.ValueField = "Key";
+            propertiesComboBox.ValueType = typeof(int);
             /*Display Mode*/
 
             /*Edit Mode*/
@@ -81,21 +81,14 @@
                 if (cmb.SelectedItem != null)
                 {
                     var courseID = Convert.ToInt32(cmb.SelectedItem.Value);
-
-
-
                     var chapters = iys.Controllers.BaseController.getChapter(courseID);
-
-                    Html.RenderPartial("PartialViewChapterCombo", chapters);
-                    
+                    Html.RenderPartial("PartialViewChapterCombo", chapters);                    
                 }
 
             }
         };
 
-    });
-
-   
+    });   
     
     if (ViewData["EditError"] != null)
     {
