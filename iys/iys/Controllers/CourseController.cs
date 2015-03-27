@@ -29,32 +29,34 @@ namespace iys.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] iys.ModelProject.COURSE item)
         {
-            
-                   
+
+
             //if (ModelState.IsValid)
             //{
-                try
-                {
+            try
+            {
 
-                    item.CATEGORY = 0;
-                    item.RES_CODE = 0;
-                    item.TYPE = 0;
-                    item.VISIBLE = true;
-                    item.ORDER_BY = 0;
-                    item.ROW_NO = 0;
-                    item.DES_02 = "";
-                    item.DES_03 = "";
-                    item.CREATE_USER = getCurrentUserName();
-                    item.CREATE_DATE = DateTime.Now;
-                    item.LAST_UPDATE = DateTime.Now;
-                    item.LAST_UPDATE_USER = getCurrentUserName();
-                   db.COURSES.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+                item.CATEGORY = 0;
+                item.RES_CODE = 0;
+                //item.TYPE = 0;
+                item.VISIBLE = true;
+                //item.ORDER_BY = 0;
+
+
+
+                item.DES_02 = "";
+                item.DES_03 = "";
+                item.CREATE_USER = getCurrentUserName();
+                item.CREATE_DATE = DateTime.Now;
+                item.LAST_UPDATE = DateTime.Now;
+                item.LAST_UPDATE_USER = getCurrentUserName();
+                db.COURSES.Add(item);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
+            }
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
@@ -107,5 +109,5 @@ namespace iys.Controllers
             return PartialView("_GridViewPartial", model.ToList());
         }
 
-	}
+    }
 }
