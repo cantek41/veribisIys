@@ -21,11 +21,11 @@ namespace iys
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js", "~/Scripts/jquery.min.js", "~/Scripts/jquery.cycle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css", "~/Content/stil.css"));
+                      "~/Content/bootstrap.css", "~/Content/stil.css", "~/Content/layout.css", "~/Content/featured_slide.css", "~/Content/forms.css", "~/Content/navi.css", "~/Content/tables.css"));
+                      //"~/Content/site.css", ));
         }
     }
 }

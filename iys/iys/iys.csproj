@@ -218,8 +218,56 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\black_file.gif" />
+    <Content Include="images\blue_file.gif" />
+    <Content Include="images\demo\125x125.gif" />
+    <Content Include="images\demo\190x130.gif" />
+    <Content Include="images\demo\250x250.gif" />
+    <Content Include="images\demo\80x80.gif" />
+    <Content Include="images\demo\930x375.gif" />
+    <Content Include="images\demo\avatar.gif" />
+    <Content Include="images\demo\imgl.gif" />
+    <Content Include="images\demo\imgr.gif" />
+    <Content Include="images\demo\index.html" />
+    <Content Include="images\fs_txt_trans_bg.png" />
+    <Content Include="images\index.html" />
+    <Content Include="images\slide.png" />
+    <Content Include="images\test.png" />
+    <Content Include="images\trans.png" />
+    <Content Include="images\trans_top.png" />
+    <Content Include="img\11.jpg" />
+    <Content Include="img\2.jpg" />
+    <Content Include="img\47.jpg" />
+    <Content Include="img\ab.png" />
     <Content Include="img\content.png" />
+    <Content Include="img\ikg.jpg" />
+    <Content Include="img\kocaeli-sanayi-odasi.jpg" />
+    <Content Include="img\k_28153220_dsc_1026.jpg" />
+    <Content Include="img\logo-kafa.png" />
     <Content Include="img\logo.png" />
+    <Content Include="img\MEBlogo.jpg" />
+    <Content Include="img\Türkiye_Cumhuriyeti_Çalışma_ve_Sosyal_Güvenlik_Bakanlığı_logosu.jpg" />
+    <Content Include="img\veribis-crm-d553f9-w192.png" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\jquery.cycle.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Content\featured_slide.css" />
+    <Content Include="Content\forms.css" />
+    <Content Include="layout\styles\images\black_file.gif" />
+    <Content Include="layout\styles\images\blue_file.gif" />
+    <Content Include="layout\styles\images\fs_txt_trans_bg.png" />
+    <Content Include="layout\styles\images\index.html" />
+    <Content Include="layout\styles\images\slide.png" />
+    <Content Include="layout\styles\images\test.png" />
+    <Content Include="layout\styles\images\trans.png" />
+    <Content Include="layout\styles\images\trans_top.png" />
+    <Content Include="layout\styles\index.html" />
+    <Content Include="Content\layout.css" />
+    <Content Include="Content\navi.css" />
+    <Content Include="Content\tables.css" />
+    <Content Include="pages\full-width.html" />
+    <Content Include="pages\index.html" />
+    <Content Include="pages\style-demo.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
@@ -284,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="layout\scripts\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
