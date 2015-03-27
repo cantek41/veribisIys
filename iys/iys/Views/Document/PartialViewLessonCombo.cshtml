@@ -12,7 +12,7 @@
 
     settings.Properties.EnableSynchronization = DefaultBoolean.False;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-
+    
     settings.Properties.ClientSideEvents.BeginCallback = "LessonCombo_BeginCallback";
 }).BindList(Model).Bind(ViewData["LESSON_CODE"]).GetHtml()
 

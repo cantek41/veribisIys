@@ -25,20 +25,15 @@
 
         settings.Columns.Add(column =>
         {
-
             column.FieldName = "COURSE_CODE";
             column.Caption = "COURSE";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
-
-
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
             comboBoxProperties.TextField = "Value";
             comboBoxProperties.ValueField = "Key";
             comboBoxProperties.ValueType = typeof(int);
-
-            //comboBoxProperties.ReadOnlyStyle = new ReadOnlyStyle(false);
             comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
 
         });
@@ -67,8 +62,7 @@
 
             /*Edit Mode*/
             column.SetEditItemTemplateContent(c =>
-            {
-              
+            {              
                 var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
                 ViewData["CHAPTER_CODE"] = chapterID;
@@ -89,8 +83,9 @@
             ///*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+            int coursCode = (int)Model[index].COURSE_CODE; 
             int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(chapterCode);
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode,chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -99,12 +94,13 @@
             /*Edit Mode*/
             column.SetEditItemTemplateContent(c =>
             {
+                var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "CHAPTER_CODE");
                 var lessonID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
                 ViewData["LESSON_CODE"] = lessonID;
                 var lessons = (lessonID == null)
-                    ? iys.Controllers.BaseController.getLesson(0)
-                    : iys.Controllers.BaseController.getLesson((int)chapterID);
+                    ? iys.Controllers.BaseController.getLesson(0,0)
+                    : iys.Controllers.BaseController.getLesson((int)courseID,(int)chapterID);
                 Html.RenderPartial("PartialViewLessonCombo", lessons);
             });
             /*Edit Mode*/

@@ -166,12 +166,12 @@ namespace iys.Controllers
             return PartialView(getChapter(courseID));
         }
 
-        public ActionResult PartialViewLessonCombo(int CHAPTER_CODE)
+        public ActionResult PartialViewLessonCombo(int COURSE_CODE,int CHAPTER_CODE)
         {
             //  MVCxComboBox cmb = (MVCxComboBox)sender;
             int chapterID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
             //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
-            return PartialView(getLesson(chapterID));
+            return PartialView(getLesson(COURSE_CODE,chapterID));
         }
     }
 }

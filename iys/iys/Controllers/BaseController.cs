@@ -57,12 +57,12 @@ namespace iys.Controllers
         /// seçilen dersin bölümlerini getirir
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<int, string> getLesson(int chapter)
+        public static Dictionary<int, string> getLesson(int course,int chapter)
         {
             using (iysContext db = new iysContext())
             {
                 Dictionary<int, string> a = (from d in db.LESSONS
-                                             where d.CHAPTER_CODE == chapter
+                                             where d.COURSE_CODE==course && d.CHAPTER_CODE == chapter 
                                              select new { Key = d.LESSON_CODE, Value = d.LESSON_NAME }).ToDictionary(t => t.Key, t => t.Value);
                 return a;
             }

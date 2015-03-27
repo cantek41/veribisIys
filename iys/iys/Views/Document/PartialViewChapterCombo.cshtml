@@ -12,6 +12,6 @@
 
     settings.Properties.EnableSynchronization = DefaultBoolean.False;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-
+    settings.Properties.ClientSideEvents.SelectedIndexChanged = "ChaptersCombo_SelectedIndexChanged";
     settings.Properties.ClientSideEvents.BeginCallback = "ChapterCombo_BeginCallback";
 }).BindList(Model).Bind(ViewData["CHAPTER_CODE"]).GetHtml()
