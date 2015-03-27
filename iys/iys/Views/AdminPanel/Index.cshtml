@@ -1,22 +1,65 @@
-﻿
+﻿@model System.Collections.IEnumerable
 @{
     ViewBag.Title = "Index";
 }
-<h4></br>
-    @Html.ActionLink("Kurslar   ", "Index", "Course")
+<h4></h4>
+<div class="col-md-2" style="margin-left:10px">
+    <div class="row">
+        <h4>
+            @Html.ActionLink("Kurslar   ", "Index", "Course")
 
-    @Html.ActionLink("Bölümler  ", "Index", "Chapter")
+        </h4>
+    </div>
+    <div class="row">
+        <h4>
+            @Html.ActionLink("Bölümler  ", "Index", "Chapter")
+        </h4>
+    </div>
+    <div class="row">
+        <h4>
+            @Html.ActionLink("Dersler   ", "Index", "Lesson")
+        </h4>
+    </div>
+    <div class="row">
+        <h4>
+            @Html.ActionLink("Belgeler  ", "Index", "Document")
+        </h4>
+    </div>
+    <div class="row">
+        <h4>
+            @Html.ActionLink("Sorular   ", "Index", "Questions")
 
-    @Html.ActionLink("Dersler   ", "Index", "Lesson")
 
-    @Html.ActionLink("Belgeler  ", "Index", "Document")
-
-    @Html.ActionLink("Sorular   ", "Index", "Questions")
-
-    @Html.ActionLink("Cevap Ekle    ", "Index", "ANSWER")
-
-    @Html.ActionLink("Cevap Sonucu  ", "Index", "AnswerResult")
-
-</h4>
+    </h4>
+</div>
+<div class="row">
+    <h4>
+        @Html.ActionLink("Cevap Ekle    ", "Index", "ANSWER")
 
 
+    </h4>
+</div>
+<div class="row">
+    <h4>
+
+        @Html.ActionLink("Cevap Sonucu  ", "Index", "AnswerResult")
+    </h4>
+</div>
+</div>
+
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            <h2>
+                Eğitim İçeriği
+            </h2>
+        </center>
+    </div>
+    <div class="row">
+        @Html.Partial("MasterDetailMasterPartial", Model)
+    </div>
+
+</div>
+<div class="col-md-2">
+
+</div>

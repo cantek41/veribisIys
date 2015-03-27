@@ -329,6 +329,8 @@
     <Content Include="Views\AnswerResult\_GridView1Partial.cshtml" />
     <Content Include="Views\AdminPanel\Index.cshtml" />
     <Content Include="Views\Document\PartialViewLessonCombo.cshtml" />
+    <Content Include="Views\AdminPanel\MasterDetailMasterPartial.cshtml" />
+    <Content Include="Views\AdminPanel\MasterDetailDetailPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
