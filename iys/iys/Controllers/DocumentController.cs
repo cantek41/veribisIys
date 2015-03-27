@@ -16,7 +16,7 @@ namespace iys.Controllers
         public ActionResult Index()
         {
             ViewData["COURSE_CODE"] = getCourse();
-            ViewData["CHAPTER_CODE"] = getChapter(1);
+            ViewData["CHAPTER_CODE"] = getChapter(0);
             return View();
         }
 

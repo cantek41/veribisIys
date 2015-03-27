@@ -271,6 +271,7 @@
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\ANSWER\index.cshtml" />
     <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
+    <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

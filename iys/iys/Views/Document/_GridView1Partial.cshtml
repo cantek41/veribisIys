@@ -44,14 +44,14 @@
             column.Caption = "CHAPTER";
             column.FieldName = "CHAPTER_CODE";
 
-            /*Display Mode*/
-            column.ColumnType = MVCxGridViewColumnType.ComboBox;
-            ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(0);
-            propertiesComboBox.TextField = "Value";
-            propertiesComboBox.ValueField = "Key";
-            propertiesComboBox.ValueType = typeof(int);
-            /*Display Mode*/
+            ///*Display Mode*/
+            //column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            //ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+            //propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(0);
+            //propertiesComboBox.TextField = "Value";
+            //propertiesComboBox.ValueField = "Key";
+            //propertiesComboBox.ValueType = typeof(int);
+            ///*Display Mode*/
 
             /*Edit Mode*/
             column.SetEditItemTemplateContent(c =>
