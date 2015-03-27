@@ -1,4 +1,5 @@
 @{
+     int coursCode = 0;
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "LessonGridView";
@@ -18,12 +19,69 @@
         settings.Settings.ShowGroupPanel = true;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
+      
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "COURSE_CODE";
+            column.Caption = "COURSE";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "COURSE_CODE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+            comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
+
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "CHAPTER";
+
+            column.FieldName = "CHAPTER_CODE";
+            column.Name = "CHAPTER_CODE";
+          
+            /*Display Mode*/
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
+            
+            propertiesComboBox.TextField = "Value";
+            propertiesComboBox.ValueField = "Key";
+            propertiesComboBox.ValueType = typeof(int);
+            /*Display Mode*/
+
+            /*Edit Mode*/
+            column.SetEditItemTemplateContent(c =>
+            {
+                var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
+
+                var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
+                ViewData["CHAPTER_CODE"] = chapterID;
+
+                var chapters = (chapterID == null)
+                    ? iys.Controllers.BaseController.getChapter(coursCode)
+                    : iys.Controllers.BaseController.getChapter((int)courseID);
+
+                Html.RenderPartial("PartialViewChapterCombo", chapters);
+            });
+            /*Edit Mode*/
+
+        });
+
         settings.Columns.Add("LESSON_NAME");
-        settings.Columns.Add("RES_CODE");
-        settings.Columns.Add("COURSE_CODE");
-        settings.Columns.Add("CHAPTER_CODE");
-        settings.Columns.Add("DURATION");
-    });
+        settings.Columns.Add("DURATION", MVCxGridViewColumnType.DateEdit);
+
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            e.Editor.ReadOnly = false;
+          
+        };
+
+    });   
+    
     if (ViewData["EditError"] != null)
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);

@@ -45,10 +45,54 @@ namespace iys.Controllers
         {
             using (iysContext db = new iysContext())
             {
-                return (from d in db.CHAPTERS
-                        where d.COURSE_CODE == course
-                        select new { Key = d.CHAPTER_CODE, Value = d.CHAPTER_NAME }).ToDictionary(t => t.Key, t => t.Value);
+                Dictionary<int, string> a = (from d in db.CHAPTERS
+                                             where d.COURSE_CODE == course
+                                             select new { Key = d.CHAPTER_CODE, Value = d.CHAPTER_NAME }).ToDictionary(t => t.Key, t => t.Value);
+                return a;
             }
         }
+
+
+        /// <summary>
+        /// seçilen dersin bölümlerini getirir
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getLesson(int chapter)
+        {
+            using (iysContext db = new iysContext())
+            {
+                Dictionary<int, string> a = (from d in db.LESSONS
+                                             where d.CHAPTER_CODE == chapter
+                                             select new { Key = d.LESSON_CODE, Value = d.LESSON_NAME }).ToDictionary(t => t.Key, t => t.Value);
+                return a;
+            }
+        }
+
+        /// <summary>
+        /// seçilen soruyu getiri
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getQuestions(int LESSON_CODE)
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.QUESTIONS
+                        where d.LESSON_CODE == LESSON_CODE
+                        select new { Key = d.QUESTION_CODE, Value = d.DESCRIPTION }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+        /// <summary>
+        /// seçilen soruyu getiri
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getQuestions()
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.QUESTIONS
+                        select new { Key = d.QUESTION_CODE, Value = d.DESCRIPTION }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+
     }
 }

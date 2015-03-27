@@ -15,8 +15,8 @@ namespace iys.Controllers
         // GET: /Document/
         public ActionResult Index()
         {
-            ViewData["COURSE_CODE"] = getCourse();
-            ViewData["CHAPTER_CODE"] = getChapter(1);
+            //ViewData["COURSE_CODE"] = getCourse();
+            //ViewData["CHAPTER_CODE"] = getChapter(0);
             return View();
         }
 
@@ -32,7 +32,7 @@ namespace iys.Controllers
             //var fileName = Path.GetFileName(file.FileName);
             //var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
             //file.SaveAs(path);
-            using(iysContext db=new iysContext())
+            using (iysContext db = new iysContext())
             {
                 db.DOCUMENTS.Add(document);
                 db.SaveChanges();
@@ -46,6 +46,12 @@ namespace iys.Controllers
         public ActionResult GridView1Partial()
         {
             var model = db.DOCUMENTS;
+            //var model1 = from d in db.DOCUMENTS
+            //             join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+            //             join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
+            //             join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+            //             select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME };
+            //return PartialView("_GridView1Partial", model1.ToList());          
             return PartialView("_GridView1Partial", model.ToList());
         }
 
@@ -53,20 +59,39 @@ namespace iys.Controllers
         public ActionResult GridView1PartialAddNew(iys.ModelProject.DOCUMENT item)
         {
             var model = db.DOCUMENTS;
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            try
             {
-                try
-                {
-                    model.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+                //item.DOCUMENT_CODE =
+                //item.DOCUMENT_NAME =
+                //item.RES_CODE =
+                //item.COURSE_CODE =
+                //item.CHAPTER_CODE =
+                //item.LESSON_CODE =
+                //item.ROW_NO =
+                //item.DOCUMENT_TYPE =
+                //item.PATH =
+                //item.LINK_TYPE =
+                //item.DURATION =
+                //item.PRIORITY =
+                //item.ROW_ORDER_NO =
+                item.VISIBLE = true;
+                item.CREATE_USER = getCurrentUserName();
+                item.CREATE_DATE = DateTime.Now;
+                item.LAST_UPDATE = DateTime.Now;
+                item.LAST_UPDATE_USER = getCurrentUserName();
+
+                model.Add(item);
+                db.SaveChanges();
             }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
+            }
+            //}
+            //else
+            //    ViewData["EditError"] = "Please, correct all errors.";
             return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -75,42 +100,38 @@ namespace iys.Controllers
             var model = db.DOCUMENTS;
             //if (ModelState.IsValid)
             //{
-                try
-                {
-                    //item.DOCUMENT_CODE =
-                    //item.DOCUMENT_NAME =
-                    item.RES_CODE = 0;
-                    // item.COURSE_CODE = 0;
-                    //item.CHAPTER_CODE =
-                    //item.LESSON_CODE =
-                    item.ROW_NO = 0;
-                    //item.DOCUMENT_TYPE =
-                    //item.PATH =
-                    //item.LINK_TYPE =
-                    //item.DURATION =
-                    item.PRIORITY = 0;
-                    item.ROW_ORDER_NO = 0;
-                    item.VISIBLE = true;
-                    item.CREATE_USER = getCurrentUserName();
-                    item.CREATE_DATE = DateTime.Now;
-                    item.LAST_UPDATE = DateTime.Now;
-                    item.LAST_UPDATE_USER = getCurrentUserName();
+            try
+            {
+                //item.DOCUMENT_CODE =
+                //item.DOCUMENT_NAME =
+                //item.RES_CODE = 0;
+                // item.COURSE_CODE = 0;
+                //item.CHAPTER_CODE =
+                //item.LESSON_CODE =
+                //item.ROW_NO = 0;
+                //item.DOCUMENT_TYPE =
+                //item.PATH =
+                //item.LINK_TYPE =
+                //item.DURATION =
+                item.PRIORITY = 0;
+                item.ROW_ORDER_NO = 0;
+                item.VISIBLE = true;
+                item.CREATE_USER = getCurrentUserName();
+                item.CREATE_DATE = DateTime.Now;
+                item.LAST_UPDATE = DateTime.Now;
+                item.LAST_UPDATE_USER = getCurrentUserName();
 
-                    model.Add(item);
+                var modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
+                if (modelItem != null)
+                {
+                    this.UpdateModel(modelItem);
                     db.SaveChanges();
-
-
-                    var modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
-                    if (modelItem != null)
-                    {
-                        this.UpdateModel(modelItem);
-                        db.SaveChanges();
-                    }
                 }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+            }
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
+            }
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
@@ -139,10 +160,18 @@ namespace iys.Controllers
 
         public ActionResult PartialViewChapterCombo(int COURSE_CODE)
         {
-          //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
             int courseID = COURSE_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
             //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
             return PartialView(getChapter(courseID));
         }
-	}
+
+        public ActionResult PartialViewLessonCombo(int CHAPTER_CODE)
+        {
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int chapterID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getLesson(chapterID));
+        }
+    }
 }

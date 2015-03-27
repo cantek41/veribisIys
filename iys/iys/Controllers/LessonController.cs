@@ -13,6 +13,8 @@ namespace iys.Controllers
         // GET: /Lesson/
         public ActionResult Index()
         {
+            ViewData["COURSE_CODE"] = getCourse();
+            ViewData["CHAPTER_CODE"] = getChapter(0);
             return View();
         }
 
@@ -24,20 +26,26 @@ namespace iys.Controllers
         public ActionResult GridViewPartial()
         {
             var model = db.LESSONS;
-            return PartialView("_GridViewPartial", model.ToList());
+            var model1 = from less in db.LESSONS
+                         join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                         join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                         select new { less.LESSON_CODE, CODE_CHAPTER = cha.CHAPTER_CODE, CODE_COURSE = course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+            //return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridViewPartial", model1.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialAddNew(iys.ModelProject.LESSON item)
         {
             var model = db.LESSONS;
+          
             //if (ModelState.IsValid)
             //{
                 try
                 {
                     //item.LESSON_CODE =
                     //item.LESSON_NAME =
-                    //item.RES_CODE =
+                    item.RES_CODE = 0;
                     item.ROW_NO = 0;
                     //item.COURSE_CODE =
                     //item.CHAPTER_CODE =
@@ -49,6 +57,7 @@ namespace iys.Controllers
                     
                     model.Add(item);
                     db.SaveChanges();
+                    
                 }
                 catch (Exception e)
                 {
@@ -57,7 +66,11 @@ namespace iys.Controllers
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+                var model1 = from less in db.LESSONS
+                             join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                             join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                             select new { less.LESSON_CODE,CODE_CHAPTER=cha.CHAPTER_CODE,CODE_COURSE=course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+                return PartialView("_GridViewPartial", model1.ToList());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialUpdate(iys.ModelProject.LESSON item)
@@ -83,7 +96,12 @@ namespace iys.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+            var model1 = from less in db.LESSONS
+                         join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                         join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                         select new { less.LESSON_CODE, CODE_CHAPTER = cha.CHAPTER_CODE, CODE_COURSE = course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+            return PartialView("_GridViewPartial", model1.ToList());
+            //return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialDelete(System.Int32 LESSON_CODE)
@@ -104,6 +122,14 @@ namespace iys.Controllers
                 }
             }
             return PartialView("_GridViewPartial", model.ToList());
+        }
+
+        public ActionResult PartialViewChapterCombo(int COURSE_CODE)
+        {
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int courseID = COURSE_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getChapter(courseID));
         }
     }
 }
