@@ -41,11 +41,8 @@ namespace iys.Controllers
                     //item.TYPE = 0;
                     item.VISIBLE = true;
                     //item.ORDER_BY = 0;
-<<<<<<< HEAD
-                    item.ROW_NO = 0;
-=======
+
                     //item.ROW_NO = 0;
->>>>>>> 436f9bc4705e9df21a1c1b08d1dd48cefb7c658c
                     item.DES_02 = "";
                     item.DES_03 = "";
                     item.CREATE_USER = getCurrentUserName();
