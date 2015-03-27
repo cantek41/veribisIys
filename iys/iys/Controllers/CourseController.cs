@@ -40,7 +40,7 @@ namespace iys.Controllers
                     item.RES_CODE = 0;
                     item.TYPE = 0;
                     item.VISIBLE = true;
-                    item.ORDER_BY = 0;
+                    //item.ORDER_BY = 0;
                     item.ROW_NO = 0;
                     item.DES_02 = "";
                     item.DES_03 = "";

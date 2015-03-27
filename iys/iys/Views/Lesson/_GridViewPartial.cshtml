@@ -37,16 +37,16 @@
 
         settings.Columns.Add(column =>
         {
-            column.Caption = "CHAPTER_CODE";
+            column.Caption = "CHAPTER";
             column.FieldName = "CHAPTER_CODE";
 
             /*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
-            var propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            //propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter();
-            //propertiesComboBox.TextField = "Value";
-            //propertiesComboBox.ValueField = "Key";
-            //propertiesComboBox.ValueType = typeof(int);
+            ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(0);
+            propertiesComboBox.TextField = "Value";
+            propertiesComboBox.ValueField = "Key";
+            propertiesComboBox.ValueType = typeof(int);
             /*Display Mode*/
 
             /*Edit Mode*/
@@ -70,28 +70,7 @@
         settings.Columns.Add("LESSON_NAME");
         settings.Columns.Add("DURATION", MVCxGridViewColumnType.DateEdit);
 
-        settings.CellEditorInitialize = (sender, e) =>
-        {
-            iys.Controllers.BaseController.getChapter(1);
-            if (e.Column.FieldName == "COURSE_CODE")
-            {
-                iys.Controllers.BaseController.getChapter(1);
-                ASPxComboBox cmb = (ASPxComboBox)e.Editor;
-              
-                if (cmb.SelectedItem != null)
-                {
-                    var courseID = Convert.ToInt32(cmb.SelectedItem.Value);
-
-
-
-                    var chapters = iys.Controllers.BaseController.getChapter(courseID);
-
-                    Html.RenderPartial("PartialViewChapterCombo", chapters);
-                    
-                }
-
-            }
-        };
+       
 
     });
 
