@@ -52,6 +52,34 @@ namespace iys.Controllers
             }
         }
 
+<<<<<<< HEAD
      
+=======
+        /// <summary>
+        /// seçilen soruyu getiri
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getQuestions(int LESSON_CODE)
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.QUESTIONS
+                        where d.LESSON_CODE == LESSON_CODE
+                        select new { Key = d.QUESTION_CODE, Value = d.DESCRIPTION }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+        /// <summary>
+        /// seçilen soruyu getiri
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getQuestions()
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.QUESTIONS
+                        select new { Key = d.QUESTION_CODE, Value = d.DESCRIPTION }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+>>>>>>> 436f9bc4705e9df21a1c1b08d1dd48cefb7c658c
     }
 }
