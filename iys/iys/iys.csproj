@@ -193,12 +193,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ANSWERController.cs" />
+    <Compile Include="Controllers\AnswerResultController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,7 +244,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -271,7 +272,15 @@
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\ANSWER\index.cshtml" />
     <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
+
     <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
+
+    <Content Include="Views\Questions\index.cshtml" />
+    <Content Include="Views\Questions\_GridViewPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\AnswerResult\Index.cshtml" />
+    <Content Include="Views\AnswerResult\_GridView1Partial.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,7 +317,14 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+
+          <IISUrl>http://localhost:25216/</IISUrl>
+
+
+          <IISUrl>http://localhost:25218/</IISUrl>
+
           <IISUrl>http://localhost:25212/</IISUrl>
+
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

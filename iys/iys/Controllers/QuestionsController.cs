@@ -7,10 +7,10 @@ using DevExpress.Web.Mvc;
 
 namespace iys.Controllers
 {
-    public class ANSWERController : BaseController
+    public class QuestionsController : BaseController
     {
         //
-        // GET: /ANSWER/
+        // GET: /Questions/
         public ActionResult Index()
         {
             return View();
@@ -21,27 +21,34 @@ namespace iys.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewPartial()
         {
-            var model = db.ANSWERS;
+            var model = db.QUESTIONS;
             return PartialView("_GridViewPartial", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialAddNew(iys.ModelProject.ANSWER item)
+        public ActionResult GridViewPartialAddNew(iys.ModelProject.QUESTION item)
         {
-            var model = db.ANSWERS;
+            var model = db.QUESTIONS;
             //if (ModelState.IsValid)
             //{
                 try
                 {
-                    //item.USER_CODE =
                     //item.QUESTION_CODE = 
-                    //item.RESULT_ID =
-                    //item.RESULT_TEXT =
-                    //item.ACTIVITY_CODE =
+                    //item.DESCRIPTION = 
+                    //item.RES_CODE = 
+                    //item.COURSE_CODE = 
+                    //item.CHAPTER_CODE =
+                    //item.LESSON_CODE =
+                    //item.DOCUMENT_CODE =
+                    //item.ROW_NO = 
+                    //item.LEVEL =
+                    //item.QUESTION_TYPE =
                     item.CREATE_USER = getCurrentUserName();
                     item.CREATE_DATE = DateTime.Now;
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
+
+
                     model.Add(item);
                     db.SaveChanges();
                 }
@@ -55,16 +62,16 @@ namespace iys.Controllers
             return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialUpdate(iys.ModelProject.ANSWER item)
+        public ActionResult GridViewPartialUpdate(iys.ModelProject.QUESTION item)
         {
-            var model = db.ANSWERS;
+            var model = db.QUESTIONS;
             if (ModelState.IsValid)
             {
                 try
                 {
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
-                    var modelItem = model.FirstOrDefault(it => it.USER_CODE == item.USER_CODE);
+                    var modelItem = model.FirstOrDefault(it => it.QUESTION_CODE == item.QUESTION_CODE);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -81,14 +88,14 @@ namespace iys.Controllers
             return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialDelete(System.Int32 USER_CODE)
+        public ActionResult GridViewPartialDelete(System.Int32 QUESTION_CODE)
         {
-            var model = db.ANSWERS;
-            if (USER_CODE >= 0)
+            var model = db.QUESTIONS;
+            if (QUESTION_CODE >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.USER_CODE == USER_CODE);
+                    var item = model.FirstOrDefault(it => it.QUESTION_CODE == QUESTION_CODE);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

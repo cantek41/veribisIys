@@ -7,10 +7,10 @@ using DevExpress.Web.Mvc;
 
 namespace iys.Controllers
 {
-    public class ANSWERController : BaseController
+    public class AnswerResultController : BaseController
     {
         //
-        // GET: /ANSWER/
+        // GET: /AnswerResult/
         public ActionResult Index()
         {
             return View();
@@ -19,29 +19,30 @@ namespace iys.Controllers
         iys.ModelProject.iysContext db = new iys.ModelProject.iysContext();
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartial()
+        public ActionResult GridView1Partial()
         {
-            var model = db.ANSWERS;
-            return PartialView("_GridViewPartial", model.ToList());
+            var model = db.ANSWER_RESULTS;
+            return PartialView("_GridView1Partial", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialAddNew(iys.ModelProject.ANSWER item)
+        public ActionResult GridView1PartialAddNew(iys.ModelProject.ANSWER_RESULT item)
         {
-            var model = db.ANSWERS;
+            var model = db.ANSWER_RESULTS;
             //if (ModelState.IsValid)
             //{
                 try
                 {
-                    //item.USER_CODE =
+                    //item.USER_CODE = 
                     //item.QUESTION_CODE = 
-                    //item.RESULT_ID =
-                    //item.RESULT_TEXT =
+                    //item.RESULT_ID = 
+                    //item.RESULT_TEXT = 
                     //item.ACTIVITY_CODE =
                     item.CREATE_USER = getCurrentUserName();
                     item.CREATE_DATE = DateTime.Now;
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
+
                     model.Add(item);
                     db.SaveChanges();
                 }
@@ -52,12 +53,12 @@ namespace iys.Controllers
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialUpdate(iys.ModelProject.ANSWER item)
+        public ActionResult GridView1PartialUpdate(iys.ModelProject.ANSWER_RESULT item)
         {
-            var model = db.ANSWERS;
+            var model = db.ANSWER_RESULTS;
             if (ModelState.IsValid)
             {
                 try
@@ -75,15 +76,15 @@ namespace iys.Controllers
                 {
                     ViewData["EditError"] = e.Message;
                 }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+                }
+                else
+                    ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialDelete(System.Int32 USER_CODE)
+        public ActionResult GridView1PartialDelete(System.Int32 USER_CODE)
         {
-            var model = db.ANSWERS;
+            var model = db.ANSWER_RESULTS;
             if (USER_CODE >= 0)
             {
                 try
@@ -98,7 +99,7 @@ namespace iys.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridView1Partial", model.ToList());
         }
 	}
 }
