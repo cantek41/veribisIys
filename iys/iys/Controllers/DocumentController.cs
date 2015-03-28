@@ -58,6 +58,7 @@ namespace iys.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialAddNew(iys.ModelProject.DOCUMENT item)
         {
+            
             var model = db.DOCUMENTS;
             //if (ModelState.IsValid)
             //{
