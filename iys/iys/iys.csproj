@@ -331,6 +331,7 @@
     <Content Include="Views\Document\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailMasterPartial.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailDetailPartial.cshtml" />
+    <Content Include="Views\AdminPanel\AdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
