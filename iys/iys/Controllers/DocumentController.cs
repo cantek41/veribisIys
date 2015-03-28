@@ -152,7 +152,7 @@ namespace iys.Controllers
                          join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
                          select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
-            return PartialView("_GridView1Partial", model.ToList());    
+            return PartialView("_GridView1Partial", model1.ToList());    
         }
 
         public ActionResult PartialViewChapterCombo(int COURSE_CODE)

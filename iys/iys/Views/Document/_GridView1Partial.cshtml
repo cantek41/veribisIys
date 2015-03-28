@@ -142,29 +142,43 @@
         });
 
 
-    
-        //settings.Columns.Add("DOCUMENT_TYPE");
-        //settings.Columns.Add("PATH");
-        //settings.Columns.Add("LINK_TYPE");
-        //settings.Columns.Add("DURATION");
         settings.Columns.Add(column =>
         {
             column.FieldName = "DOCUMENT_TYPE";
-            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "DÖKÜMAN TÝPÝ";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "DOCUMENT_TYPE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(2);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+
         });
+        
         settings.Columns.Add(column =>
         {
             column.FieldName = "PATH";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "DOSYA YOLU";
         });
+     
+
         settings.Columns.Add(column =>
         {
             column.FieldName = "LINK_TYPE";
-            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "LÝNK TÝPÝ";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "LINK_TYPE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(3);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+
         });
+        
+        
         settings.Columns.Add(column =>
         {
             column.FieldName = "DURATION";
