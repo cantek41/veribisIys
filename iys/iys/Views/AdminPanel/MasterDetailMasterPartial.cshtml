@@ -5,18 +5,24 @@
         settings.CallbackRouteValues = new { Controller = "AdminPanel", Action = "MasterDetailMasterPartial" };
         settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
 
-        settings.KeyFieldName = "Key";
+        settings.KeyFieldName = "COURSE_CODE";
        
         settings.Columns.Add(column =>
             {
-                column.FieldName = "Value";
-                column.Name = "Value";
-                column.Caption = "Ders Adı";
+                column.FieldName = "COURSE_NAME";
+                column.Name = "COURSE_NAME";
+                column.Caption = "Ders Adı";                
             });
-        
 
+      
+        
         settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
         settings.SettingsDetail.ShowDetailRow = true;
+        
+        
+        
+        
+        
 
         settings.SetDetailRowTemplateContent(c =>
         {
@@ -27,10 +33,11 @@
             //    "<br />" +
             //    "<br />"
             //);
-            Html.RenderAction("MasterDetailDetailPartial", new { CustomerID = DataBinder.Eval(c.DataItem, "Key") });
+            Html.RenderAction("MasterDetailDetailPartial", new { CustomerID = DataBinder.Eval(c.DataItem, "COURSE_CODE") });
         });
         settings.PreRender = (sender, e) =>
         {
-            ((MVCxGridView)sender).DetailRows.ExpandRow(0);
+            if (((MVCxGridView)sender).DetailRows.VisibleCount > 0)
+                ((MVCxGridView)sender).DetailRows.ExpandRow(0);
         };
     }).Bind(Model).GetHtml()

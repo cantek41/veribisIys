@@ -26,7 +26,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "COURSE_CODE";
-            column.Caption = "COURSE";
+            column.Caption = "KURS";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -44,7 +44,7 @@
 
         settings.Columns.Add(column =>
         {
-            column.Caption = "CHAPTER";
+            column.Caption = "BÖLÜM";
             column.FieldName = "CHAPTER_CODE";
             column.Name = "CHAPTER_CODE";
             ///*Display Mode*/
@@ -77,14 +77,14 @@
 
         settings.Columns.Add(column =>
         {
-            column.Caption = "LESSON";
+            column.Caption = "DERS";
             column.FieldName = "LESSON_CODE";
             column.Name = "LESSON_CODE";
             ///*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
             int coursCode = (int)Model[index].COURSE_CODE; 
-            int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+            int chapterCode = (int)Model[index].CHAPTER_CODE;
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode,chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -108,10 +108,35 @@
         });
 
     
-        settings.Columns.Add("DOCUMENT_TYPE");
-        settings.Columns.Add("PATH");
-        settings.Columns.Add("LINK_TYPE");
-        settings.Columns.Add("DURATION");
+        //settings.Columns.Add("DOCUMENT_TYPE");
+        //settings.Columns.Add("PATH");
+        //settings.Columns.Add("LINK_TYPE");
+        //settings.Columns.Add("DURATION");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DOCUMENT_TYPE";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "DÖKÜMAN TÝPÝ";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "PATH";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "DOSYA YOLU";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LINK_TYPE";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "LÝNK TÝPÝ";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DURATION";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "SÜRE";
+        });
+
         index++;
 
     });

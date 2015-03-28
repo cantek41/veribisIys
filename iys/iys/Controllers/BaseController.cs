@@ -68,6 +68,17 @@ namespace iys.Controllers
             }
         }
 
+        public static Dictionary<int, string> getDocument(int course, int chapter,int lesson)
+        {
+            using (iysContext db = new iysContext())
+            {
+                Dictionary<int, string> a = (from d in db.DOCUMENTS
+                                             where d.COURSE_CODE == course && d.CHAPTER_CODE == chapter&&d.LESSON_CODE==lesson
+                                             select new { Key = d.DOCUMENT_CODE, Value = d.DOCUMENT_NAME }).ToDictionary(t => t.Key, t => t.Value);
+                return a;
+            }
+        }
+
         /// <summary>
         /// seçilen soruyu getiri
         /// </summary>

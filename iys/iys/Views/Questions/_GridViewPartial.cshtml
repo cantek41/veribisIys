@@ -1,4 +1,5 @@
 @{
+    int index = 0;
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "GridView";
         settings.CallbackRouteValues = new { Controller = "Questions", Action = "GridViewPartial" };
@@ -23,11 +24,127 @@
 
                 //settings.Columns.Add("QUESTION_CODE");
 				settings.Columns.Add("DESCRIPTION");
-				settings.Columns.Add("RES_CODE");
-				settings.Columns.Add("COURSE_CODE");
-				settings.Columns.Add("CHAPTER_CODE");
-				settings.Columns.Add("LESSON_CODE");
-				settings.Columns.Add("DOCUMENT_CODE");
+                settings.Columns.Add("RES_CODE");
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "COURSE_CODE";
+                    column.Caption = "COURSE";
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                    column.Name = "COURSE_CODE";
+                    var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+                    comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
+                    comboBoxProperties.TextField = "Value";
+                    comboBoxProperties.ValueField = "Key";
+                    comboBoxProperties.ValueType = typeof(int);
+                    comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
+
+                });
+                settings.CellEditorInitialize = (sender, e) =>
+                {
+                    e.Editor.ReadOnly = false;
+                };
+
+                settings.Columns.Add(column =>
+                {
+                    column.Caption = "CHAPTER";
+                    column.FieldName = "CHAPTER_CODE";
+                    column.Name = "CHAPTER_CODE";
+                    ///*Display Mode*/
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+
+                    ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+                    int coursCode = (int)Model[index].COURSE_CODE;
+                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
+                    propertiesComboBox.TextField = "Value";
+                    propertiesComboBox.ValueField = "Key";
+                    propertiesComboBox.ValueType = typeof(int);
+                    propertiesComboBox.ClientSideEvents.SelectedIndexChanged = "ChaptersCombo_SelectedIndexChanged";
+
+                    ///*Display Mode*/
+
+                    /*Edit Mode*/
+                    column.SetEditItemTemplateContent(c =>
+                    {
+                        var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
+                        var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
+                        ViewData["CHAPTER_CODE"] = chapterID;
+                        var chapters = (chapterID == null)
+                            ? iys.Controllers.BaseController.getChapter(0)
+                            : iys.Controllers.BaseController.getChapter((int)courseID);
+                        Html.RenderPartial("PartialViewChapterCombo", chapters);
+                    });
+                    /*Edit Mode*/
+
+                });
+
+                settings.Columns.Add(column =>
+                {
+                    column.Caption = "LESSON";
+                    column.FieldName = "LESSON_CODE";
+                    column.Name = "LESSON_CODE";
+                    ///*Display Mode*/
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                    ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+                    int coursCode = (int)Model[index].COURSE_CODE;
+                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode, chapterCode);
+                    propertiesComboBox.TextField = "Value";
+                    propertiesComboBox.ValueField = "Key";
+                    propertiesComboBox.ValueType = typeof(int);
+                    propertiesComboBox.ClientSideEvents.SelectedIndexChanged = "LessonsCombo_SelectedIndexChanged";
+                    ///*Display Mode*/
+
+                    /*Edit Mode*/
+                    column.SetEditItemTemplateContent(c =>
+                    {
+                        var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
+                        var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "CHAPTER_CODE");
+                        var lessonID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
+                        ViewData["LESSON_CODE"] = lessonID;
+                        var lessons = (lessonID == null)
+                            ? iys.Controllers.BaseController.getLesson(0, 0)
+                            : iys.Controllers.BaseController.getLesson((int)courseID, (int)chapterID);
+                        Html.RenderPartial("PartialViewLessonCombo", lessons);
+                    });
+                    /*Edit Mode*/
+
+                });
+
+                settings.Columns.Add(column =>
+                {
+                    column.Caption = "DOCUMENT";
+                    column.FieldName = "DOCUMENT_CODE";
+                    column.Name = "DOCUMENT_CODE";
+                    ///*Display Mode*/
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                    ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+                    int coursCode = (int)Model[index].COURSE_CODE;
+                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+                    int lessonCode = (int)Model[index].LESSON_CODE;
+                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getDocument(coursCode, chapterCode,lessonCode);
+                    propertiesComboBox.TextField = "Value";
+                    propertiesComboBox.ValueField = "Key";
+                    propertiesComboBox.ValueType = typeof(int);
+                    ///*Display Mode*/
+
+                    /*Edit Mode*/
+                    column.SetEditItemTemplateContent(c =>
+                    {
+                        var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
+                        var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "CHAPTER_CODE");
+                        var lessonID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "LESSON_CODE");
+                        var documentID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
+                        ViewData["DOCUMENT_CODE"] = documentID;
+                        var documents = (documentID == null)
+                            ? iys.Controllers.BaseController.getDocument(0,0,0)
+                            : iys.Controllers.BaseController.getDocument((int)courseID, (int)chapterID,(int)lessonID);
+                        Html.RenderPartial("PartialViewDocumentCombo", documents);
+                    });
+                    /*Edit Mode*/
+
+                });
+        
+			
 				settings.Columns.Add("ROW_NO");
 				settings.Columns.Add("LEVEL");
 				settings.Columns.Add("QUESTION_TYPE");

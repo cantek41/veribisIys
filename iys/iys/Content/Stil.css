@@ -1,21 +1,14 @@
 ﻿.logo {
-
-    margin-top:0px;
+    margin-top: 0px;
 }
-.continue{
 
-    color:#ffffff;
-    height:40%;
-   
+
+.continue {
+    color: #ffffff;
+    height: 40%;
 }
+
+
 a:hover {
-    
-   
-   vertical-align:middle;
-   
-
-
- 
-
-
+    vertical-align: middle;
 }
