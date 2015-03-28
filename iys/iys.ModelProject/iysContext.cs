@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using iys.ModelProject.TABLOLAR;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -22,5 +24,11 @@ namespace iys.ModelProject
         public DbSet<LESSON> LESSONS { get; set; }
         public DbSet<QUESTION> QUESTIONS { get; set; }
         public DbSet<USER> USERDETAILS { get; set; }
+
+        public DbSet<GROUP> GROUPS { get; set; }
+
+        public DbSet<GROUPDES> GROUPDESS { get; set; }
+        public DbSet<RES> RESS { get; set; }
+     
     }
 }

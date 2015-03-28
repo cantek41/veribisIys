@@ -51,7 +51,18 @@
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
           
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            int coursCode = (int)Model[index].COURSE_CODE;
+            int coursCode = 0;
+            try
+            {
+                if (Model.Count > 0)
+                {
+                    coursCode = (int)Model[index].COURSE_CODE;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -83,8 +94,23 @@
             ///*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            int coursCode = (int)Model[index].COURSE_CODE; 
-            int chapterCode = (int)Model[index].CHAPTER_CODE;
+
+            int coursCode = 0;
+            int chapterCode = 0;
+            try
+            {
+                if (Model.Count > 0)
+                {
+                    coursCode = (int)Model[index].COURSE_CODE;
+                    chapterCode = (int)Model[index].CHAPTER_CODE;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+          
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode,chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -107,13 +133,14 @@
 
         });
 
-<<<<<<< HEAD
-        settings.Columns.Add("DOCUMENT_NAME");
-        settings.Columns.Add("DOCUMENT_TYPE");
-        settings.Columns.Add("PATH");
-        settings.Columns.Add("LINK_TYPE");
-        settings.Columns.Add("DURATION");
-=======
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DOCUMENT_NAME";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "DÖKÜMAN";
+        });
+
     
         //settings.Columns.Add("DOCUMENT_TYPE");
         //settings.Columns.Add("PATH");
@@ -142,8 +169,9 @@
             column.FieldName = "DURATION";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "SÜRE";
+            column.ColumnType = MVCxGridViewColumnType.TimeEdit;
         });
->>>>>>> 528f69276b07b35a6aa612b85834ec56bcf56304
+
         index++;
 
     });

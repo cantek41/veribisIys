@@ -53,7 +53,18 @@
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
 
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
+                    int coursCode = 0;
+                    try
+                    {
+                        if (Model.Count > 0)
+                        {
+                            coursCode = (int)Model[index].COURSE_CODE;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
@@ -85,8 +96,20 @@
                     ///*Display Mode*/
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
-                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+                    int coursCode = 0;
+                    int chapterCode = 0;
+                    try
+                    {
+                        if (Model.Count > 0)
+                        {
+                            coursCode = (int)Model[index].COURSE_CODE;
+                            chapterCode = (int)Model[index].CHAPTER_CODE;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode, chapterCode);
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
@@ -118,9 +141,22 @@
                     ///*Display Mode*/
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
-                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
-                    int lessonCode = (int)Model[index].LESSON_CODE;
+                    int coursCode = 0;
+                    int chapterCode = 0;
+                    int lessonCode = 0;
+                    try
+                    {
+                        if (Model.Count > 0)
+                        {
+                            coursCode = (int)Model[index].COURSE_CODE;
+                            chapterCode = (int)Model[index].CHAPTER_CODE;
+                            lessonCode = (int)Model[index].LESSON_CODE;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     propertiesComboBox.DataSource = iys.Controllers.BaseController.getDocument(coursCode, chapterCode,lessonCode);
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
@@ -148,10 +184,8 @@
 				settings.Columns.Add("ROW_NO");
 				settings.Columns.Add("LEVEL");
 				settings.Columns.Add("QUESTION_TYPE");
-                //settings.Columns.Add("CREATE_USER");
-                //settings.Columns.Add("CREATE_DATE");
-                //settings.Columns.Add("LAST_UPDATE");
-                //settings.Columns.Add("LAST_UPDATE_USER");
+               
+                index++;
 			});
 		if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

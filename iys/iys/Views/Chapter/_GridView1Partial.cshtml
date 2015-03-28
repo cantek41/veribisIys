@@ -3,7 +3,7 @@
         settings.Name = "GridView1";
         settings.CallbackRouteValues = new { Controller = "Chapter", Action = "GridView1Partial" };
 
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialAddNew" };
+	    settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
@@ -56,6 +56,14 @@
                     column.FieldName = "ORDER_BY";
                     column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
                     column.Caption = "SIRA";
+                });
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "DURATION";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SÜRE";
+                    column.ColumnType = MVCxGridViewColumnType.TimeEdit;
+                    
                 });
                 //settings.Columns.Add("VISIBLE");
                 //settings.Columns.Add("ROW_NO");
