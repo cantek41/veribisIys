@@ -3,50 +3,7 @@
     ViewBag.Title = "Index";
 }
 <h4></h4>
-<div class="col-md-2" style="margin-left:10px">
-    <div class="row">
-        <h4>
-            @Html.ActionLink("Kurslar   ", "Index", "Course")
-
-        </h4>
-    </div>
-    <div class="row">
-        <h4>
-            @Html.ActionLink("Bölümler  ", "Index", "Chapter")
-        </h4>
-    </div>
-    <div class="row">
-        <h4>
-            @Html.ActionLink("Dersler   ", "Index", "Lesson")
-        </h4>
-    </div>
-    <div class="row">
-        <h4>
-            @Html.ActionLink("Belgeler  ", "Index", "Document")
-        </h4>
-    </div>
-    <div class="row">
-        <h4>
-            @Html.ActionLink("Sorular   ", "Index", "Questions")
-
-
-    </h4>
-</div>
-<div class="row">
-    <h4>
-        @Html.ActionLink("Cevap Ekle    ", "Index", "ANSWER")
-
-
-    </h4>
-</div>
-<div class="row">
-    <h4>
-
-        @Html.ActionLink("Cevap Sonucu  ", "Index", "AnswerResult")
-    </h4>
-</div>
-</div>
-
+@Html.Partial("AdminMenu")
 <div class="col-md-8">
     <div class="row">
         <center>
