@@ -20,26 +20,6 @@ namespace iys.Controllers
             return View();
         }
 
-        public ActionResult Create()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(DOCUMENT document)
-        {
-            //var fileName = Path.GetFileName(file.FileName);
-            //var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
-            //file.SaveAs(path);
-            using (iysContext db = new iysContext())
-            {
-                db.DOCUMENTS.Add(document);
-                db.SaveChanges();
-            }
-            return View();
-        }
-
         iys.ModelProject.iysContext db = new iys.ModelProject.iysContext();
 
         [ValidateInput(false)]

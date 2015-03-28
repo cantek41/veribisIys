@@ -3,7 +3,7 @@
         settings.Name = "GridView1";
         settings.CallbackRouteValues = new { Controller = "Chapter", Action = "GridView1Partial" };
 
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialAddNew" };
+	    settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Chapter", Action = "GridView1PartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
@@ -22,8 +22,13 @@
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
 
 				//settings.Columns.Add("CHAPTER_CODE");
-        
-				settings.Columns.Add("CHAPTER_NAME");
+				//settings.Columns.Add("CHAPTER_NAME");
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "CHAPTER_NAME";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "BÖLÜM ADI";
+                });
                 //settings.Columns.Add("COURSE_CODE", MVCxGridViewColumnType.ComboBox);
 
 
@@ -31,9 +36,9 @@
                 settings.Columns.Add(column =>
                 {
                     column.FieldName = "COURSE_CODE";
-                    column.Caption = "COURSE_CODE";
+                    column.Caption = "KURS KODU";
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
-                    column.Name = "COURSE_CODE";
+                    column.Name = "COURSE";
                     var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
                     comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
                     comboBoxProperties.TextField = "Value";
@@ -44,7 +49,22 @@
         
         
                 //settings.Columns.Add("RES_CODE");
-                settings.Columns.Add("ORDER_BY");
+                //settings.Columns.Add("ORDER_BY");
+
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "ORDER_BY";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SIRA";
+                });
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "DURATION";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SÜRE";
+                    column.ColumnType = MVCxGridViewColumnType.TimeEdit;
+                    
+                });
                 //settings.Columns.Add("VISIBLE");
                 //settings.Columns.Add("ROW_NO");
                 //settings.Columns.Add("DURATION");

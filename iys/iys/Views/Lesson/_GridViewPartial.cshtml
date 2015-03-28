@@ -24,7 +24,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "COURSE_CODE";
-            column.Caption = "COURSE_CODE";
+            column.Caption = "KURS KODU";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -38,8 +38,7 @@
 
         settings.Columns.Add(column =>
         {
-            column.Caption = "CHAPTER";
-
+            column.Caption = "BÖLÜM KODU";
             column.FieldName = "CHAPTER_CODE";
             column.Name = "CHAPTER_CODE";
           
@@ -54,11 +53,12 @@
                     coursCode = (int)Model[index].COURSE_CODE;
                 }
             }
+
             catch (Exception)
             {
                 
             } 
-           
+
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);            
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -81,8 +81,23 @@
 
         });
 
-        settings.Columns.Add("LESSON_NAME");
-        settings.Columns.Add("DURATION", MVCxGridViewColumnType.TimeEdit);
+
+        //settings.Columns.Add("LESSON_NAME");
+        //settings.Columns.Add("DURATION", MVCxGridViewColumnType.DateEdit);
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LESSON_NAME";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "DERS ADI";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DURATION";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.ColumnType = MVCxGridViewColumnType.TimeEdit;    //MVCxGridViewColumnType.DateEdit
+            column.Caption = "SÜRE";
+        });
+
 
         settings.CellEditorInitialize = (sender, e) =>
         {

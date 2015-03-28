@@ -15,4 +15,22 @@
     }
 </script>
 
-@Html.Action("GridView1Partial")
+<div class="col-md-2">
+    @Html.Partial("../AdminPanel/AdminMenu")
+</div>
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            <h2>
+                Cevap Sonuçları
+            </h2>
+        </center>
+    </div>
+    <div class="row">
+        @Html.Action("GridView1Partial")
+    </div>
+
+</div>
+<div class="col-md-2">
+
+</div>
