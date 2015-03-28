@@ -105,5 +105,19 @@ namespace iys.Controllers
             }
         }
 
+        /// <summary>
+        /// seçilen soruyu getiri
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<int, string> getType()
+        {
+            using (iysContext db = new iysContext())
+            {
+                return (from d in db.GROUPS
+                        where d.GROUP_CODE==1
+                        select new { Key = d.ID, Value = d.EXP_TR }).ToDictionary(t => t.Key, t => t.Value);
+            }
+        }
+
     }
 }
