@@ -26,7 +26,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "QUESTION_CODE";
-            column.Caption = "QUESTION_CODE";
+            column.Caption = "SORU KODU";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "QUESTION_CODE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -43,9 +43,27 @@
 
                 //settings.Columns.Add("USER_CODE");
                 //settings.Columns.Add("QUESTION_CODE");
-				settings.Columns.Add("RESULT_ID");
-				settings.Columns.Add("RESULT_TEXT");
-				settings.Columns.Add("ACTIVITY_CODE");
+                //settings.Columns.Add("RESULT_ID");
+                //settings.Columns.Add("RESULT_TEXT");
+                //settings.Columns.Add("ACTIVITY_CODE");
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "RESULT_ID";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SONUÇ DEGERÝ";
+                });
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "RESULT_TEXT";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SONUÇ METNÝ";
+                });
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "ACTIVITY_CODE";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "AKTÝVÝTE KODU";
+                });
                 //settings.Columns.Add("CREATE_USER");
                 //settings.Columns.Add("CREATE_DATE");
                 //settings.Columns.Add("LAST_UPDATE");

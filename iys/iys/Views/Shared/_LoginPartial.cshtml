@@ -6,12 +6,14 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            <li><a class="header-yazi-ozellik" href="javascript:document.getElementById('logoutForm').submit()">Çıkış</a></li>
+            <li>@Html.ActionLink("Yönet", "index", "AdminPanel")</li>
             <li>
 
                 @Html.ActionLink("Hoşgeldin  " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "navbar-brand header-yazi-ozellik sol-border ", title = "Manage" })
 
             </li>
-            <li><a class="header-yazi-ozellik" href="javascript:document.getElementById('logoutForm').submit()">Çıkış</a></li>
+
         </ul>
     }
 }

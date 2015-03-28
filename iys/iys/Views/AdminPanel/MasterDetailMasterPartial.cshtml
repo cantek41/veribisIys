@@ -5,13 +5,13 @@
         settings.CallbackRouteValues = new { Controller = "AdminPanel", Action = "MasterDetailMasterPartial" };
         settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
 
-        settings.KeyFieldName = "Key";
+        settings.KeyFieldName = "COURSE_CODE";
        
         settings.Columns.Add(column =>
             {
-                column.FieldName = "Value";
-                column.Name = "Value";
-                column.Caption = "Ders Adı";
+                column.FieldName = "COURSE_NAME";
+                column.Name = "COURSE_NAME";
+                column.Caption = "Ders Adı";                
             });
         
 
@@ -27,7 +27,7 @@
             //    "<br />" +
             //    "<br />"
             //);
-            Html.RenderAction("MasterDetailDetailPartial", new { CustomerID = DataBinder.Eval(c.DataItem, "Key") });
+            Html.RenderAction("MasterDetailDetailPartial", new { CustomerID = DataBinder.Eval(c.DataItem, "COURSE_CODE") });
         });
         settings.PreRender = (sender, e) =>
         {
