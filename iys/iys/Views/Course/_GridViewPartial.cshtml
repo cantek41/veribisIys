@@ -26,24 +26,23 @@
         settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.ClientSideEvents.RowDblClick = "function(sender, e) { sender.StartEditRow(e.visibleIndex); }";
 
-
-
-        //settings.Columns.Add("COURSE_CODE");
         settings.Columns.Add("COURSE_NAME");
-        settings.Columns.Add("TYPE", MVCxGridViewColumnType.ComboBox);
-        //settings.Columns.Add("GROUP_CODE",MVCxGridViewColumnType.ComboBox);
-        //settings.Columns.Add("CATEGORY",MVCxGridViewColumnType.ComboBox);
-        //settings.Columns.Add("RES_CODE",MVCxGridViewColumnType.ComboBox);
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TYPE";
+            column.Caption = "TYPE";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "TYPE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(1);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+
+        });
+     
         settings.Columns.Add("ORDER_BY");
-        //settings.Columns.Add("VISIBLE",MVCxGridViewColumnType.CheckBox);
-        //settings.Columns.Add("DES_01");
-        //settings.Columns.Add("DES_02");
-        //settings.Columns.Add("DES_03");
-        //settings.Columns.Add("ROW_NO");
-        //settings.Columns.Add("CREATE_USER");
-        //settings.Columns.Add("CREATE_DATE",MVCxGridViewColumnType.DateEdit);
-        //settings.Columns.Add("LAST_UPDATE",MVCxGridViewColumnType.DateEdit);
-        //settings.Columns.Add("LAST_UPDATE_USER");
+     
     });
 
     if (ViewData["EditError"] != null)
