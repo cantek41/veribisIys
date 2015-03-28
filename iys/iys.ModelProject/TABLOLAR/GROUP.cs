@@ -10,6 +10,7 @@ namespace iys.ModelProject.TABLOLAR
     public class GROUP
     {
         [Key]
+        public int ID { get; set; }      
         public int GROUP_CODE { get; set; }
         public int? ROW_ORDER_NO { get; set; }
         public int? UPPER_GROUP_CODE { get; set; }
