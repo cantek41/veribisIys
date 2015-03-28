@@ -64,13 +64,32 @@
                     column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
                     column.Caption = "AKTÝVÝTE KODU";
                 });
+
                 //settings.Columns.Add("CREATE_USER");
                 //settings.Columns.Add("CREATE_DATE");
                 //settings.Columns.Add("LAST_UPDATE");
                 //settings.Columns.Add("LAST_UPDATE_USER");
-			});
-		if (ViewData["EditError"] != null){
-        grid.SetEditErrorText((string)ViewData["EditError"]);
-    }
-}
-@grid.Bind(Model).GetHtml()
+            });
+            if (ViewData["EditError"] != null)
+            {
+                grid.SetEditErrorText((string)ViewData["EditError"]);
+            }
+
+
+        }
+        @grid.Bind(Model).GetHtml()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,4 +13,23 @@
         e.customArgs['COURSE_CODE'] = globalValue;
     }
 </script>
-@Html.Action("GridViewPartial")
+<div class="col-md-2">
+
+    @Html.Partial("../AdminPanel/AdminMenu")
+</div>
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            <h2>
+                Dersler
+            </h2>
+        </center>
+    </div>
+    <div class="row">
+        @Html.Action("GridViewPartial")
+    </div>
+
+</div>
+<div class="col-md-2">
+
+</div>
