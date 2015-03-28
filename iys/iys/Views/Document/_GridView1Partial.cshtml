@@ -84,7 +84,7 @@
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
             int coursCode = (int)Model[index].COURSE_CODE; 
-            int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+            int chapterCode = (int)Model[index].CHAPTER_CODE;
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode,chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -107,7 +107,7 @@
 
         });
 
-    
+        settings.Columns.Add("DOCUMENT_NAME");
         settings.Columns.Add("DOCUMENT_TYPE");
         settings.Columns.Add("PATH");
         settings.Columns.Add("LINK_TYPE");

@@ -13,10 +13,16 @@
                 column.Name = "Value";
                 column.Caption = "Ders Adı";
             });
-        
 
+      
+        
         settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
         settings.SettingsDetail.ShowDetailRow = true;
+        
+        
+        
+        
+        
 
         settings.SetDetailRowTemplateContent(c =>
         {
@@ -31,6 +37,7 @@
         });
         settings.PreRender = (sender, e) =>
         {
-            ((MVCxGridView)sender).DetailRows.ExpandRow(0);
+            if (((MVCxGridView)sender).DetailRows.VisibleCount > 0)
+                ((MVCxGridView)sender).DetailRows.ExpandRow(0);
         };
     }).Bind(Model).GetHtml()

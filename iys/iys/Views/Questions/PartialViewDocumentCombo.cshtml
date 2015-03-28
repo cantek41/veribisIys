@@ -1,0 +1,18 @@
+﻿@model System.Collections.IEnumerable
+
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.CallbackRouteValues = new { Controller = "Questions", Action = "PartialViewDocumentCombo" };
+    settings.Name = "DOCUMENT_CODE";
+
+    settings.Properties.DataSource = ViewData["DOCUMENT_CODE"];
+    settings.Properties.TextField = "Value";
+    settings.Properties.ValueField = "Key";
+    settings.Properties.ValueType = typeof(int);
+
+    settings.Properties.EnableSynchronization = DefaultBoolean.False;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+
+    settings.Properties.ClientSideEvents.BeginCallback = "DocumentCombo_BeginCallback";
+}).BindList(Model).Bind(ViewData["DOCUMENT_CODE"]).GetHtml()
+
