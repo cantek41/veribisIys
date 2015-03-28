@@ -1,16 +1,33 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-<div >
+
+<div class="col-md-2">
+    @Html.Partial("../AdminPanel/AdminMenu")
+</div>
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            
+        </center>
+    </div>
+    <div class="row">
+
+<div>
     <center>
         <h2>Kurslar</h2>
     </center>
 </div>
 
 <div>
-    <center>
+
 
         @Html.Action("GridViewPartial")
-    </center>
+    </div>
 
 </div>
+</div>
+<div class="col-md-2">
+
+</div>
+

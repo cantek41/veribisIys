@@ -3,6 +3,7 @@
     ViewBag.Title = "index";
 }
 
+
 <script type="text/javascript">
     var courseValue = 0;
     var chapterValue = 0;
@@ -47,6 +48,23 @@
 
 
 
-<h2>index</h2>
+<div class="col-md-2">
 
-@Html.Action("GridViewPartial")
+    @Html.Partial("../AdminPanel/AdminMenu")
+</div>
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            <h2>
+               Sorular
+            </h2>
+        </center>
+    </div>
+    <div class="row">
+        @Html.Action("GridViewPartial")
+    </div>
+
+</div>
+<div class="col-md-2">
+
+</div>
