@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iys.ModelProject;
 
 namespace iys.Controllers
 {
@@ -12,21 +13,36 @@ namespace iys.Controllers
         // GET: /AdminPanel/
         public ActionResult Index()
         {
-            return View(getCourse());
+            iysContext db = new iysContext();
+            var model = from d in db.COURSES
+                        select d;
+            return View(model.ToArray());
         }
 
         public ActionResult MasterDetail()
         {
-            return View(getCourse());
+            iysContext db = new iysContext();
+            var model = from d in db.COURSES
+                        select d;
+            return View(model);
         }
         public ActionResult MasterDetailMasterPartial()
         {
-            return PartialView("MasterDetailMasterPartial",getCourse());
+            iysContext db = new iysContext();
+            var model = from d in db.COURSES
+                        select d;
+            return PartialView("MasterDetailMasterPartial", model.ToArray());
         }
         public ActionResult MasterDetailDetailPartial(string customerID)
         {
-            ViewData["CustomerID"] = customerID;
-            return PartialView("MasterDetailDetailPartial", getChapter(Convert.ToInt32(customerID)));
+            
+            ViewData["COURSE_CODE"] = customerID;           
+            int cID= Convert.ToInt32(customerID);
+            iysContext db = new iysContext();
+            var model = from d in db.CHAPTERS
+                        where d.COURSE_CODE==cID
+                        select d;          
+            return PartialView("MasterDetailDetailPartial", model.ToArray());
         }
-	}
+    }
 }
