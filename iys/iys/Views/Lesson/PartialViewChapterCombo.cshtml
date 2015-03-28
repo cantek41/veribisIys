@@ -3,9 +3,9 @@
 @Html.DevExpress().ComboBox(settings =>
 {
     settings.CallbackRouteValues = new { Controller = "Lesson", Action = "PartialViewChapterCombo" };
-    settings.Name = "CODE_CHAPTER";
+    settings.Name = "CHAPTER_CODE";
 
-    settings.Properties.DataSource = ViewData["CODE_CHAPTER"];
+    settings.Properties.DataSource = ViewData["CHAPTER_CODE"];
     settings.Properties.TextField = "Value";
     settings.Properties.ValueField = "Key";
     settings.Properties.ValueType = typeof(int);
@@ -14,5 +14,5 @@
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
 
     settings.Properties.ClientSideEvents.BeginCallback = "ChapterCombo_BeginCallback";
-}).BindList(Model).Bind(ViewData["CODE_CHAPTER"]).GetHtml()
+}).BindList(Model).Bind(ViewData["CHAPTER_CODE"]).GetHtml()
 
