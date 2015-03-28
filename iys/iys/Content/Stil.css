@@ -4,9 +4,6 @@
 }
 .continue{
 
-
-<<<<<<< HEAD
-=======
     color:#ffffff;
     height:40%;
    
@@ -16,9 +13,9 @@ a:hover {
    
    vertical-align:middle;
    
->>>>>>> 32db7169d5e4e325ce1f1caeae93f23147fa23ef
 
-color:#FFFF00; background:url("../images/fs_txt_trans_bg.png"); padding:25px;
+
+color:#FFFF00; background:url("../images/fs_txt_trans_bg.png"); 
 
 
 }
