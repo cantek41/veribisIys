@@ -1,10 +1,8 @@
 @{
-	var grid = Html.DevExpress().GridView(settings => {
+        var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "CourseGridView";
- 
-
-        
         settings.CallbackRouteValues = new { Controller = "Course", Action = "GridViewPartial" };
+
 		settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Course", Action = "GridViewPartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Course", Action = "GridViewPartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Course", Action = "GridViewPartialDelete" };
@@ -17,8 +15,8 @@
         settings.CommandColumn.ShowEditButton = true;
        
        
-		settings.KeyFieldName = "COURSE_CODE";
-
+        settings.KeyFieldName = "COURSE_CODE";
+        settings.Columns.Add(column =>
 		settings.SettingsPager.Visible = true;
 		settings.Settings.ShowGroupPanel = true;
 		settings.Settings.ShowFilterRow = true;
@@ -27,13 +25,33 @@
 
 
 
-        //settings.Columns.Add("COURSE_CODE");
-        settings.Columns.Add("COURSE_NAME");
-                settings.Columns.Add("TYPE",MVCxGridViewColumnType.ComboBox);
+                //settings.Columns.Add("COURSE_CODE");
+                //settings.Columns.Add("COURSE_NAME");
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "COURSE_NAME";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "KURS ADI";
+                });
+                //settings.Columns.Add("TYPE", MVCxGridViewColumnType.ComboBox);
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "TYPE";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                    column.Caption = "TÝPÝ";
+                });
                 //settings.Columns.Add("GROUP_CODE",MVCxGridViewColumnType.ComboBox);
                 //settings.Columns.Add("CATEGORY",MVCxGridViewColumnType.ComboBox);
                 //settings.Columns.Add("RES_CODE",MVCxGridViewColumnType.ComboBox);
-                settings.Columns.Add("ORDER_BY");
+                //settings.Columns.Add("ORDER_BY");
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "ORDER_BY";
+                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                    column.Caption = "SIRA";
+                });
+        
                 //settings.Columns.Add("VISIBLE",MVCxGridViewColumnType.CheckBox);
                 //settings.Columns.Add("DES_01");
                 //settings.Columns.Add("DES_02");
