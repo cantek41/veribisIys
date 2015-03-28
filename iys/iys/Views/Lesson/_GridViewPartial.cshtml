@@ -68,9 +68,9 @@
             /*Edit Mode*/
             column.SetEditItemTemplateContent(c =>
             {
-                var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
+                var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "CODE_COURSE");
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
-                ViewData["CHAPTER_CODE"] = chapterID;
+                ViewData["CODE_CHAPTER"] = chapterID;
                 var chapters = (chapterID == null)
                     ? iys.Controllers.BaseController.getChapter(coursCode)
                     : iys.Controllers.BaseController.getChapter((int)courseID);

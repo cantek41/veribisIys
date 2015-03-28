@@ -13,8 +13,8 @@ namespace iys.Controllers
         // GET: /Lesson/
         public ActionResult Index()
         {
-            ViewData["COURSE_CODE"] = getCourse();
-            ViewData["CHAPTER_CODE"] = getChapter(0);
+            ViewData["CODE_COURSE"] = getCourse();
+            ViewData["CODE_CHAPTER"] = getChapter(0);
             return View();
         }
 
@@ -122,7 +122,11 @@ namespace iys.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridViewPartial", model.ToList());
+            var model1 = from less in db.LESSONS
+                         join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                         join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                         select new { less.LESSON_CODE, CODE_CHAPTER = cha.CHAPTER_CODE, CODE_COURSE = course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+            return PartialView("_GridViewPartial", model1.ToList());
         }
 
         public ActionResult PartialViewChapterCombo(int COURSE_CODE)
