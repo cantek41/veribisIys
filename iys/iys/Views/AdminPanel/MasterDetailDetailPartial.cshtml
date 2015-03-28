@@ -1,0 +1,45 @@
+﻿@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "detailGrid_" + ViewData["Key"];
+        settings.SettingsDetail.MasterGridName = "grid";
+        settings.CallbackRouteValues = new { Controller = "AdminPanel", Action = "MasterDetailDetailPartial", CustomerID = ViewData["Key"] };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.KeyFieldName = "Key";
+       
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Value";
+            column.Name = "Value";
+            column.Caption = "Bölüm Adı";
+        });
+        
+        //settings.Columns.Add("OrderDate").PropertiesEdit.DisplayFormatString = "d";
+        //settings.Columns.Add("ShipName");
+        //settings.Columns.Add("Quantity");
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "UnitPrice";
+        //    column.PropertiesEdit.DisplayFormatString = "c";
+        //});
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "Total";
+        //    column.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+        //    column.PropertiesEdit.DisplayFormatString = "c";
+        //});
+
+        //settings.CustomUnboundColumnData = (sender, e) =>
+        //{
+        //    if (e.Column.FieldName == "Total")
+        //    {
+        //        decimal price = (decimal)e.GetListSourceFieldValue("UnitPrice");
+        //        int quantity = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"));
+        //        e.Value = price * quantity;
+        //    }
+        //};
+        settings.Settings.ShowFooter = true;
+        //settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Total");
+        //settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Quantity");
+    }).Bind(Model).GetHtml()

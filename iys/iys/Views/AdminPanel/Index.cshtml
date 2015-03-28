@@ -1,22 +1,22 @@
-﻿
+﻿@model System.Collections.IEnumerable
 @{
     ViewBag.Title = "Index";
 }
-<h4></br>
-    @Html.ActionLink("Kurslar   ", "Index", "Course")
+<h4></h4>
+@Html.Partial("AdminMenu")
+<div class="col-md-8">
+    <div class="row">
+        <center>
+            <h2>
+                Eğitim İçeriği
+            </h2>
+        </center>
+    </div>
+    <div class="row">
+        @Html.Partial("MasterDetailMasterPartial", Model)
+    </div>
 
-    @Html.ActionLink("Bölümler  ", "Index", "Chapter")
+</div>
+<div class="col-md-2">
 
-    @Html.ActionLink("Dersler   ", "Index", "Lesson")
-
-    @Html.ActionLink("Belgeler  ", "Index", "Document")
-
-    @Html.ActionLink("Sorular   ", "Index", "Questions")
-
-    @Html.ActionLink("Cevap Ekle    ", "Index", "ANSWER")
-
-    @Html.ActionLink("Cevap Sonucu  ", "Index", "AnswerResult")
-
-</h4>
-
-
+</div>

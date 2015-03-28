@@ -1,0 +1,36 @@
+﻿@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "grid";
+        settings.CallbackRouteValues = new { Controller = "AdminPanel", Action = "MasterDetailMasterPartial" };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.KeyFieldName = "Key";
+       
+        settings.Columns.Add(column =>
+            {
+                column.FieldName = "Value";
+                column.Name = "Value";
+                column.Caption = "Ders Adı";
+            });
+        
+
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = true;
+
+        settings.SetDetailRowTemplateContent(c =>
+        {
+            //ViewContext.Writer.Write(
+            //    "Contact Phone: <b>" +
+            //        DataBinder.Eval(c.DataItem, "Phone") + "</b>, Fax: <b>" +
+            //            DataBinder.Eval(c.DataItem, "Fax") + "</b>" +
+            //    "<br />" +
+            //    "<br />"
+            //);
+            Html.RenderAction("MasterDetailDetailPartial", new { CustomerID = DataBinder.Eval(c.DataItem, "Key") });
+        });
+        settings.PreRender = (sender, e) =>
+        {
+            ((MVCxGridView)sender).DetailRows.ExpandRow(0);
+        };
+    }).Bind(Model).GetHtml()

@@ -1,5 +1,5 @@
 @{
-     int coursCode = 0;
+    int index = 0;
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "LessonGridView";
@@ -23,7 +23,7 @@
 
         settings.Columns.Add(column =>
         {
-            column.FieldName = "COURSE_NAME";
+            column.FieldName = "COURSE_CODE";
             column.Caption = "COURSE_CODE";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "COURSE_CODE";
@@ -40,14 +40,14 @@
         {
             column.Caption = "CHAPTER";
 
-            column.FieldName = "CHAPTER_NAME";
+            column.FieldName = "CHAPTER_CODE";
             column.Name = "CHAPTER_CODE";
           
             /*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
-            
+            int coursCode = (int)Model[index].COURSE_CODE;
+            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);            
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -57,10 +57,8 @@
             column.SetEditItemTemplateContent(c =>
             {
                 var courseID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, "COURSE_CODE");
-
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
                 ViewData["CHAPTER_CODE"] = chapterID;
-
                 var chapters = (chapterID == null)
                     ? iys.Controllers.BaseController.getChapter(coursCode)
                     : iys.Controllers.BaseController.getChapter((int)courseID);
@@ -77,21 +75,8 @@
         settings.CellEditorInitialize = (sender, e) =>
         {
             e.Editor.ReadOnly = false;
-            //iys.Controllers.BaseController.getChapter(coursCode);
-            //if (e.Column.FieldName == "COURSE_CODE")
-            //{
-            //    iys.Controllers.BaseController.getChapter(coursCode);
-            //    ASPxComboBox cmb = (ASPxComboBox)e.Editor;
-
-            //    if (cmb.SelectedItem != null)
-            //    {
-            //        var courseID = Convert.ToInt32(cmb.SelectedItem.Value);
-            //        var chapters = iys.Controllers.BaseController.getChapter(courseID);
-            //        Html.RenderPartial("PartialViewChapterCombo", chapters);
-            //    }
-
-            //}
         };
+        index++;
 
     });   
     
