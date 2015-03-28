@@ -107,5 +107,30 @@ namespace iys.Controllers
             }
             return PartialView("_GridViewPartial", model.ToList());
         }
+
+
+        public ActionResult PartialViewChapterCombo(int COURSE_CODE)
+        {
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int courseID = COURSE_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getChapter(courseID));
+        }
+
+        public ActionResult PartialViewLessonCombo(int COURSE_CODE, int CHAPTER_CODE)
+        {
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int chapterID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getLesson(COURSE_CODE, chapterID));
+        }
+
+        public ActionResult PartialViewDocumentCombo(int COURSE_CODE, int CHAPTER_CODE,int LESSON_CODE)
+        {
+            //  MVCxComboBox cmb = (MVCxComboBox)sender;
+            int lessonID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
+            return PartialView(getDocument(COURSE_CODE, CHAPTER_CODE, lessonID));
+        }
 	}
 }
