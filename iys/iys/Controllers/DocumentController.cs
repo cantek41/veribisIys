@@ -15,8 +15,9 @@ namespace iys.Controllers
         // GET: /Document/
         public ActionResult Index()
         {
-            //ViewData["COURSE_CODE"] = getCourse();
-            //ViewData["CHAPTER_CODE"] = getChapter(0);
+            ViewData["COURSE_CODE"] = getCourse();
+            ViewData["CHAPTER_CODE"] = getChapter(0);
+            ViewData["LESSON_CODE"] = getLesson(0, 0);
             return View();
         }
 
@@ -25,14 +26,14 @@ namespace iys.Controllers
         [ValidateInput(false)]
         public ActionResult GridView1Partial()
         {
-            var model = db.DOCUMENTS;
-            //var model1 = from d in db.DOCUMENTS
-            //             join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
-            //             join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
-            //             join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
-            //             select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME };
-            //return PartialView("_GridView1Partial", model1.ToList());          
-            return PartialView("_GridView1Partial", model.ToList());
+            //var model = db.DOCUMENTS;
+            var model1 = from d in db.DOCUMENTS
+                         join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
+                         join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
+            return PartialView("_GridView1Partial", model1.ToList());          
+            
         }
 
         [HttpPost, ValidateInput(false)]
@@ -73,7 +74,12 @@ namespace iys.Controllers
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridView1Partial", model.ToList());
+            var model1 = from d in db.DOCUMENTS
+                         join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
+                         join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME,d.DOCUMENT_NAME};
+            return PartialView("_GridView1Partial", model1.ToList());       
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialUpdate(iys.ModelProject.DOCUMENT item)
@@ -116,7 +122,12 @@ namespace iys.Controllers
             //}
             //else
             //    ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridView1Partial", model.ToList());
+            var model1 = from d in db.DOCUMENTS
+                         join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
+                         join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
+            return PartialView("_GridView1Partial", model.ToList());    
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialDelete(System.Int32 DOCUMENT_CODE)
@@ -136,7 +147,12 @@ namespace iys.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridView1Partial", model.ToList());
+            var model1 = from d in db.DOCUMENTS
+                         join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
+                         join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
+                         join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
+                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
+            return PartialView("_GridView1Partial", model1.ToList());    
         }
 
         public ActionResult PartialViewChapterCombo(int COURSE_CODE)

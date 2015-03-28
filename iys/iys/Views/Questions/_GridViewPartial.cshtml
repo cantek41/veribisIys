@@ -183,8 +183,22 @@
 			
 				settings.Columns.Add("ROW_NO");
 				settings.Columns.Add("LEVEL");
-				settings.Columns.Add("QUESTION_TYPE");
-               
+                //settings.Columns.Add("QUESTION_TYPE");
+
+                settings.Columns.Add(column =>
+                {
+                    column.FieldName = "QUESTION_TYPE";
+                    column.Caption = "SORU TÝPÝ";
+                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                    column.Name = "QUESTION_TYPE";
+                    var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+                    comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(4);
+                    comboBoxProperties.TextField = "Value";
+                    comboBoxProperties.ValueField = "Key";
+                    comboBoxProperties.ValueType = typeof(int);
+
+                });
+        
                 index++;
 			});
 		if (ViewData["EditError"] != null){
