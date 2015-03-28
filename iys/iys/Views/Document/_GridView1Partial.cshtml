@@ -84,7 +84,7 @@
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
             int coursCode = (int)Model[index].COURSE_CODE; 
-            int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
+            int chapterCode = (int)Model[index].CHAPTER_CODE;
             propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode,chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
@@ -136,6 +136,7 @@
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "SÜRE";
         });
+
         index++;
 
     });
