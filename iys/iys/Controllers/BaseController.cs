@@ -57,13 +57,12 @@ namespace iys.Controllers
         /// seçilen dersin bölümlerini getirir
         /// </summary>
         /// <returns></returns>
-        public static string getChapterString(int courseText)
+        public static string getChapterString(int chapterCode)
         {
             using (iysContext db = new iysContext())
             {
                 string a = (from d in db.CHAPTERS
-                            join b in db.COURSES on d.COURSE_CODE equals b.COURSE_CODE
-                            where b.COURSE_CODE == courseText
+                            where d.CHAPTER_CODE == chapterCode
                             select d.CHAPTER_NAME).First().ToString();
                 return a;
             }
@@ -80,6 +79,16 @@ namespace iys.Controllers
             }
         }
 
+        public static string getDocumentString(int documentCode)
+        {
+            using (iysContext db = new iysContext())
+            {
+                string a = (from d in db.DOCUMENTS
+                            where d.DOCUMENT_CODE == documentCode
+                            select d.DOCUMENT_NAME).First().ToString();
+                return a;
+            }
+        }
 
 
         /// <summary>

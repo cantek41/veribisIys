@@ -1,5 +1,4 @@
 @{
-    int index = 0;
    
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -56,29 +55,11 @@
             /*Display Mode*/
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-            int coursCode = 0;
-            try
-            {
-                if (Model.Count > 0)
-                {
-                    coursCode = (int)Model[index].COURSE_CODE;
-                    index++;
-                }
-            }
-
-            catch (Exception)
-            {
-
-            }
-
-            
-            
-           
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
 
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
+   
             /*Display Mode*/
 
             /*Edit Mode*/
@@ -88,7 +69,7 @@
                 var chapterID = c.Grid.GetRowValues(c.Grid.EditingRowVisibleIndex, c.Column.FieldName);
                 ViewData["CHAPTER_CODE"] = chapterID;
                 var chapters = (chapterID == null)
-                    ? iys.Controllers.BaseController.getChapter(coursCode)
+                    ? iys.Controllers.BaseController.getChapter(0)
                     : iys.Controllers.BaseController.getChapter((int)courseID);
 
                 Html.RenderPartial("PartialViewChapterCombo", chapters);
@@ -115,8 +96,26 @@
         });
 
 
+      
+        settings.CustomColumnDisplayText = (sender, e) =>
+        {
+            try
+            {
+               
+                //if (e.Column.FieldName == "COURSE_CODE")
+                //    Ccode = (int)e.Value;
+                if (e.Column.FieldName == "CHAPTER_CODE")
+                {
+                    e.DisplayText = iys.Controllers.BaseController.getChapterString((int)e.Value);
+                    
+                }             
+            }
+            catch (Exception)
+            {
 
-        //index++;
+
+            }
+        };
 
     });
 

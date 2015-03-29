@@ -36,8 +36,7 @@
 
         });
 
-                //settings.Columns.Add("USER_CODE");
-                //settings.Columns.Add("QUESTION_CODE");
+              
 				settings.Columns.Add("RESULT_ID");
 				settings.Columns.Add("RESULT_TEXT");
 				settings.Columns.Add("ACTIVITY_CODE");
@@ -59,10 +58,7 @@
                     column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
                     column.Caption = "AKTÝVÝTE KODU";
                 });
-                //settings.Columns.Add("CREATE_USER");
-                //settings.Columns.Add("CREATE_DATE");
-                //settings.Columns.Add("LAST_UPDATE");
-                //settings.Columns.Add("LAST_UPDATE_USER");
+            
 			});
 		if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

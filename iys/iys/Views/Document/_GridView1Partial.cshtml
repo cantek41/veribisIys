@@ -55,7 +55,6 @@
 
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
 
-            // propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -87,23 +86,6 @@
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
 
-            int coursCode = 0;
-            int chapterCode = 0;
-            try
-            {
-                if (Model.Count > 0)
-                {
-                    coursCode = (int)Model[ViewBag.index].COURSE_CODE;
-                    chapterCode = (int)Model[ViewBag.index].CHAPTER_CODE;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            ViewBag.index = ViewBag.index + 1;
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode, chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -178,18 +160,17 @@
             column.Caption = "SÜRE";
             column.ColumnType = MVCxGridViewColumnType.TimeEdit;
         });
-        int Ccode = 0;
-        int ChCode = 0;
+      
         settings.CustomColumnDisplayText = (sender, e) =>
         {
             try
             {
-                if (e.Column.FieldName == "COURSE_CODE")
-                    Ccode = (int)e.Value;
+                //if (e.Column.FieldName == "COURSE_CODE")
+                //    Ccode = (int)e.Value;
                 if (e.Column.FieldName == "CHAPTER_CODE")
                 {
-                    e.DisplayText = iys.Controllers.BaseController.getChapterString(Ccode);
-                    ChCode = (int)e.Value;
+                    e.DisplayText = iys.Controllers.BaseController.getChapterString((int)e.Value);
+                    //ChCode = (int)e.Value;
                 }
                 if (e.Column.FieldName == "LESSON_CODE")
                     e.DisplayText = iys.Controllers.BaseController.getLessonString((int)e.Value);
@@ -200,11 +181,7 @@
 
 
             }
-
-
         };
-
-
 
     });
 
