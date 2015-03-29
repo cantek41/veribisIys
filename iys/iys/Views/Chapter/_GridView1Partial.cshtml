@@ -37,6 +37,7 @@
 
         });
 
+       
 
         settings.Columns.Add(column =>
         {
@@ -58,9 +59,17 @@
             column.FieldName = "DURATION";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "SÜRE";
-            column.ColumnType = MVCxGridViewColumnType.TimeEdit;
-
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+            var txtProperties = column.PropertiesEdit as TextBoxProperties;
+            txtProperties.MaskSettings.Mask = "00:00";
+           
+     
         });
+
+        settings.InitNewRow = (s, e) =>
+            {
+                e.NewValues["DURATION"] = "00:00";
+            };
 
     });
 		if (ViewData["EditError"] != null){

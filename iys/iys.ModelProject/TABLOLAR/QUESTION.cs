@@ -22,7 +22,6 @@ namespace iys.ModelProject
         public int? CREATE_USER { get; set; }
         public DateTime? CREATE_DATE { get; set; }
         public DateTime? LAST_UPDATE { get; set; }
-        public int?
-            LAST_UPDATE_USER { get; set; }
+        public int? LAST_UPDATE_USER { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace iys.ModelProject
         public int? DOCUMENT_TYPE { get; set; }
         public string PATH { get; set; }
         public int? LINK_TYPE { get; set; }
-        public TimeSpan? DURATION { get; set; }
+        public string DURATION { get; set; }
         public int? PRIORITY { get; set; }
         public int? ROW_ORDER_NO { get; set; }
         public bool? VISIBLE { get; set; }
