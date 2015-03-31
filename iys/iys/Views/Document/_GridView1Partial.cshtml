@@ -20,21 +20,21 @@
         settings.Settings.ShowGroupPanel = true;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
-        
+
 
         settings.Columns.Add(column =>
         {
             column.FieldName = "COURSE_CODE";
             column.Caption = "KURS";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
-            column.Name = "COURSE_CODE";            
+            column.Name = "COURSE_CODE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.DataSource = iys.Controllers.BaseController.getCourse();
             comboBoxProperties.TextField = "Value";
             comboBoxProperties.ValueField = "Key";
             comboBoxProperties.ValueType = typeof(int);
             comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
-            
+
 
 
         });
@@ -56,7 +56,6 @@
 
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
 
-            // propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -88,23 +87,6 @@
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
 
-            int coursCode = 0;
-            int chapterCode = 0;
-            try
-            {
-                if (Model.Count > 0)
-                {
-                    coursCode = (int)Model[ViewBag.index].COURSE_CODE;
-                    chapterCode = (int)Model[ViewBag.index].CHAPTER_CODE;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            ViewBag.index = ViewBag.index + 1;
-            propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode, chapterCode);
             propertiesComboBox.TextField = "Value";
             propertiesComboBox.ValueField = "Key";
             propertiesComboBox.ValueType = typeof(int);
@@ -177,22 +159,28 @@
             column.FieldName = "DURATION";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "SÜRE";
-            column.ColumnType = MVCxGridViewColumnType.TimeEdit;
-            var comboBoxProperties = column.PropertiesEdit as TimeEditProperties;
-            comboBoxProperties.ValidationSettings.RequiredField.IsRequired = false;     
+
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+            var txtProperties = column.PropertiesEdit as TextBoxProperties;
+            txtProperties.MaskSettings.Mask = "00:00";
         });
-        int Ccode = 0;
-        int ChCode = 0;
+
+        settings.InitNewRow = (s, e) =>
+        {
+            e.NewValues["DURATION"] = "00:00";
+        };
+
+
         settings.CustomColumnDisplayText = (sender, e) =>
         {
             try
             {
-                if (e.Column.FieldName == "COURSE_CODE")
-                    Ccode = (int)e.Value;
+                //if (e.Column.FieldName == "COURSE_CODE")
+                //    Ccode = (int)e.Value;
                 if (e.Column.FieldName == "CHAPTER_CODE")
                 {
-                    e.DisplayText = iys.Controllers.BaseController.getChapterString(Ccode);
-                    ChCode = (int)e.Value;
+                    e.DisplayText = iys.Controllers.BaseController.getChapterString((int)e.Value);
+                    //ChCode = (int)e.Value;
                 }
                 if (e.Column.FieldName == "LESSON_CODE")
                     e.DisplayText = iys.Controllers.BaseController.getLessonString((int)e.Value);
@@ -203,11 +191,7 @@
 
 
             }
-
-
         };
-
-
 
     });
 

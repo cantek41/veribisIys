@@ -15,7 +15,7 @@ namespace iys.ModelProject
         public int? ROW_NO { get; set; }
         public int? COURSE_CODE { get; set; }
         public int? CHAPTER_CODE { get; set; }
-        public TimeSpan? DURATION { get; set; }
+        public string DURATION { get; set; }
         public int? CREATE_USER { get; set; }
         public DateTime? CREATE_DATE { get; set; }
         public DateTime? LAST_UPDATE { get; set; }

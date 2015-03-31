@@ -17,7 +17,7 @@ namespace iys.ModelProject
         public int? ORDER_BY { get; set; }
         public bool? VISIBLE { get; set; }
         public int? ROW_NO { get; set; }
-        public TimeSpan? DURATION { get; set; }
+        public string DURATION { get; set; }
         public int? CREATE_USER { get; set; }
         public DateTime? CREATE_DATE { get; set; }
         public DateTime? LAST_UPDATE { get; set; }

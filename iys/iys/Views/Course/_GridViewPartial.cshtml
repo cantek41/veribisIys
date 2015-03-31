@@ -26,11 +26,17 @@
         settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.ClientSideEvents.RowDblClick = "function(sender, e) { sender.StartEditRow(e.visibleIndex); }";
 
-        settings.Columns.Add("COURSE_NAME");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "COURSE_NAME";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "KURS";
+        });
+
         settings.Columns.Add(column =>
         {
             column.FieldName = "TYPE";
-            column.Caption = "TYPE";
+            column.Caption = "TÝPÝ";
             column.ColumnType = MVCxGridViewColumnType.ComboBox;
             column.Name = "TYPE";
             var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -40,8 +46,13 @@
             comboBoxProperties.ValueType = typeof(int);
 
         });
-     
-        settings.Columns.Add("ORDER_BY");
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ORDER_BY";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "SIRA";
+        });
      
     });
 
