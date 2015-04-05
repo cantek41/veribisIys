@@ -11,15 +11,15 @@ namespace iys.ModelProject
         [Key]
         public int LESSON_CODE { get; set; }
         public string LESSON_NAME { get; set; }
-        public int RES_CODE { get; set; }
-        public int ROW_NO { get; set; }
-        public int COURSE_CODE { get; set; }
-        public int CHAPTER_CODE { get; set; }
-        public DateTime DURATION { get; set; }
-        public int CREATE_USER { get; set; }
-        public DateTime CREATE_DATE { get; set; }
-        public DateTime LAST_UPDATE { get; set; }
-        public int LAST_UPDATE_USER { get; set; }
+        public int? RES_CODE { get; set; }
+        public int? ROW_NO { get; set; }
+        public int? COURSE_CODE { get; set; }
+        public int? CHAPTER_CODE { get; set; }
+        public string DURATION { get; set; }
+        public int? CREATE_USER { get; set; }
+        public DateTime? CREATE_DATE { get; set; }
+        public DateTime? LAST_UPDATE { get; set; }
+        public int? LAST_UPDATE_USER { get; set; }
         
     }
 }

@@ -71,11 +71,12 @@ namespace iys.Controllers
             {
                 try
                 {
-                    item.LAST_UPDATE = DateTime.Now;
-                    item.LAST_UPDATE_USER = getCurrentUserName();
-                    var modelItem = model.FirstOrDefault(it => it.COURSE_CODE == item.COURSE_CODE);
+                   
+                    var modelItem = model.FirstOrDefault(it => it.COURSE_CODE == item.COURSE_CODE);                  
                     if (modelItem != null)
                     {
+                        modelItem.LAST_UPDATE = DateTime.Now;
+                        modelItem.LAST_UPDATE_USER = getCurrentUserName();
                         this.UpdateModel(modelItem);
                         db.SaveChanges();
                     }

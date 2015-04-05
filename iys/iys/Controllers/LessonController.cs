@@ -26,6 +26,11 @@ namespace iys.Controllers
         public ActionResult GridViewPartial()
         {
             var model = db.LESSONS;
+            var model1 = from less in db.LESSONS
+                         join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                         join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                         select new { less.LESSON_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+            //return PartialView("_GridViewPartial", model1.ToList());
             return PartialView("_GridViewPartial", model.ToList());
 
         }
@@ -65,8 +70,8 @@ namespace iys.Controllers
                 var model1 = from less in db.LESSONS
                              join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
                              join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
-                             select new { less.LESSON_CODE,CODE_CHAPTER=cha.CHAPTER_CODE,CODE_COURSE=course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
-                return PartialView("_GridViewPartial", model1.ToList());
+                             select new { less.LESSON_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+                return PartialView("_GridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialUpdate(iys.ModelProject.LESSON item)
@@ -95,9 +100,9 @@ namespace iys.Controllers
             var model1 = from less in db.LESSONS
                          join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
                          join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
-                         select new { less.LESSON_CODE, CODE_CHAPTER = cha.CHAPTER_CODE, CODE_COURSE = course.COURSE_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
-            return PartialView("_GridViewPartial", model1.ToList());
-            //return PartialView("_GridViewPartial", model.ToList());
+                         select new { less.LESSON_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
+            return PartialView("_GridViewPartial", model.ToList());
+           
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialDelete(System.Int32 LESSON_CODE)
@@ -117,6 +122,10 @@ namespace iys.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
+            var model1 = from less in db.LESSONS
+                         join cha in db.CHAPTERS on less.CHAPTER_CODE equals cha.CHAPTER_CODE
+                         join course in db.COURSES on cha.COURSE_CODE equals course.COURSE_CODE
+                         select new { less.LESSON_CODE, CHAPTER_CODE = cha.CHAPTER_NAME, less.LESSON_NAME, less.DURATION, COURSE_CODE = course.COURSE_NAME };
             return PartialView("_GridViewPartial", model.ToList());
         }
 
