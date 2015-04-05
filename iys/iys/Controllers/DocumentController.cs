@@ -46,29 +46,16 @@ namespace iys.Controllers
         {
 
             var model = db.DOCUMENTS;
-            //if (ModelState.IsValid)
-            //{
+           
             try
             {
-                //item.DOCUMENT_CODE =
-                //item.DOCUMENT_NAME =
-                //item.RES_CODE =
-                //item.COURSE_CODE =
-                //item.CHAPTER_CODE =
-                //item.LESSON_CODE =
-                //item.ROW_NO =
-                //item.DOCUMENT_TYPE =
-                //item.PATH =
-                //item.LINK_TYPE =
-                //item.DURATION =
-                //item.PRIORITY =
-                //item.ROW_ORDER_NO =
+                item.PATH = filePath;
                 item.VISIBLE = true;
                 item.CREATE_USER = getCurrentUserName();
                 item.CREATE_DATE = DateTime.Now;
                 item.LAST_UPDATE = DateTime.Now;
                 item.LAST_UPDATE_USER = getCurrentUserName();
-
+                filePath = null;
                 model.Add(item);
                 db.SaveChanges();
             }

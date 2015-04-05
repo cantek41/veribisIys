@@ -238,8 +238,6 @@
     <Content Include="images\index.html" />
     <Content Include="images\slide.png" />
     <Content Include="images\test.png" />
-    <Content Include="images\trans.png" />
-    <Content Include="images\trans_top.png" />
     <Content Include="images\verticalMenu\assets.png" />
     <Content Include="images\verticalMenu\comments.png" />
     <Content Include="images\verticalMenu\dashboard.png" />
@@ -289,6 +287,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\metiskop.pubxml" />
+    <None Include="Properties\PublishProfiles\metiskopPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
