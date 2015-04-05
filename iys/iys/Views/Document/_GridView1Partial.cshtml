@@ -36,6 +36,7 @@
             comboBoxProperties.ClientSideEvents.SelectedIndexChanged = "CoursesCombo_SelectedIndexChanged";
 
 
+
         });
 
         settings.CellEditorInitialize = (sender, e) =>
@@ -139,16 +140,17 @@
             column.SetEditItemTemplateContent(c =>
             {
                 using (Html.BeginForm("ImageUpload", "Document", FormMethod.Post))
-                {
+                {                   
+
                     Html.DevExpress().UploadControl(
                        ucSettings =>
                        {
-                           ucSettings.Name = "uploadControl";
+                           ucSettings.Name = "PATH";                           
                            ucSettings.ShowUploadButton = true;
                            ucSettings.AddUploadButtonsSpacing = 0;
                            ucSettings.AddUploadButtonsHorizontalPosition = AddUploadButtonsHorizontalPosition.InputRightSide;
                            ucSettings.CallbackRouteValues = new { Controller = "Document", Action = "ImageUpload" };
-                           ucSettings.ClientSideEvents.FileUploadComplete = "function(s, e) { if(e.isValid) { avatarUrl.SetValue(e.callbackData) } }";
+                           ucSettings.ClientSideEvents.FileUploadComplete = "function(s, e) { if(e.isValid) { alert('ok');} }";
                        }
                    ).Render();
                 }
@@ -179,10 +181,10 @@
             column.FieldName = "DURATION";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "SÜRE";
+
             column.ColumnType = MVCxGridViewColumnType.TextBox;
             var txtProperties = column.PropertiesEdit as TextBoxProperties;
             txtProperties.MaskSettings.Mask = "00:00";
-
         });
 
         settings.InitNewRow = (s, e) =>

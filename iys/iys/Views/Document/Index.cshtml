@@ -27,6 +27,11 @@
         e.customArgs['CHAPTER_CODE'] = chapterValue;
         e.customArgs['COURSE_CODE'] = courseValue;
     }
+    function onUploadControlFileUploadComplete(s, e) {
+        alert("sda");
+        if (e.isValid)
+            $("#PATH").attr("text", e.FileName);
+    }
 </script>
 
 
