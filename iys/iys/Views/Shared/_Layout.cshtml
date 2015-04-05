@@ -84,63 +84,69 @@ if (document.getElementById('content').scrollHeight < document.body.clientHeight
         @RenderSection("scripts", required: false)
     </body>*@
 
-<body id="top">
-   
+<body id="top"style="background-color: #f3f2f2;">
+
     <!-- ####################################################################################################### -->
 
-    <div>
+    <div style="background-color:#f3f2f2">
         <center>
-            <img src="~/img/ab.png" />
+            <img style="margin-top:10px;margin-bottom:10px; " src="~/img/ab.png" />
         </center>
 
     </div>
-    <div class="wrapper col1">
-        <div id="header">
-            <div id="topnav">
-                @Html.Partial("_LoginPartial")
-                <ul>
-                    @*<li class="last"><a href="#">Link text</a><span>Test Text Here</span></li>
-                    <li>
-                        <a href="#">DropDown</a><span>Test Text Here</span>
-                        <ul>
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                        </ul>
-                    </li>*@
-                    @*<li><a href="pages/full-width.html">Full Width</a><span>Test Text Here</span></li>
-                        <li><a href="pages/style-demo.html">Style Demo</a><span>Test Text Here</span></li>
-                        <li class="active"><a href="index.html">Homepage</a><span>Test Text Here</span></li>*@
+
+    
+
+
+                <div class="wrapper col1" style="background-color: #000000">
+                    <div id="header">
+                        <div id="topnav">
+                            @Html.Partial("_LoginPartial")
+                            <ul>
+                                @*<li class="last"><a href="#">Link text</a><span>Test Text Here</span></li>
+                                    <li>
+                                        <a href="#">DropDown</a><span>Test Text Here</span>
+                                        <ul>
+                                            <li><a href="#">Link 1</a></li>
+                                            <li><a href="#">Link 2</a></li>
+                                            <li><a href="#">Link 3</a></li>
+                                        </ul>
+                                    </li>*@
+                                @*<li><a href="pages/full-width.html">Full Width</a><span>Test Text Here</span></li>
+                                    <li><a href="pages/style-demo.html">Style Demo</a><span>Test Text Here</span></li>
+                                    <li class="active"><a href="index.html">Homepage</a><span>Test Text Here</span></li>*@
 
 
 
-                    @*<li><center>@Html.ActionLink("Home", "Index", "Home") </center> </li>
-                    <li><center> @Html.ActionLink("About", "About", "Home") </center></li>
-                    <li><center> @Html.ActionLink("Contact", "Contact", "Home")  </center></li>*@
-                </ul>                
-            </div>
-            <div id="logo">
-                @*<h1><a href="index.html"><strong>O</strong>st <strong>M</strong>agazine</a></h1>
-                <p>Free Website Template</p>*@
-                <img src="~/img/logo.png" style="width:300px; height:82px;" />
-            </div>
-            <br class="clear" />
-        </div>
-    </div>
-    <!-- ####################################################################################################### -->
-    @RenderBody()
-    <!-- ####################################################################################################### -->
-    <footer>
-        <div class="wrapper col5"style="bottom: 0;position:fixed;">
-            <div id="copyright">
-                <p class="fl_left">Copyright &copy; 2015 - Metiskop - <a href="#">İzmit Mesleki ve Teknik Anadolu Lisesi</a></p>
-              <a target="_blank" style="float:right; text-decoration:none;" href="http://www.veribis.com.tr/" title="Free Website Templates">Veribis CRM</a>
-                <br class="clear" />
-            </div>
-        </div>
-    </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                                @*<li><center>@Html.ActionLink("Home", "Index", "Home") </center> </li>
+                                    <li><center> @Html.ActionLink("About", "About", "Home") </center></li>
+                                    <li><center> @Html.ActionLink("Contact", "Contact", "Home")  </center></li>*@
+                            </ul>
+                        </div>
+                        <div id="logo">
+                            @*<h1><a href="index.html"><strong>O</strong>st <strong>M</strong>agazine</a></h1>
+                                <p>Free Website Template</p>*@
+                            <a href="../Home/Index"><img src="~/img/logo.png" style="width:300px; height:82px;" /></a>
+
+                            @*<img src="~/img/logo.png" style="width:300px; height:82px;" />*@
+                        </div>
+                        <br class="clear" />
+                    </div>
+                </div>
+                <!-- ####################################################################################################### -->
+                @RenderBody()
+                <!-- ####################################################################################################### -->
+                <footer>
+                    <div class="wrapper col5" style="bottom: 0;position:fixed;">
+                        <div id="copyright">
+                            <p class="fl_left">Copyright &copy; 2015 - Metiskop - <a href="#">İzmit Mesleki ve Teknik Anadolu Lisesi</a></p>
+                            <a target="_blank" style="float:right; text-decoration:none;" href="http://www.veribis.com.tr/" title="Free Website Templates">Veribis CRM</a>
+                            <br class="clear" />
+                        </div>
+                    </div>
+                </footer>
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                @RenderSection("scripts", required: false)
 </body>
 </html>

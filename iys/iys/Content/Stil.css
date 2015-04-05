@@ -11,4 +11,16 @@
 
 a:hover {
     vertical-align: middle;
+   
+}
+
+.header-yazi-ozellik {
+font-family:'Adobe Garamond Pro';
+/*font-size:17px;*/
+
+}
+.labelhizalama {
+
+    float:left;
+    text-align:left;
 }

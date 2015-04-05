@@ -15,9 +15,9 @@ File: Navigation CSS
 #topnav li span{display:block; margin:5px 0 0 0; padding:0; font-size:12px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; text-transform:lowercase; color:#666666; background-color:#000000; font-weight:normal; line-height:normal;}
 #topnav li a:link, #topnav li a:visited, #topnav li a:hover{display:block; margin:0; padding:20px 0 0 0; color:#FFFFFF; background-color:#000000; text-transform:uppercase; border-top:2px solid #000000; font-weight:bold;}
 #topnav ul ul li a:link, #topnav ul ul li a:visited{border:none;}
-#topnav li a:hover, #topnav li.active a{color:#FFFF00; background-color:#000000; border-top-color:#FFFF00;}
+#topnav li a:hover, #topnav li.active a{color:#FFFFFF; background-color:#000000; border-top-color:#000000;}
 #topnav li li a:link, #topnav li li a:visited{width:150px; float:none; margin:0; padding:7px 10px; font-size:12px; font-weight:normal; color:#FFFFFF; background-color:#000000; border:none;}
-#topnav li li a:hover{color:#FFFF00; background-color:#000000;}
+#topnav li li a:hover{color:#FFFFFF; background-color:#000000;}
 #topnav ul ul{z-index:9999; position:absolute; left:-999em; height:auto; width:170px; border-left:1px solid #666666; border-bottom:1px solid #666666;}
 #topnav ul ul a{width:140px;}
 #topnav li:hover ul{left:auto;}
