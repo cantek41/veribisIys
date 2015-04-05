@@ -1,14 +1,15 @@
-﻿@model iys.Models.RegisterViewModel
+﻿@using iys.Models
+@model iys.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = @Res.resGetir(25);
 }
 
-<h2 style="margin-left:140px;">Kayıt Bölümü</h2>
+<h2 style="margin-left:140px;">@Res.resGetir(34)</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4 style="margin-left:140px;">Yeni Bir Hesap Oluşturun</h4>
+    <h4 style="margin-left:140px;">@Res.resGetir(35)</h4>
     <hr />
     @Html.ValidationSummary()
     <div class="form-group">
@@ -31,7 +32,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Kayıt Ol" />
+            <input type="submit" class="btn btn-default" value=@Res.resGetir(36) />
         </div>
     </div>
 }

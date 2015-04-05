@@ -1,4 +1,5 @@
-﻿@{
+﻿@using iys.Models;
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -15,8 +16,8 @@
         });
     });
 </script>
-
-<div class="wrapper col2">
+@*757c97*@
+<div class="wrapper col2" style="background-color:rgb(154, 163, 167)">
     <div id="featured_slide">
         <div class="featured_box">
             @*<div class="floater">
@@ -70,14 +71,14 @@
                         <p>İş güvenliği</p>
                         <p>İşverenler, işyerlerinde sağlıklı ve güvenli çalışma ortamının tesis edilmesi için gerekli önlemleri almakla yükümlüdürler.</p>
                         <p>Bu amaçla, işverenler, çalışanları, yasal hak ve sorumlulukları konusunda bilgilendirmek, onların karşı karşıya bulundukları mesleki riskler ve bunlarla ilgili alınması gerekli tedbirler konusunda işyerlerinde iş sağlığı ve güvenliği eğitim programlarını hazırlamak, eğitimlerin düzenlemesini,çalışanların bu programlara katılmasını sağlamak ve verilecek eğitim için uygun yer, araç ve gereç temin etmekle yükümlüdürler" denilmektedir.</p>
-                        <p class="readmore"><a href="../Account/Login"> Eğitime Başla &raquo;</a></p>
+                        <p class="readmore"><a href="../Account/Login">@Res.resGetir(5) &raquo;</a></p>
                     </li>
                     <li>
                         
                         <img src="~/img/k_28153220_dsc_1026.jpg" />                        
                         <p>İşverenler, işyerlerinde sağlıklı ve güvenli çalışma ortamının tesis edilmesi için gerekli önlemleri almakla yükümlüdürler.</p>
                         <p>Bu amaçla, işverenler, çalışanları, yasal hak ve sorumlulukları konusunda bilgilendirmek, onların karşı karşıya bulundukları mesleki riskler ve bunlarla ilgili alınması gerekli tedbirler konusunda işyerlerinde iş sağlığı ve güvenliği eğitim programlarını hazırlamak, eğitimlerin düzenlemesini,çalışanların bu programlara katılmasını sağlamak ve verilecek eğitim için uygun yer, araç ve gereç temin etmekle yükümlüdürler" denilmektedir.</p>
-                        <p class="readmore"><a href="http://www.izmiteml.meb.k12.tr/">İzmit EML İncele &raquo;</a></p>
+                        <p class="readmore"><a href="http://www.izmiteml.meb.k12.tr/">@Res.resGetir(6) &raquo;</a></p>
                     </li>
                     <li class="last">
                         
@@ -85,30 +86,30 @@
                         <img src="~/img/T%c3%bcrkiye_Cumhuriyeti_%c3%87al%c4%b1%c5%9fma_ve_Sosyal_G%c3%bcvenlik_Bakanl%c4%b1%c4%9f%c4%b1_logosu.jpg" />
                         <p style="margin-top:20px;">Hızlı sanayileşme ve teknolojik gelişmeler ile doğru orantılı olarak özellikle iş yerlerinde çalışan kişilerin güvenliği ile ilgili bazı sorunlar da açığa çıkmıştır. Bu sebeple bir takım önlemleri önceden alarak iş yerlerini güvenli hale getirmek gerekmekte olduğundan iş güvenliği oldukça önem kazanmıştır.</p>
                         
-                        <p class="readmore"><a href="http://www.csgb.gov.tr/csgbPortal/csgb.portal">ÇSGB Hakkında &raquo;</a></p>
+                        <p class="readmore"><a href="http://www.csgb.gov.tr/csgbPortal/csgb.portal">@Res.resGetir(7) &raquo;</a></p>
                     </li>
                 </ul>
                 <br class="clear" />
             </div>
             <div id="latestnews">
-                <h2>Çalışmalarımız</h2>
+                <h2>@Res.resGetir(8)</h2>
                 <ul>
                     <li>
                         
                         <div class="imgholder"><img src="~/img/2.jpg" alt="" /></div>
                         <div class="latestnews">
-                            <h2>Yurt İçi Etkinliklerimiz </h2>
+                            <h2>@Res.resGetir(9) </h2>
                             <p>This is a W3C standards compliant free website template from <a href="http://www.projelerim.biz/Yurtici/index.html">OS Templates</a>. This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>, which allows you to use and modify the template for both personal and commercial use when you keep the provided credit links in the footer. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>.</p>
-                            <p class="readmore"><a href="http://www.projelerim.biz/Yurtici/index.html">Detaylı İncele &raquo;</a></p>
+                            <p class="readmore"><a href="http://www.projelerim.biz/Yurtici/index.html">@Res.resGetir(10) &raquo;</a></p>
                         </div>
                         <br class="clear" />
                     </li>
                     <li class="last">
                         <div class="imgholder"><img src="~/img/47.jpg" alt="" /></div>
                         <div class="latestnews">
-                            <h2>Danimarka Etkinliğimiz</h2>
+                            <h2>@Res.resGetir(11)</h2>
                             <p>Attincidunt vel nam a maurisus lacinia consectetus magnisl sed ac morbi. Inmaurisus habitur pretium eu et ac vest penatibus id lacus parturpis. Maecenaset adipiscinia tellentum nullam velit et a convallis curabitae vitae laoreet niseros ligula sem sed susp en at.</p>
-                            <p class="readmore"><a href="http://www.projelerim.biz/danimarka/index.html">Detaylı İncele &raquo;</a></p>
+                            <p class="readmore"><a href="http://www.projelerim.biz/danimarka/index.html">@Res.resGetir(10) &raquo;</a></p>
                         </div>
                         <br class="clear" />
                     </li>
@@ -129,7 +130,7 @@
                 </div>
 
                 <div class="box contactdetails">
-                    <h2> İletişim Bilgilerimiz</h2>
+                    <h2> @Res.resGetir(12)</h2>
                     <ul>
                         <li>Company Name</li>
                         <li>Street Name &amp; Number</li>
@@ -193,7 +194,7 @@
         </div>
        
        <div class="col-md-12">
-           <span style="color:#000000; "> Bu yayın Avrupa Birliği ve Türkiye Cumhuriyeti’nin mali katkısıyla hazırlanmıştır. Bu yayının içeriğinden yalnızca İzmit Mesleki ve Teknik Anadolu Lisesi sorumludur ve bu içerik hiçbir şekilde Avrupa Birliği veya Türkiye Cumhuriyeti’nin görüş ve tutumunu yansıtmamaktadır.</span>
+           <span style="color:#000000; "> @Res.resGetir(13)</span>
 
        </div>
        
