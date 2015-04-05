@@ -8,6 +8,7 @@ using iys.ModelProject;
 using DevExpress.Web.Mvc;
 using DevExpress.Web;
 using System.Web.UI;
+using System.Data.Entity;
 
 namespace iys.Controllers
 {
@@ -15,6 +16,7 @@ namespace iys.Controllers
     {
         //
         // GET: /Document/
+        public static string filePath;
         public ActionResult Index()
         {
             ViewData["COURSE_CODE"] = getCourse();
@@ -35,14 +37,14 @@ namespace iys.Controllers
                          join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
                          select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
-            return PartialView("_GridView1Partial", model.ToList());          
-            
+            return PartialView("_GridView1Partial", model.ToList());
+
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialAddNew(iys.ModelProject.DOCUMENT item)
         {
-            
+
             var model = db.DOCUMENTS;
             //if (ModelState.IsValid)
             //{
@@ -81,28 +83,16 @@ namespace iys.Controllers
                          join b in db.CHAPTERS on d.CHAPTER_CODE equals b.CHAPTER_CODE
                          join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
-                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME,d.DOCUMENT_NAME};
-            return PartialView("_GridView1Partial", model.ToList());       
+                         select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
+            return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialUpdate(iys.ModelProject.DOCUMENT item)
         {
             var model = db.DOCUMENTS;
-            //if (ModelState.IsValid)
-            //{
             try
             {
-                //item.DOCUMENT_CODE =
-                //item.DOCUMENT_NAME =
-                //item.RES_CODE = 0;
-                // item.COURSE_CODE = 0;
-                //item.CHAPTER_CODE =
-                //item.LESSON_CODE =
-                //item.ROW_NO = 0;
-                //item.DOCUMENT_TYPE =
-                //item.PATH =
-                //item.LINK_TYPE =
-                //item.DURATION =
+                item.PATH = filePath;
                 item.PRIORITY = 0;
                 item.ROW_ORDER_NO = 0;
                 item.VISIBLE = true;
@@ -111,10 +101,11 @@ namespace iys.Controllers
                 item.LAST_UPDATE = DateTime.Now;
                 item.LAST_UPDATE_USER = getCurrentUserName();
 
-                var modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
-                if (modelItem != null)
+               /// DOCUMENT modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
+                if (item != null)
                 {
-                    this.UpdateModel(modelItem);
+                    db.DOCUMENTS.Attach(item);
+                    db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -130,7 +121,7 @@ namespace iys.Controllers
                          join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
                          select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
-            return PartialView("_GridView1Partial", model.ToList());    
+            return PartialView("_GridView1Partial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridView1PartialDelete(System.Int32 DOCUMENT_CODE)
@@ -155,7 +146,7 @@ namespace iys.Controllers
                          join cs in db.COURSES on d.COURSE_CODE equals cs.COURSE_CODE
                          join lesson in db.LESSONS on d.LESSON_CODE equals lesson.LESSON_CODE
                          select new { d.DOCUMENT_CODE, CHAPTER_CODE = b.CHAPTER_NAME, d.DOCUMENT_TYPE, d.DURATION, d.LINK_TYPE, d.PATH, LESSON_CODE = lesson.LESSON_NAME, COURSE_CODE = cs.COURSE_NAME, d.DOCUMENT_NAME };
-            return PartialView("_GridView1Partial", model.ToList());    
+            return PartialView("_GridView1Partial", model.ToList());
         }
 
         public ActionResult PartialViewChapterCombo(int COURSE_CODE)
@@ -166,33 +157,40 @@ namespace iys.Controllers
             return PartialView(getChapter(courseID));
         }
 
-        public ActionResult PartialViewLessonCombo(int COURSE_CODE,int CHAPTER_CODE)
+        public ActionResult PartialViewLessonCombo(int COURSE_CODE, int CHAPTER_CODE)
         {
             //  MVCxComboBox cmb = (MVCxComboBox)sender;
             int chapterID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
             //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
-            return PartialView(getLesson(COURSE_CODE,chapterID));
+            return PartialView(getLesson(COURSE_CODE, chapterID));
         }
 
-        public ActionResult ImageUpload() {
-            UploadControlExtension.GetUploadedFiles("uploadControl", UploadControlHelper.ValidationSettings, UploadControlHelper.uploadControl_FileUploadComplete);
+        public ActionResult ImageUpload()
+        {
+            UploadControlExtension.GetUploadedFiles("PATH", UploadControlHelper.ValidationSettings, UploadControlHelper.uploadControl_FileUploadComplete);
             return null;
         }
     }
 
-    public class UploadControlHelper {
-        public static readonly UploadControlValidationSettings ValidationSettings = new UploadControlValidationSettings {
-            AllowedFileExtensions = new string[] { ".jpg",".png",".jpeg", ".jpe"},
-            MaxFileSize = 4000000
+    public class UploadControlHelper
+    {
+        public static readonly UploadControlValidationSettings ValidationSettings = new UploadControlValidationSettings
+        {
+            AllowedFileExtensions = new string[] { ".jpg", ".png", ".jpeg", ".jpe" },
+            MaxFileSize = 10000000
         };
 
-        public static void uploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e) {
-            if(e.UploadedFile.IsValid) {
-                string resultFilePath = "~/Content/Avatars/" + string.Format("Avatar{0}{1}", Convert.ToString(HttpContext.Current.Session["UserID"]), Path.GetExtension(e.UploadedFile.FileName));
+        public static void uploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
+        {
+
+            if (e.UploadedFile.IsValid)
+            {
+                string resultFilePath = "~/Documents/" + e.UploadedFile.FileName;
                 e.UploadedFile.SaveAs(HttpContext.Current.Request.MapPath(resultFilePath));
                 IUrlResolutionService urlResolver = sender as IUrlResolutionService;
-                if(urlResolver != null)
+                if (urlResolver != null)
                     e.CallbackData = urlResolver.ResolveClientUrl(resultFilePath) + "?refresh=" + Guid.NewGuid().ToString();
+                DocumentController.filePath = e.UploadedFile.FileName;
             }
         }
     }
