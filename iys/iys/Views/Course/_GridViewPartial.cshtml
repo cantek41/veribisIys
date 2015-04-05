@@ -1,74 +1,66 @@
 @{
-        var grid = Html.DevExpress().GridView(settings => {
+    var grid = Html.DevExpress().GridView(settings =>
+    {
         settings.Name = "CourseGridView";
-        settings.CallbackRouteValues = new { Controller = "Course", Action = "GridViewPartial" };
 
-		settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Course", Action = "GridViewPartialAddNew" };
+
+
+        settings.CallbackRouteValues = new { Controller = "Course", Action = "GridViewPartial" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Course", Action = "GridViewPartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Course", Action = "GridViewPartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Course", Action = "GridViewPartialDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 
-		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Visible = true;
         settings.CommandColumn.ShowNewButton = true;
         settings.CommandColumn.ShowDeleteButton = true;
         settings.CommandColumn.ShowEditButton = true;
-       
-       
+
+
         settings.KeyFieldName = "COURSE_CODE";
-        settings.Columns.Add(column =>
-		settings.SettingsPager.Visible = true;
-		settings.Settings.ShowGroupPanel = true;
-		settings.Settings.ShowFilterRow = true;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.ClientSideEvents.RowDblClick = "function(sender, e) { sender.StartEditRow(e.visibleIndex); }";
 
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "COURSE_NAME";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "KURS";
+        });
 
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TYPE";
+            column.Caption = "TÝPÝ";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "TYPE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(1);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
 
-                //settings.Columns.Add("COURSE_CODE");
-                //settings.Columns.Add("COURSE_NAME");
-                settings.Columns.Add(column =>
-                {
-                    column.FieldName = "COURSE_NAME";
-                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
-                    column.Caption = "KURS ADI";
-                });
-                //settings.Columns.Add("TYPE", MVCxGridViewColumnType.ComboBox);
-                settings.Columns.Add(column =>
-                {
-                    column.FieldName = "TYPE";
-                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
-                    column.ColumnType = MVCxGridViewColumnType.ComboBox;
-                    column.Caption = "TÝPÝ";
-                });
-                //settings.Columns.Add("GROUP_CODE",MVCxGridViewColumnType.ComboBox);
-                //settings.Columns.Add("CATEGORY",MVCxGridViewColumnType.ComboBox);
-                //settings.Columns.Add("RES_CODE",MVCxGridViewColumnType.ComboBox);
-                //settings.Columns.Add("ORDER_BY");
-                settings.Columns.Add(column =>
-                {
-                    column.FieldName = "ORDER_BY";
-                    column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
-                    column.Caption = "SIRA";
-                });
-        
-                //settings.Columns.Add("VISIBLE",MVCxGridViewColumnType.CheckBox);
-                //settings.Columns.Add("DES_01");
-                //settings.Columns.Add("DES_02");
-                //settings.Columns.Add("DES_03");
-                //settings.Columns.Add("ROW_NO");
-                //settings.Columns.Add("CREATE_USER");
-                //settings.Columns.Add("CREATE_DATE",MVCxGridViewColumnType.DateEdit);
-                //settings.Columns.Add("LAST_UPDATE",MVCxGridViewColumnType.DateEdit);
-                //settings.Columns.Add("LAST_UPDATE_USER");
-			});
-            
-		if (ViewData["EditError"] != null){
-            grid.SetEditErrorText((string)ViewData["EditError"]);
-            
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ORDER_BY";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "SIRA";
+        });
+     
+    });
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+
     }
-    
+
 }
 @grid.Bind(Model).GetHtml()
-
-

@@ -53,8 +53,11 @@
     <Compile Include="TABLOLAR\CHAPTER.cs" />
     <Compile Include="TABLOLAR\Course.cs" />
     <Compile Include="TABLOLAR\DOCUMENT.cs" />
+    <Compile Include="TABLOLAR\GROUP.cs" />
+    <Compile Include="TABLOLAR\GROUPDES.cs" />
     <Compile Include="TABLOLAR\LESSON.cs" />
     <Compile Include="TABLOLAR\QUESTION.cs" />
+    <Compile Include="TABLOLAR\RES.cs" />
     <Compile Include="TABLOLAR\USER.cs" />
   </ItemGroup>
   <ItemGroup>

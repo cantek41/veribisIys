@@ -1,5 +1,4 @@
 @{
-    int index = 0;
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "GridView";
         settings.CallbackRouteValues = new { Controller = "Questions", Action = "GridViewPartial" };
@@ -20,15 +19,35 @@
 		settings.SettingsPager.Visible = true;
 		settings.Settings.ShowGroupPanel = true;
 		settings.Settings.ShowFilterRow = true;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-                //settings.Columns.Add("QUESTION_CODE");
-				settings.Columns.Add("DESCRIPTION");
-                settings.Columns.Add("RES_CODE");
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DESCRIPTION";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            column.Caption = "SORU";
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "QUESTION_TYPE";
+            column.Caption = "SORU TÝPÝ";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            column.Name = "QUESTION_TYPE";
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = iys.Controllers.BaseController.getType(4);
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.ValueType = typeof(int);
+
+        });
+
+               
                 settings.Columns.Add(column =>
                 {
                     column.FieldName = "COURSE_CODE";
-                    column.Caption = "COURSE";
+                    column.Caption = "KURS";
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
                     column.Name = "COURSE_CODE";
                     var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
@@ -46,15 +65,14 @@
 
                 settings.Columns.Add(column =>
                 {
-                    column.Caption = "CHAPTER";
+                    column.Caption = "BÖLÜM";
                     column.FieldName = "CHAPTER_CODE";
                     column.Name = "CHAPTER_CODE";
                     ///*Display Mode*/
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
 
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
-                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getChapter(coursCode);
+
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
                     propertiesComboBox.ValueType = typeof(int);
@@ -79,19 +97,16 @@
 
                 settings.Columns.Add(column =>
                 {
-                    column.Caption = "LESSON";
+                    column.Caption = "DERS";
                     column.FieldName = "LESSON_CODE";
                     column.Name = "LESSON_CODE";
                     ///*Display Mode*/
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
-                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
-                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getLesson(coursCode, chapterCode);
+
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
                     propertiesComboBox.ValueType = typeof(int);
-                    propertiesComboBox.ClientSideEvents.SelectedIndexChanged = "LessonsCombo_SelectedIndexChanged";
                     ///*Display Mode*/
 
                     /*Edit Mode*/
@@ -112,16 +127,13 @@
 
                 settings.Columns.Add(column =>
                 {
-                    column.Caption = "DOCUMENT";
+                    column.Caption = "DÖKÜMAN";
                     column.FieldName = "DOCUMENT_CODE";
                     column.Name = "DOCUMENT_CODE";
                     ///*Display Mode*/
                     column.ColumnType = MVCxGridViewColumnType.ComboBox;
                     ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
-                    int coursCode = (int)Model[index].COURSE_CODE;
-                    int chapterCode = (int)Model[index].CHAPTER_CODE;// (int)column.Grid.GetRowValues(column.Index, "COURSE_CODE");
-                    int lessonCode = (int)Model[index].LESSON_CODE;
-                    propertiesComboBox.DataSource = iys.Controllers.BaseController.getDocument(coursCode, chapterCode,lessonCode);
+                   
                     propertiesComboBox.TextField = "Value";
                     propertiesComboBox.ValueField = "Key";
                     propertiesComboBox.ValueType = typeof(int);
@@ -146,12 +158,35 @@
         
 			
 				settings.Columns.Add("ROW_NO");
-				settings.Columns.Add("LEVEL");
-				settings.Columns.Add("QUESTION_TYPE");
-                //settings.Columns.Add("CREATE_USER");
-                //settings.Columns.Add("CREATE_DATE");
-                //settings.Columns.Add("LAST_UPDATE");
-                //settings.Columns.Add("LAST_UPDATE_USER");
+                settings.Columns.Add("LEVEL");
+                settings.Columns.Add("RES_CODE");
+
+              
+
+                settings.CustomColumnDisplayText = (sender, e) =>
+                {
+                    try
+                    {
+                        //if (e.Column.FieldName == "COURSE_CODE")
+                        //    Ccode = (int)e.Value;
+                        if (e.Column.FieldName == "CHAPTER_CODE")
+                        {
+                            e.DisplayText = iys.Controllers.BaseController.getChapterString((int)e.Value);
+                            //ChCode = (int)e.Value;
+                        }
+                        if (e.Column.FieldName == "LESSON_CODE")
+                            e.DisplayText = iys.Controllers.BaseController.getLessonString((int)e.Value);
+                        if (e.Column.FieldName == "DOCUMENT_CODE")
+                            e.DisplayText = iys.Controllers.BaseController.getDocumentString((int)e.Value);
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                };
+                
 			});
 		if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

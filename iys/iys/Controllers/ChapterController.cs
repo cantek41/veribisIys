@@ -42,13 +42,15 @@ namespace iys.Controllers
                     item.RES_CODE = 0;
                     item.VISIBLE = true;
                     item.ROW_NO = 0 ;
-                    item.DURATION = DateTime.Now;
+
+                  //  item.DURATION = TimeSpan.Zero;
+
                     item.CREATE_USER = getCurrentUserName();
                     item.CREATE_DATE = DateTime.Now;
                     item.LAST_UPDATE = DateTime.Now;
                     item.LAST_UPDATE_USER = getCurrentUserName();
-                  
 
+                  
 
                     model.Add(item);
                     db.SaveChanges();

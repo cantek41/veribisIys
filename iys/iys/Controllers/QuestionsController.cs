@@ -128,7 +128,7 @@ namespace iys.Controllers
         public ActionResult PartialViewDocumentCombo(int COURSE_CODE, int CHAPTER_CODE,int LESSON_CODE)
         {
             //  MVCxComboBox cmb = (MVCxComboBox)sender;
-            int lessonID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
+            int lessonID = LESSON_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
             //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
             return PartialView(getDocument(COURSE_CODE, CHAPTER_CODE, lessonID));
         }
