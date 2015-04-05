@@ -29,6 +29,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <DeployEncryptKey>
+    </DeployEncryptKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -271,6 +275,7 @@
     <Content Include="pages\style-demo.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\metiskop.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -335,9 +340,11 @@
     <Content Include="Views\Questions\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewDocumentCombo.cshtml" />
+    <Content Include="Views\Document\PartialVievFileUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\" />
     <Folder Include="layout\scripts\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -372,7 +379,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+
           <IISUrl>http://localhost:25216/</IISUrl>
+
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -8,13 +8,13 @@ if (document.getElementById('content').scrollHeight < document.body.clientHeight
 { document.getElementById('footer').style.position = "fixed"; document.getElementById('footer').style.bottom = "0"; }
 }); </script>*@
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-    <script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>
-
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.cycle.min.js"></script>
-   
+    @Scripts.Render("~/bundles/modernizr")  
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.cycle.min.js"></script>*@
+    @*<script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>*@
     <!-- The DevExpress ASP.NET MVC Extensions' scripts -->
     @Html.DevExpress().GetScripts(
         new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
@@ -95,6 +95,7 @@ if (document.getElementById('content').scrollHeight < document.body.clientHeight
 
     </div>
 
+
     
 
 
@@ -148,5 +149,6 @@ if (document.getElementById('content').scrollHeight < document.body.clientHeight
                 @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/bundles/bootstrap")
                 @RenderSection("scripts", required: false)
+
 </body>
 </html>
