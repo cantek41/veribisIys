@@ -1,0 +1,24 @@
+﻿<div class="leftPanel">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <div class="container">
+        <div class="sidebar">
+            <div class="navContiner">
+                <ul id="nav">
+                    <li><a href="@Url.Action("Index","Course")">Kurslar</a></li>
+                    <li><a href="@Url.Action("Index", "Chapter")">Bölümler</a></li>
+                    <li><a href="@Url.Action("Index", "Lesson")">Dersler</a></li>
+                    <li><a href="@Url.Action("Index", "Document")">Belgeler</a></li>
+                    <li><a href="@Url.Action("Index", "Questions")">Sorular</a></li>
+                    <li><a href="@Url.Action("Index", "Answer")">Cevap Ekle</a></li>
+                    <li><a href="@Url.Action("Index", "AnswerResult")">Cevap Sonucu</a></li>
+                </ul>
+            </div>
+            <div class="flyoutBg"></div>
+        </div>
+    </div>
+
+    @*@Scripts.Render("~/bundles/orangeMenuScript")*@
+    <script src="../Scripts/customScript.js"></script>
+
+</div>

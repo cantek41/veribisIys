@@ -26,6 +26,12 @@ namespace iys
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css", "~/Content/stil.css", "~/Content/layout.css", "~/Content/featured_slide.css", "~/Content/forms.css", "~/Content/navi.css", "~/Content/tables.css", "~/Content/verticalMenu.css"));
                       //"~/Content/site.css", ));
+            
+            
+            
+            // ******************** orange menu için ********************************
+            bundles.Add(new ScriptBundle("~/bundles/orangeMenuScript").Include(
+                             "~/Scripts/customScript.js"));
         }
     }
 }

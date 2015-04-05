@@ -214,6 +214,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Stil.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\verticalMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -236,6 +237,18 @@
     <Content Include="images\test.png" />
     <Content Include="images\trans.png" />
     <Content Include="images\trans_top.png" />
+    <Content Include="images\verticalMenu\assets.png" />
+    <Content Include="images\verticalMenu\comments.png" />
+    <Content Include="images\verticalMenu\dashboard.png" />
+    <Content Include="images\verticalMenu\listBg.png" />
+    <Content Include="images\verticalMenu\listSelectedBg.png" />
+    <Content Include="images\verticalMenu\maps.png" />
+    <Content Include="images\verticalMenu\pages.png" />
+    <Content Include="images\verticalMenu\search.png" />
+    <Content Include="images\verticalMenu\settings.png" />
+    <Content Include="images\verticalMenu\texture.png" />
+    <Content Include="images\verticalMenu\trash.png" />
+    <Content Include="images\verticalMenu\widgets.png" />
     <Content Include="img\11.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\47.jpg" />
@@ -250,6 +263,7 @@
     <Content Include="img\Türkiye_Cumhuriyeti_Çalışma_ve_Sosyal_Güvenlik_Bakanlığı_logosu.jpg" />
     <Content Include="img\veribis-crm-d553f9-w192.png" />
     <Content Include="index.html" />
+    <Content Include="Scripts\customScript.js" />
     <Content Include="Scripts\jquery.cycle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Content\featured_slide.css" />
@@ -319,7 +333,7 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Document\_GridView1Partial.cshtml" />
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
-    <Content Include="Views\ANSWER\index.cshtml" />
+    <Content Include="Views\ANSWER\Index.cshtml" />
     <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
     <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\index.cshtml" />
@@ -336,6 +350,10 @@
     <Content Include="Views\Questions\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewDocumentCombo.cshtml" />
     <Content Include="Views\Document\PartialVievFileUpload.cshtml" />
+    <Content Include="Views\Shared\_adminTemplate.cshtml" />
+    <Content Include="Views\Shared\_RootLayout.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Shared\_LeftMenuLayoutView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,7 +391,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:25223/</IISUrl>
+          <IISUrl>http://localhost:25222/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
