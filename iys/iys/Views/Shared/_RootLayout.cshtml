@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>@ViewBag.Title</title>
-
-   
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    @Styles.Render("~/Bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    
 
     @Html.DevExpress().GetStyleSheets(
     new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
@@ -35,8 +39,11 @@
 </head>
 <body>
 
+    @*@Html.Partial("_HeaderLayout")*@
+
     @Html.DevExpress().Splitter(settings =>
 {
+    
     settings.Name = "MainSplitter";
     settings.AllowResize = false;
     settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
@@ -58,5 +65,6 @@
 
    
 }).GetHtml()
+    @RenderSection("scripts", required: false)
 </body>
 </html>

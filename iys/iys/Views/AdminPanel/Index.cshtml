@@ -4,24 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<h4></h4>
-<div class="col-md-2">
-    <!-- left menu vardı-->
-</div>
-
-<div class="col-md-8">
-    <div class="row">
-        <center>
-            <h2>
-                Eğitim İçeriği
-            </h2>
-        </center>
-    </div>
-    <div class="row">
-        @Html.Partial("MasterDetailMasterPartial", Model)
-    </div>
-
-</div>
-<div class="col-md-2">
-    
+<div class="col-md-11">
+    <h2>Eğitim İçeriği</h2>
+    @Html.Partial("MasterDetailMasterPartial", Model)
 </div>

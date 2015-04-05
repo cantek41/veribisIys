@@ -2,27 +2,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<div class="col-md-12">
-    <div class="col-md-2">
-        <!-- left menu vardı-->
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            <div>
-                <center>
-                    <h2>Kurslar</h2>
-                </center>
-            </div>
-
-            <div>
-                @Html.Action("GridViewPartial")
-            </div>
-
-        </div>
-    </div>
-    <div class="col-md-2">
-
-    </div>
+<div class="col-md-11">
+    <h2>Kurslar</h2>
+    @Html.Action("GridViewPartial")
 </div>
 
 

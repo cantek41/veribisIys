@@ -219,7 +219,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Stil.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\verticalMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -338,8 +337,8 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Document\_GridView1Partial.cshtml" />
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
-    <Content Include="Views\ANSWER\Index.cshtml" />
-    <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
+    <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Answer\_GridViewPartial.cshtml" />
     <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\index.cshtml" />
     <Content Include="Views\Questions\_GridViewPartial.cshtml" />
@@ -350,15 +349,14 @@
     <Content Include="Views\Document\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailMasterPartial.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailDetailPartial.cshtml" />
-    <Content Include="Views\AdminPanel\AdminMenu.cshtml" />
     <Content Include="Views\Questions\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewDocumentCombo.cshtml" />
     <Content Include="Views\Document\PartialVievFileUpload.cshtml" />
-    <Content Include="Views\Shared\_adminTemplate.cshtml" />
     <Content Include="Views\Shared\_RootLayout.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_LeftMenuLayoutView.cshtml" />
+    <Content Include="Views\Shared\_HeaderLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

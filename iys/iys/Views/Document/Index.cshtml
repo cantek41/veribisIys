@@ -10,7 +10,7 @@
         //alert("CoursesCombo_SelectedIndexChanged");
         courseValue = s.GetValue();
         CHAPTER_CODE.PerformCallback();
-       
+
     }
     function ChaptersCombo_SelectedIndexChanged(s, e) {
         //alert("ChaptersCombo_SelectedIndexChanged");
@@ -20,7 +20,8 @@
     }
     function ChapterCombo_BeginCallback(s, e) {
         //alert("ChapterCombo_BeginCallback");
-        e.customArgs['COURSE_CODE'] = courseValue;    }
+        e.customArgs['COURSE_CODE'] = courseValue;
+    }
 
     function LessonCombo_BeginCallback(s, e) {
         //alert("LessonCombo_BeginCallback");
@@ -34,25 +35,9 @@
     }
 </script>
 
-
-<div class="col-md-2">
-    <!-- left menu vardı-->
-</div>
-<div class="col-md-8">
-    <div class="row">
-        <center>
-            <h2>
-                Belgeler
-            </h2>
-        </center>
-    </div>
-    <div class="row">
-        @Html.Action("GridView1Partial")
-    </div>
-
-</div>
-<div class="col-md-2">
-
+<div class="col-md-11">
+    <h2>Belgeler</h2>
+    @Html.Action("GridView1Partial")
 </div>
 
 
