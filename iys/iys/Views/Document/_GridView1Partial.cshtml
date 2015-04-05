@@ -135,7 +135,28 @@
             column.FieldName = "PATH";
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
             column.Caption = "DOSYA YOLU";
+
+            column.SetEditItemTemplateContent(c =>
+            {
+                using (Html.BeginForm("ImageUpload", "Document", FormMethod.Post))
+                {
+                    Html.DevExpress().UploadControl(
+                       ucSettings =>
+                       {
+                           ucSettings.Name = "uploadControl";
+                           ucSettings.ShowUploadButton = true;
+                           ucSettings.AddUploadButtonsSpacing = 0;
+                           ucSettings.AddUploadButtonsHorizontalPosition = AddUploadButtonsHorizontalPosition.InputRightSide;
+                           ucSettings.CallbackRouteValues = new { Controller = "Document", Action = "ImageUpload" };
+                           ucSettings.ClientSideEvents.FileUploadComplete = "function(s, e) { if(e.isValid) { avatarUrl.SetValue(e.callbackData) } }";
+                       }
+                   ).Render();
+                }
+                });
+            /*Edit Mode*/
         });
+
+
 
 
         settings.Columns.Add(column =>
@@ -169,7 +190,7 @@
             e.NewValues["DURATION"] = "00:00";
         };
 
-      
+
         settings.CustomColumnDisplayText = (sender, e) =>
         {
             try
@@ -192,7 +213,9 @@
             }
         };
 
+
     });
+
 
 
     if (ViewData["EditError"] != null)
