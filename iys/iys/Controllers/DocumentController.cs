@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using iys.ModelProject;
 using DevExpress.Web.Mvc;
+using DevExpress.Web;
+using System.Web.UI;
 
 namespace iys.Controllers
 {
@@ -170,6 +172,28 @@ namespace iys.Controllers
             int chapterID = CHAPTER_CODE;// Convert.ToInt32(cmb.SelectedItem.Value);
             //int courseID = (Request.Params["COURSE_CODE"] != null) ? int.Parse(Request.Params["COURSE_CODE"]) : -1;
             return PartialView(getLesson(COURSE_CODE,chapterID));
+        }
+
+        public ActionResult ImageUpload() {
+            UploadControlExtension.GetUploadedFiles("uploadControl", UploadControlHelper.ValidationSettings, UploadControlHelper.uploadControl_FileUploadComplete);
+            return null;
+        }
+    }
+
+    public class UploadControlHelper {
+        public static readonly UploadControlValidationSettings ValidationSettings = new UploadControlValidationSettings {
+            AllowedFileExtensions = new string[] { ".jpg",".png",".jpeg", ".jpe"},
+            MaxFileSize = 4000000
+        };
+
+        public static void uploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e) {
+            if(e.UploadedFile.IsValid) {
+                string resultFilePath = "~/Content/Avatars/" + string.Format("Avatar{0}{1}", Convert.ToString(HttpContext.Current.Session["UserID"]), Path.GetExtension(e.UploadedFile.FileName));
+                e.UploadedFile.SaveAs(HttpContext.Current.Request.MapPath(resultFilePath));
+                IUrlResolutionService urlResolver = sender as IUrlResolutionService;
+                if(urlResolver != null)
+                    e.CallbackData = urlResolver.ResolveClientUrl(resultFilePath) + "?refresh=" + Guid.NewGuid().ToString();
+            }
         }
     }
 }

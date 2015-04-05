@@ -1,0 +1,16 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.CallbackRouteValues = new { Controller = "Document", Action = "PartialViewLessonCombo" };
+    settings.Name = "LESSON_CODE";
+    settings.Properties.TextField = "Value";
+    settings.Properties.ValueField = "Key";
+    settings.Properties.ValueType = typeof(int);
+
+    settings.Properties.EnableSynchronization = DefaultBoolean.False;
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+
+    settings.Properties.ClientSideEvents.BeginCallback = "LessonCombo_BeginCallback";
+}).GetHtml()
+
+
+
