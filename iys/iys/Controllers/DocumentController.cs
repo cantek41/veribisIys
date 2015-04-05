@@ -100,7 +100,7 @@ namespace iys.Controllers
                 item.CREATE_DATE = DateTime.Now;
                 item.LAST_UPDATE = DateTime.Now;
                 item.LAST_UPDATE_USER = getCurrentUserName();
-
+                filePath = null;
                /// DOCUMENT modelItem = model.FirstOrDefault(it => it.DOCUMENT_CODE == item.DOCUMENT_CODE);
                 if (item != null)
                 {
@@ -176,7 +176,7 @@ namespace iys.Controllers
     {
         public static readonly UploadControlValidationSettings ValidationSettings = new UploadControlValidationSettings
         {
-            AllowedFileExtensions = new string[] { ".jpg", ".png", ".jpeg", ".jpe" },
+            AllowedFileExtensions = new string[] { ".jpg", ".png", ".jpeg", ".jpe",".pdf",".pptx",".mp4" },
             MaxFileSize = 10000000
         };
 
