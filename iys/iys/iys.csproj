@@ -29,6 +29,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <DeployEncryptKey>
+    </DeployEncryptKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -215,7 +219,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Stil.css" />
-    <Content Include="Content\verticalMenu.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -235,8 +239,18 @@
     <Content Include="images\index.html" />
     <Content Include="images\slide.png" />
     <Content Include="images\test.png" />
-    <Content Include="images\trans.png" />
-    <Content Include="images\trans_top.png" />
+    <Content Include="images\verticalMenu\assets.png" />
+    <Content Include="images\verticalMenu\comments.png" />
+    <Content Include="images\verticalMenu\dashboard.png" />
+    <Content Include="images\verticalMenu\listBg.png" />
+    <Content Include="images\verticalMenu\listSelectedBg.png" />
+    <Content Include="images\verticalMenu\maps.png" />
+    <Content Include="images\verticalMenu\pages.png" />
+    <Content Include="images\verticalMenu\search.png" />
+    <Content Include="images\verticalMenu\settings.png" />
+    <Content Include="images\verticalMenu\texture.png" />
+    <Content Include="images\verticalMenu\trash.png" />
+    <Content Include="images\verticalMenu\widgets.png" />
     <Content Include="img\11.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\47.jpg" />
@@ -251,6 +265,7 @@
     <Content Include="img\Türkiye_Cumhuriyeti_Çalışma_ve_Sosyal_Güvenlik_Bakanlığı_logosu.jpg" />
     <Content Include="img\veribis-crm-d553f9-w192.png" />
     <Content Include="index.html" />
+    <Content Include="Scripts\customScript.js" />
     <Content Include="Scripts\jquery.cycle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Content\featured_slide.css" />
@@ -272,6 +287,8 @@
     <Content Include="pages\style-demo.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\metiskop.pubxml" />
+    <None Include="Properties\PublishProfiles\metiskopPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -320,8 +337,8 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Document\_GridView1Partial.cshtml" />
     <Content Include="Views\Document\PartialViewChapterCombo.cshtml" />
-    <Content Include="Views\ANSWER\index.cshtml" />
-    <Content Include="Views\ANSWER\_GridViewPartial.cshtml" />
+    <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Answer\_GridViewPartial.cshtml" />
     <Content Include="Views\Lesson\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\index.cshtml" />
     <Content Include="Views\Questions\_GridViewPartial.cshtml" />
@@ -332,13 +349,18 @@
     <Content Include="Views\Document\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailMasterPartial.cshtml" />
     <Content Include="Views\AdminPanel\MasterDetailDetailPartial.cshtml" />
-    <Content Include="Views\AdminPanel\AdminMenu.cshtml" />
     <Content Include="Views\Questions\PartialViewChapterCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewLessonCombo.cshtml" />
     <Content Include="Views\Questions\PartialViewDocumentCombo.cshtml" />
+    <Content Include="Views\Document\PartialVievFileUpload.cshtml" />
+    <Content Include="Views\Shared\_RootLayout.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Shared\_LeftMenuLayoutView.cshtml" />
+    <Content Include="Views\Shared\_HeaderLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\" />
     <Folder Include="layout\scripts\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -373,7 +395,11 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+<<<<<<< HEAD
           <IISUrl>http://localhost:25215/</IISUrl>
+=======
+          <IISUrl>http://localhost:25222/</IISUrl>
+>>>>>>> 8adaa6823ed88d05a1abe9671ba915bfc4c32a95
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

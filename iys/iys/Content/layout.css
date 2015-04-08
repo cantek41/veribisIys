@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*
 Template Name: Ost Magazine
 Author: <a href="http://www.os-templates.com/">OS Templates</a>
@@ -64,7 +64,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Header------------------------------------- */
 
-#header{padding:10px 0 20px; z-index:1000;}
+#header{/*padding:10px 0 20px;*/ z-index:1000;}
 #header h1, #header p, #header ul{margin:0; padding:0; list-style:none; line-height:normal;}
 #header #logo{display:block; float:left; margin-top:7px; overflow:hidden;}
 #header #logo h1 a{font-size:46px; color:#999999; background-color:#000000;}

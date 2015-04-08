@@ -1,9 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
-
 <script type="text/javascript">
     var globalValue = 0;
     function QuestionsCombo_SelectedIndexChanged(s, e) {
@@ -15,25 +14,8 @@
 
     }
 </script>
-<h4></h4>
-
-
-<div class="col-md-2">
-    @Html.Partial("../AdminPanel/AdminMenu")
-</div> 
-<div class="col-md-8">
-    <div class="row">
-        <center>
-            <h2>
-                Soru Cevapları
-            </h2>
-        </center>
-    </div>
-    <div class="row">
-        @Html.Action("GridViewPartial")
-    </div>
-
+<div class="col-md-11">
+    <h2>Soru Cevapları</h2>
+    @Html.Action("GridViewPartial")
 </div>
-<div class="col-md-2">
 
-</div>

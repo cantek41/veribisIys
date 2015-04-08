@@ -1,27 +1,10 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<div class="col-md-11">
 
-<h2></h2>
-
-<div class="col-md-2">
-@Html.Partial("../AdminPanel/AdminMenu")</div>
-<div class="col-md-7" style="margin-left:20px;">
-    <div class="row">
-        <center>
-            <h2>
-                Bölümler
-            </h2>
-        </center>
-    </div>
-    <div class="row">
-        @Html.Action("GridView1Partial")
-    </div>
-
-</div>
-<div class="col-md-2">
-    
-
+    <h2>Bölümler</h2>
+    @Html.Action("GridView1Partial")
 
 </div>

@@ -6,3 +6,6 @@
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-1.11.2.js" />
+/// <reference path="jquery.cycle.js" />
+/// <reference path="jquery.js" />
+/// <reference path="customscript.js" />

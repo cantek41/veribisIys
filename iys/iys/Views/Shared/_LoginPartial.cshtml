@@ -7,11 +7,19 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
             <li><a class="header-yazi-ozellik" href="javascript:document.getElementById('logoutForm').submit()">@Res.resGetir(3)</a></li>
+=======
+            <li> <a href="@Url.Action("changeLanguage", "Base", new { lang ="TR"})"><img  src="http://atommucizesi.imanisiteler.com/images/trBayrak.png" /></a></li>
+            <li><a href="@Url.Action("changeLanguage", "Base", new { lang ="EN"})"><img  src="http://atommucizesi.imanisiteler.com/images/engBayrak.png" /></a></li>
+            <li><a class="header-yazi-ozellik" href="javascript:document.getElementById('logoutForm').submit()">Çıkış</a></li>
+
+            
+>>>>>>> 8adaa6823ed88d05a1abe9671ba915bfc4c32a95
             <li>@Html.ActionLink("Yönet", "index", "AdminPanel")</li>
             <li>
 
-                @Html.ActionLink("Hoşgeldin  " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "navbar-brand header-yazi-ozellik sol-border ", title = "Manage" })
+                @Html.ActionLink(User.Identity.GetUserName() , "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "navbar-brand header-yazi-ozellik sol-border ", title = "Manage" })
 
             </li>
 
@@ -21,7 +29,15 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
         <li> <a class=" header-yazi-ozellik sol-border" href="/Account/Register" id="registerLink">@Res.resGetir(2)</a></li>
         <li> <a class="header-yazi-ozellik" href="/Account/Login" id="loginLink">@Res.resGetir(1)</a></li>
+=======
+        <li> <a href="@Url.Action("changeLanguage", "Base", new { lang ="TR"})"><img src="http://atommucizesi.imanisiteler.com/images/trBayrak.png" /></a></li>
+        <li><a href="@Url.Action("changeLanguage", "Base", new { lang ="EN"})"><img src="http://atommucizesi.imanisiteler.com/images/engBayrak.png" /></a></li>
+        <li> <a class=" header-yazi-ozellik sol-border" href="/Account/Register" id="registerLink">Kayıt Ol</a></li>
+        <li> <a class="header-yazi-ozellik" href="/Account/Login" id="loginLink">Giriş Yap</a></li>
+        
+>>>>>>> 8adaa6823ed88d05a1abe9671ba915bfc4c32a95
     </ul>
 }

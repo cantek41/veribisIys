@@ -24,8 +24,17 @@ namespace iys
                       "~/Scripts/respond.js", "~/Scripts/jquery.min.js", "~/Scripts/jquery.cycle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css", "~/Content/stil.css", "~/Content/layout.css", "~/Content/featured_slide.css", "~/Content/forms.css", "~/Content/navi.css", "~/Content/tables.css", "~/Content/verticalMenu.css"));
+                      "~/Content/bootstrap.css", "~/Content/stil.css", "~/Content/layout.css", "~/Content/featured_slide.css", "~/Content/forms.css", "~/Content/navi.css", "~/Content/tables.css"));
                       //"~/Content/site.css", ));
+
+            bundles.Add(new StyleBundle("~/Bundles/css").Include(
+                     "~/Content/bootstrap.css", "~/Content/style.css", "~/Content/layout.css"));
+            //"~/Content/site.css", ));
+            
+            
+            // ******************** orange menu için ********************************
+            bundles.Add(new ScriptBundle("~/bundles/orangeMenuScript").Include(
+                             "~/Scripts/customScript.js"));
         }
     }
 }
